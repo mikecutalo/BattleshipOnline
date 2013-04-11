@@ -1,0 +1,85 @@
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+
+public class Animation extends Game implements Runnable
+{
+	private Thread animationThread = new Thread(this, "Animation Thread");
+	private int imgCounter=0;
+	private Image[] shipEffect = new Image[3];
+
+	public Player p;
+	public AI a;
+	
+	public Animation()
+	{
+		this.p = new Player();
+		this.a = new AI();
+	}
+	
+	//Animation here!!!!!!!
+	//we will run the run() to start the thread
+	//the way i see it one thread for each pic
+	//each stopping at a different time.
+	
+	public void ShipSinking() throws IOException
+	{
+		System.out.println("InShipSinking");
+		shipEffect[0] = ImageIO.read(getClass().getResource("/turnImg/warn.jpg"));
+		shipEffect[1] = ImageIO.read(getClass().getResource("/turnImg/bomb.jpg"));
+		shipEffect[2] = ImageIO.read(getClass().getResource("/turnImg/boom.jpg"));
+
+		animationThread.start();
+	}
+	
+	
+	@Override
+	public void run() 
+	{
+		Thread myThread = Thread.currentThread();
+		
+		while(animationThread == myThread)
+		{
+			System.out.println("In RUN METHOD!!!" + imgCounter);
+			//instead of paint method
+			//can i just repaint the comp board?
+			imgCounter++;
+			
+			if(imgCounter == 5){
+				Thread..top();
+			}
+			
+			try{
+				Thread.sleep(1000);
+			}catch(InterruptedException e){
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	
+	public void paint(Graphics g)
+	{
+		//last parameter look it up?
+		g.drawImage(shipEffect[imgCounter],0,0, this.computer.getPlayerBoard());		
+	}
+	public Player getP() {
+		return p;
+	}
+
+	public void setP(Player p) {
+		this.p = p;
+	}
+
+	public AI getA() {
+		return a;
+	}
+
+	public void setA(AI a) {
+		this.a = a;
+	}
+}
