@@ -254,32 +254,6 @@ public class AI extends Player
 			this.hitROW = row;
 			this.hitCOL = col;
 
-
-//			System.out.println("\n");
-//			System.out.println("***********************");
-//			System.out.println("***YOU BEEN HIT!!!!!***");
-//			System.out.println("***********************");
-//
-//			if(enemy.checkShips() == true)
-//			{
-//				System.out.println("GAME OVER!!!!");
-//				System.out.println("You LOSE!!!");
-//				System.out.println("*****Stats*****");
-//				System.out.println(enemy.getPlayerName() +" Number of Turns: "+ enemy.getNumTurns());
-//				System.out.println(enemy.getPlayerName() +" Number of Misses: "+ enemy.getNumMissed());
-//				System.out.println(enemy.getPlayerName() +" Number of Hits: "+ enemy.getNumHits()+"\n");
-//
-//				System.out.println(this.getPlayerName() +" Number of Turns: "+ this.getNumTurns());
-//				System.out.println(this.getPlayerName() +" Number of Misses: "+ this.getNumMissed());
-//				System.out.println(this.getPlayerName() +" Number of Hits: "+ this.getNumHits());
-//
-//				//this.gameOver = true;
-//			}
-
-			//Setting stats for AI
-			//Game.computer.setNumTurns(Game.computer.getNumTurns() + 1);
-			//Game.computer.setNumHits(Game.computer.getNumHits() + 1); 
-
 			this.numTurns += 1;
 			this.numHits += 1;
 

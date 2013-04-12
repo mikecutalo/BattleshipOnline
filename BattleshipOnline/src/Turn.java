@@ -58,6 +58,7 @@ public class Turn implements MouseListener, ActionListener
 
 	private Game thisGame;
 	private JPopupMenu menu;
+	private Animation hitAnimation;
 
 	/**
 	 * Constructs a new turn, setting human shot to null
@@ -76,7 +77,7 @@ public class Turn implements MouseListener, ActionListener
 	 * when actions are performed. This will also clear the computers board
 	 * just in case if a cheat was enabled. 
 	 */
-	public void StartListening()
+	public void startListening()
 	{		
 		this.computer.getPlayerBoard().printBoard(false);
 
@@ -209,7 +210,7 @@ public class Turn implements MouseListener, ActionListener
 	 * 
 	 * @throws IOException
 	 */
-    public void UpdateSunk() throws IOException
+    public void updateSunk() throws IOException
     {
     	Game.shipPlace.removeAll();
     	
@@ -346,21 +347,25 @@ public class Turn implements MouseListener, ActionListener
 				   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
 				{
 					if(this.computer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
-					{		
-						Animation hitAnimation = new Animation();
-						
+					{			
+						this.hitAnimation = new Animation();
+						hitAnimation.setA(this.computer);
 						hitAnimation.setP(this.human);
-						
-						hitAnimation.ShipSinking();
-						
-						
-				
+						hitAnimation.shipSinking(row,col);
+					
+						/*
+						Now doing this in the Animation Class
+						Just seems natural do it there. 
+						Do need to figure out how to stop showing skull img,
+						before the animation is done when a ship sinks. 
+						*/
+
 						//Taking care of board
-						this.computer.getPlayerBoard().getBoard()[row][col].setHit(true);	
-						tmpImage = new ImageIcon(getClass().getResource("/images/hit.jpg"));
-						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
-						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
-						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+//						this.computer.getPlayerBoard().getBoard()[row][col].setHit(true);	
+//						tmpImage = new ImageIcon(getClass().getResource("/images/hit.jpg"));
+//						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+//						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+//						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
 
 						//Setting stats for player
 						this.human.setNumHits(this.human.getNumHits() + 1);
@@ -400,10 +405,10 @@ public class Turn implements MouseListener, ActionListener
 				this.computer.getPlayerBoard().printBoard(false);
 				System.out.println("\n\n");
 
-				this.computer.checkShips();		
-				this.human.checkShips();
+//				this.computer.checkShips();		
+//				this.human.checkShips();
 
-				UpdateSunk();
+				updateSunk();
 
 				ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
 

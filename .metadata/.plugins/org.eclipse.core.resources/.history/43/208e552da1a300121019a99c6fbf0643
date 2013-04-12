@@ -1,0 +1,9 @@
+/**
+ * This will handle Player vs. Player Game Play.
+ * 
+ * 
+ * @author mcutalo88
+ */
+public class PVP extends Turn{
+
+}

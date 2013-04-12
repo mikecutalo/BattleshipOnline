@@ -346,7 +346,7 @@ public class Game extends JApplet implements ActionListener
 					this.gameTime.setHuman(human);
 					this.gameTime.setComputer(computer);
 					this.gameTime.setThisGame(this);
-					this.gameTime.StartListening();
+					this.gameTime.startListening();
 
 					placeShipMode = false;
 				}
