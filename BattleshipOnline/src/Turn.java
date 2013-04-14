@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -85,7 +88,7 @@ public class Turn implements MouseListener, ActionListener
 		JOptionPane.showMessageDialog(Game.humanSunk, 
 				"Game is now starting!\nClick on the computers board to attack!","Game Starting", 1, gameImg);
 
-		ImageIcon img = new ImageIcon(getClass().getResource("/images/not.jpg"));
+		ImageIcon img = new ImageIcon(getClass().getResource("/images/Space.jpg"));
 
 
 		for(int i=0; i < 10; i++)
@@ -197,7 +200,7 @@ public class Turn implements MouseListener, ActionListener
 		if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
 		   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() == false)
 		{
-			ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/not.jpg"));
+			ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/Space.jpg"));
 			this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
 		}
     }
@@ -352,6 +355,10 @@ public class Turn implements MouseListener, ActionListener
 						hitAnimation.setA(this.computer);
 						hitAnimation.setP(this.human);
 						hitAnimation.shipSinking(row,col);
+						
+						Sound hit = new Sound();
+						
+						hit.ShipHit();
 					
 						/*
 						Now doing this in the Animation Class

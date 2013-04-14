@@ -97,7 +97,7 @@ public class Game extends JApplet implements ActionListener
 
 
 		setLayout(new BorderLayout(10,10));
-		setSize(800, 520);
+		setSize(800, 500);
 
 		allNames = new JPanel(new BorderLayout());
 		humanName = new JPanel();
@@ -238,36 +238,36 @@ public class Game extends JApplet implements ActionListener
 		switch(human.getAllShips().size())
 		{
 			case 0:		
-				tempImage = ImageIO.read(getClass().getResource("/images/AC.jpg"));
-				currShipPlaceImg = new ImageIcon(getClass().getResource("/images/AC.jpg"));
+				tempImage = ImageIO.read(getClass().getResource("/startrek/starship.jpg"));
+				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/starship.jpg"));
 				currentShipImg.setIcon(new ImageIcon(tempImage));
 				currentShipText.setText("Aircraft Carrier");
 				currentShipSize = 5;
 			break;			
 			case 1:
-				tempImage = ImageIO.read(getClass().getResource("/images/battleship.jpg"));
-				currShipPlaceImg = new ImageIcon(getClass().getResource("/images/battleship.jpg"));
+				tempImage = ImageIO.read(getClass().getResource("/startrek/enterprise.jpg"));
+				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/enterprise.jpg"));
 				currentShipImg.setIcon(new ImageIcon(tempImage));
 				currentShipText.setText("Battleship");
 				currentShipSize = 4;
 			break;			
 			case 2:
-				tempImage = ImageIO.read(getClass().getResource("/images/submarine.jpg"));
-				currShipPlaceImg = new ImageIcon(getClass().getResource("/images/submarine.jpg"));
+				tempImage = ImageIO.read(getClass().getResource("/startrek/nebula.jpg"));
+				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/nebula.jpg"));
 				currentShipImg.setIcon(new ImageIcon(tempImage));
 				currentShipText.setText("Submarine");
 				currentShipSize = 3;
 			break;			
 			case 3:
-				tempImage = ImageIO.read(getClass().getResource("/images/Destroyer.jpg"));
-				currShipPlaceImg = new ImageIcon(getClass().getResource("/images/Destroyer.jpg"));
+				tempImage = ImageIO.read(getClass().getResource("/startrek/miscellaneous.jpg"));
+				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/miscellaneous.jpg"));
 				currentShipImg.setIcon(new ImageIcon(tempImage));
 				currentShipText.setText("Destroyer");
 				currentShipSize = 3;
 			break;			
 			case 4:
-				tempImage = ImageIO.read(getClass().getResource("/images/PatrolBoat.jpg"));
-				currShipPlaceImg = new ImageIcon(getClass().getResource("/images/PatrolBoat.jpg"));
+				tempImage = ImageIO.read(getClass().getResource("/startrek/patrol.jpg"));
+				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/Patrol.jpg"));
 				currentShipImg.setIcon(new ImageIcon(tempImage));
 				currentShipText.setText("Patrol Boat");
 				currentShipSize = 2;

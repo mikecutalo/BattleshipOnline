@@ -35,7 +35,7 @@ public class Grid extends JPanel
 
 		Image img = null;
 		try {
-			img = ImageIO.read(getClass().getResource("/images/not.jpg"));		
+			img = ImageIO.read(getClass().getResource("/images/Space.jpg"));		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -104,11 +104,11 @@ public class Grid extends JPanel
 							tmpImage = ImageIO.read(getClass().getResource("/images/PatrolBoat.jpg"));
 							this.board[i][j].setIcon(new ImageIcon(tmpImage));						
 						}else{
-							tmpImage = ImageIO.read(getClass().getResource("/images/not.jpg"));	
+							tmpImage = ImageIO.read(getClass().getResource("/images/Space.jpg"));	
 							this.board[i][j].setIcon(new ImageIcon(tmpImage));
 						}
 					}else{
-						tmpImage = ImageIO.read(getClass().getResource("/images/not.jpg"));	
+						tmpImage = ImageIO.read(getClass().getResource("/images/Space.jpg"));	
 						this.board[i][j].setIcon(new ImageIcon(tmpImage));
 					}
 				}
@@ -210,35 +210,35 @@ public class Grid extends JPanel
 				  (col + i) < 10 &&
 				  this.board[row][col + i].isSpaceEmpty() == true)
 				{
-					this.board[row][col + i].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));
+					this.board[row][col + i].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));
 				}else if( (col + i) < 10 && this.board[row][col + i].isSpaceEmpty() == true){
-					this.board[row][col + i].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));
+					this.board[row][col + i].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));
 				}
 
 				if(secondCol != (col - i) &&
 				  (col - i) >= 0 &&
 				  this.board[row][col - i].isSpaceEmpty() == true){
-					this.board[row][col - i].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));	
+					this.board[row][col - i].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));	
 				}else if((col - i) >= 0 && this.board[row][col - i].isSpaceEmpty() == true)
 				{
-					this.board[row][col - i].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));
+					this.board[row][col - i].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));
 				}
 
 				if(secondRow != (row + i) &&
 				(row + i) < 10 &&
 				this.board[row + i][col].isSpaceEmpty() == true){
-					this.board[row + i][col].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));
+					this.board[row + i][col].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));
 				}else if((row + i) < 10 &&
 						this.board[row + i][col].isSpaceEmpty() == true){
-					this.board[row + i][col].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));
+					this.board[row + i][col].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));
 				}
 
 				if(secondRow != (row - i) &&
 				  (row - i) >= 0 &&
 				  this.board[row - i][col].isSpaceEmpty() == true){
-					this.board[row - i][col].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));
+					this.board[row - i][col].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));
 				}else if((row - i) >= 0 && this.board[row - i][col].isSpaceEmpty() == true){
-					this.board[row - i][col].setIcon(new ImageIcon(getClass().getResource("/images/not.jpg")));			  
+					this.board[row - i][col].setIcon(new ImageIcon(getClass().getResource("/images/Space.jpg")));			  
 				}			
 			}
 		}		

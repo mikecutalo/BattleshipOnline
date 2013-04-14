@@ -1,0 +1,46 @@
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
+
+
+public class Sound extends Game implements Runnable
+{
+	
+	public Sound(){
+		
+	}
+	
+	public void ShipHit(){
+		
+		//URL hit = getClass().getResource("sounds/Earth.mp3");
+		URL hit = getClass().getResource("/sounds/AuthorizationCopy.wav");
+		AudioClip hitSound = Applet.newAudioClip(hit);
+		
+		
+		hitSound.play();
+		System.out.println("Playing ShipHit");
+		
+//	     new Thread() {
+//	            public void run() {
+//	                try { player.play(); }
+//	                catch (Exception e) { System.out.println(e); }
+//	            }
+//	        }.start();
+
+	}
+	
+	public void ShipMissed()
+	{
+		
+	}
+	
+	
+	
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

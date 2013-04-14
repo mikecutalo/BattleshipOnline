@@ -1,0 +1,45 @@
+import java.io.IOException;
+import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.media.*;
+
+public class Sound extends Game implements Runnable
+{
+	
+	public Sound(){
+		
+	}
+	
+	public void ShipHit() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+		
+		URL hit = getClass().getClassLoader().getResource("/sounds/Earth.mp3");
+		AudioInputStream audioIn = AudioSystem.getAudioInputStream(hit);
+		
+		Clip clip = AudioSystem.getClip();
+		clip.open(audioIn);
+		
+		clip.start();
+	}
+	
+	public void ShipMissed()
+	{
+		URL url = this.getClass().getClassLoader().getResource("/sounds/Earth.mp3");
+        MediaLocator locator = new MediaLocator(url);
+        Player player = Manager.createPlayer(locator);
+        
+	}
+	
+	
+	
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

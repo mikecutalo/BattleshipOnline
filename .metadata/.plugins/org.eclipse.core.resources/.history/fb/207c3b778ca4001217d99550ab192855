@@ -1,0 +1,27 @@
+import javax.print.DocFlavor.URL;
+
+
+public class Sound extends Game implements Runnable
+{
+	
+	public Sound(){
+		
+	}
+	
+	public void ShipHit(){
+		URL hit = getClass().getClassLoader().getResource("/sounds/Authorization.mpt3");
+		
+	}
+	
+	public void ShipMissed(){
+		
+	}
+	
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
