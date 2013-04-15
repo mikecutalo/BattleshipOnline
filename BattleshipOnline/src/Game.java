@@ -39,11 +39,6 @@ public class Game extends JApplet implements ActionListener
 	public static JPanel humanName = new JPanel();
 	/** Holds name of computer player.*/
 	public static JPanel computerName = new JPanel();
-
-	//do i even needs these anymore??
-	public static JLabel turnHuman, hitHuman ,missHuman, 
-						 turnComp,hitComp,missComp;
-
 	/** If ship is not placed in correct spot error will be set.*/
 	public static JLabel errorMsg;
 	/** Icon of current ship being placed.*/
@@ -94,7 +89,6 @@ public class Game extends JApplet implements ActionListener
 		this.gameTime = new Turn();	
 		this.human.setPlayerName("Human");
 		this.computer.setPlayerName("AI");
-
 
 		setLayout(new BorderLayout(10,10));
 		setSize(800, 500);
@@ -178,49 +172,6 @@ public class Game extends JApplet implements ActionListener
 		{
 			System.out.println("No");
 		}
-	}
-
-	/**
-	 * Display player statics 
-	 *
-	 * Displays all player and AI statics in the
-	 * center of the applet.
-	 * 
-	 * @deprecated replaced with right click pop up menu 
-	 */
-	public void DisplayStats()
-	{
-		JPanel humanStats = new JPanel();
-		humanStats.setLayout(new BoxLayout(humanStats,BoxLayout.PAGE_AXIS));
-
-		JLabel h = new JLabel("Human");
-		h.setFont(new Font("Sans Serif", Font.BOLD, 15));
-
-		humanStats.add(h);
-		humanStats.add(turnHuman = new JLabel("# Turns :"));
-		humanStats.add(hitHuman = new JLabel("# Hit : "));
-		humanStats.add(missHuman = new JLabel("# Miss :"));
-
-		playerStats.add(humanStats);
-		playerStats.add(humanSunk);
-
-		/////////////////////////////////////////
-		JPanel computerStats = new JPanel();
-		computerStats.setLayout(new BoxLayout(computerStats, BoxLayout.PAGE_AXIS));
-
-		JLabel c = new JLabel("Computer");
-		c.setFont(new Font("Sans Serif", Font.BOLD, 15));
-
-		computerStats.add(c);
-		computerStats.add(turnComp = new JLabel("# Turns : "));
-		computerStats.add(hitComp = new JLabel("# Hit : "));
-		computerStats.add(missComp = new JLabel("# Miss : "));
-
-		playerStats.add(computerStats);
-		playerStats.add(computerSunk);
-
-
-		add(playerStats, BorderLayout.CENTER); //Add both human and computer Stats
 	}
 
 	/**
@@ -342,7 +293,10 @@ public class Game extends JApplet implements ActionListener
 					}	
 					shipPlace.removeAll();
 					//DisplayStats();
-
+					
+					Sound battleStations = new Sound();
+					battleStations.BattleStations();
+					
 					this.gameTime.setHuman(human);
 					this.gameTime.setComputer(computer);
 					this.gameTime.setThisGame(this);

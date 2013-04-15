@@ -250,6 +250,11 @@ public class AI extends Player
 			shipHit = enemy.getPlayerBoard().getBoard()[row][col].getOccupyingShip(); //Get the occupyingShip of that space
 			enemy.getAllShips().get(shipHit).setSumHit(enemy.getAllShips().get(shipHit).getSumHit() + 1); //Increment the sum hit on the ship
 
+			Animation hitShip = new Animation();
+			hitShip.setPlayer(enemy);
+			hitShip.shipSinking(row, col);
+			
+			
 			this.isAiHit = true;
 			this.hitROW = row;
 			this.hitCOL = col;

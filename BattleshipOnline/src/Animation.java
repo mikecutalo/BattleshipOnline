@@ -10,14 +10,12 @@ public class Animation extends Game implements Runnable
 	private int col;
 	
 	public ImageIcon[] shipEffect = new ImageIcon[3];
-	public Player p;
-	public AI a;
+	public Player player;
 	public ImageIcon tmpImage;
 	
 	public Animation()
 	{
-		this.p = new Player();
-		this.a = new AI();
+		this.player = new Player();
 		this.row = 0;
 		this.col = 0;
 	}
@@ -48,20 +46,20 @@ public class Animation extends Game implements Runnable
 			
 			if(this.imgCounter < 3)
 			{
-				this.a.getPlayerBoard().getBoard()[this.row][this.col].setEnabled(false);
-				this.a.getPlayerBoard().getBoard()[this.row][this.col].setDisabledIcon(shipEffect[imgCounter]);
+				this.player.getPlayerBoard().getBoard()[this.row][this.col].setEnabled(false);
+				this.player.getPlayerBoard().getBoard()[this.row][this.col].setDisabledIcon(shipEffect[imgCounter]);
 		
 				this.imgCounter++;
 			}
 			else
 			{
-				this.a.getPlayerBoard().getBoard()[row][col].setHit(true);	
+				this.player.getPlayerBoard().getBoard()[row][col].setHit(true);	
 				tmpImage = new ImageIcon(getClass().getResource("/images/hit.jpg"));
-				this.a.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
-				this.a.getPlayerBoard().getBoard()[row][col].setEnabled(false);
-				this.a.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+				this.player.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+				this.player.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+				this.player.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
 			
-				this.a.checkShips();		
+				this.player.checkShips();		
 				
 				stopThread();
 				this.imgCounter=0;
@@ -82,19 +80,12 @@ public class Animation extends Game implements Runnable
 	}
 
 
-	public Player getP() {
-		return p;
+	public Player getPlayer() {
+		return player;
 	}
 
-	public void setP(Player p) {
-		this.p = p;
+	public void setPlayer(Player p) {
+		this.player = p;
 	}
 
-	public AI getA() {
-		return a;
-	}
-
-	public void setA(AI a) {
-		this.a = a;
-	}
 }

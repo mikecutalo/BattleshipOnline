@@ -293,7 +293,7 @@ public class Turn implements MouseListener, ActionListener
 	{
 		String action = e.getActionCommand();
 
-		ImageIcon human = new ImageIcon(getClass().getResource("/popup/human.jpeg"));
+		ImageIcon human = new ImageIcon(getClass().getResource("/popup/Picard.jpg"));
 		ImageIcon comp = new ImageIcon(getClass().getResource("/popup/comp.jpeg"));
 
 		if(action.equals("Cancel")){
@@ -352,8 +352,8 @@ public class Turn implements MouseListener, ActionListener
 					if(this.computer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
 					{			
 						this.hitAnimation = new Animation();
-						hitAnimation.setA(this.computer);
-						hitAnimation.setP(this.human);
+						hitAnimation.setPlayer(this.computer);
+						
 						hitAnimation.shipSinking(row,col);
 						
 						Sound hit = new Sound();
