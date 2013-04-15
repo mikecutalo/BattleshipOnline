@@ -219,11 +219,11 @@ public class Turn implements MouseListener, ActionListener
     	
     	char[] s ={'A','B','S','D','P'};
     	String[] images = new String[5];
-    	images[0] = "AC.jpg";
-    	images[1] = "battleship.jpg";
-    	images[2] = "submarine.jpg";
-    	images[3] = "Destroyer.jpg";
-    	images[4] = "PatrolBoat.jpg";
+    	images[0] = "starship.jpg";
+    	images[1] = "enterprise.jpg";
+    	images[2] = "nebula.jpg";
+    	images[3] = "miscellaneous.jpg";
+    	images[4] = "Patrol.jpg";
     	    	
     	JPanel dead = new JPanel();
     	dead.setLayout(new BorderLayout());
@@ -238,7 +238,7 @@ public class Turn implements MouseListener, ActionListener
     		if(this.human.getAllShips().get(s[x]).isAlive() == false)
     		{
     			JLabel tmp = new JLabel();
-    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/images/" + images[x]));
+    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/startrek/" + images[x]));
     			tmp.setIcon(tmpImg);
     			humanSunk.add(tmp);
     		}
@@ -246,7 +246,7 @@ public class Turn implements MouseListener, ActionListener
     		if(this.computer.getAllShips().get(s[x]).isAlive() == false)
     		{
     			JLabel tmp = new JLabel();
-    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/images/" + images[x]));
+    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/startrek/" + images[x]));
     			tmp.setIcon(tmpImg);
     			computerSunk.add(tmp);
     		}
