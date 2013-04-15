@@ -269,10 +269,6 @@ public class Game extends JApplet implements ActionListener
 				this.human.placeShip(firstChoice, secondChoice, tempShip);
 				this.human.getPlayerBoard().PossibleBoatSelect(false);
 
-				//Add computer ship now
-				//This is where my BUG WAS!!!!!!!
-				//Since i didn't make a NEW instance of the ship
-				//it was some how linking it with my human hashmap list
 				Ship compShip = new Ship();
 				compShip.setMaxHit(currentShipSize);
 				compShip.setBoatInit(currentShipText.getText().toString().charAt(0));
@@ -292,8 +288,7 @@ public class Game extends JApplet implements ActionListener
 						}
 					}	
 					shipPlace.removeAll();
-					//DisplayStats();
-					
+										
 					Sound battleStations = new Sound();
 					battleStations.BattleStations();
 					

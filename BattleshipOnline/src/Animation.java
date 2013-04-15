@@ -27,7 +27,6 @@ public class Animation extends Game implements Runnable
 		this.row = row;
 		this.col = col;
 		
-		System.out.println("InShipSinking");
 		this.shipEffect[0] = new ImageIcon(getClass().getResource("/turnImg/warn.jpg"));
 		this.shipEffect[1] = new ImageIcon(getClass().getResource("/turnImg/bomb.jpg"));
 		this.shipEffect[2] = new ImageIcon(getClass().getResource("/turnImg/boom.jpg"));

@@ -62,7 +62,7 @@ public class Turn implements MouseListener, ActionListener
 	private Game thisGame;
 	private JPopupMenu menu;
 	private Animation hitAnimation;
-
+	
 	/**
 	 * Constructs a new turn, setting human shot to null
 	 * and game over to false
@@ -291,8 +291,8 @@ public class Turn implements MouseListener, ActionListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
+		Sound report = new Sound();
 		String action = e.getActionCommand();
-
 		ImageIcon human = new ImageIcon(getClass().getResource("/popup/Picard.jpg"));
 		ImageIcon comp = new ImageIcon(getClass().getResource("/popup/comp.jpeg"));
 
@@ -301,6 +301,7 @@ public class Turn implements MouseListener, ActionListener
 		}
 
 		if(action.equals("Human Stats")){
+			report.Authorization();
 			JOptionPane.showMessageDialog(Game.humanSunk, 
 					"Total Turn: " + this.human.getNumTurns() + "\n" +
 					"Miss Shots: " + this.human.getNumMissed() + "\n" +
@@ -308,6 +309,7 @@ public class Turn implements MouseListener, ActionListener
 					"Ships Sunk: " + this.computer.getShipsSunk(), "Human Stats", 1, human);
 		}
 		else if(action.equals("Computer Stats")){
+			report.StatusReport();
 			JOptionPane.showMessageDialog(Game.computerSunk, 
 					"Total Turn: " + this.computer.getNumTurns() + "\n" +
 					"Miss Shots: " + this.computer.getNumMissed() + "\n" +
@@ -351,15 +353,13 @@ public class Turn implements MouseListener, ActionListener
 				{
 					if(this.computer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
 					{			
-						this.hitAnimation = new Animation();
+						hitAnimation = new Animation();
 						hitAnimation.setPlayer(this.computer);
-						
 						hitAnimation.shipSinking(row,col);
 						
-						Sound hit = new Sound();
+						Sound soundFactory = new Sound();
+						soundFactory.ShipHit();
 						
-						hit.ShipHit();
-					
 						/*
 						Now doing this in the Animation Class
 						Just seems natural do it there. 
