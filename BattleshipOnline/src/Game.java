@@ -90,13 +90,19 @@ public class Game extends JApplet implements ActionListener
 		this.human.setPlayerName("Human");
 		this.computer.setPlayerName("AI");
 
+		getContentPane().setBackground(Color.BLACK);
 		setLayout(new BorderLayout(10,10));
-		setSize(800, 500);
+		setSize(800, 520);
 
 		allNames = new JPanel(new BorderLayout());
+		allNames.setBackground(Color.BLACK);
+		
 		humanName = new JPanel();
+		humanName.setBackground(Color.BLACK);
+		
 		computerName = new JPanel();
-
+		computerName.setBackground(Color.BLACK);
+		
 		humanName.setPreferredSize(new Dimension(350,30));
 		humanName.setMaximumSize(new Dimension(350,30));
 		humanName.setSize(350,25);
@@ -107,10 +113,12 @@ public class Game extends JApplet implements ActionListener
 
 		JLabel hLabel = new JLabel("Human");
 		hLabel.setFont(new Font("Sans Serif", Font.BOLD, 20));
+		hLabel.setForeground(Color.WHITE);
 		humanName.add(hLabel);
 
-		JLabel cLabel = new JLabel("Computer");
+		JLabel cLabel = new JLabel("Borg");
 		cLabel.setFont(new Font("Sans Serif", Font.BOLD, 20));
+		cLabel.setForeground(Color.WHITE);
 		computerName.add(cLabel);
 
 
@@ -136,10 +144,19 @@ public class Game extends JApplet implements ActionListener
 
 		//South Panel
 		shipPlace.setLayout(new FlowLayout());	
-		shipPlace.add(new JLabel("Now Placeing : "));
+		shipPlace.setBackground(Color.BLACK);
+		
+		JLabel nowPlacing = new JLabel("Now Placeing : ");
+		nowPlacing.setForeground(Color.WHITE);
+		
+		shipPlace.add(nowPlacing);
 		shipPlace.add(currentShipImg = new JLabel());
 		shipPlace.add(currentShipText = new JLabel());
 		shipPlace.add(errorMsg = new JLabel());
+		
+		currentShipText.setForeground(Color.WHITE);
+		errorMsg.setForeground(Color.WHITE);
+		
 		add(shipPlace, BorderLayout.SOUTH);
 
 		try {

@@ -1,14 +1,20 @@
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.media.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
+
+
 
 public class Animation extends Game implements Runnable
 {
 	private Thread animationThread;
-	private int imgCounter=0;
-	
+	private int imgCounter=0;	
 	private int row;
 	private int col;
-	
 	public ImageIcon[] shipEffect = new ImageIcon[3];
 	public Player player;
 	public ImageIcon tmpImage;
@@ -32,6 +38,24 @@ public class Animation extends Game implements Runnable
 		this.shipEffect[2] = new ImageIcon(getClass().getResource("/turnImg/boom.jpg"));
 
 		this.animationThread.start();
+	}
+	
+	public void ShipExplosionVideo(){
+		
+		//javax.media.*.player fjdklsa = new javax.media.*.player();
+		
+		
+		//javax.media lameep;
+//		Player hi;
+//		hi = transform(javax.media);
+		
+		//hi = new javax.media.*();
+		//MediaPlayer hello = new MediaPlayer();
+				
+		//Player transform(javax.media.player video) {
+//			
+//		}
+		
 	}
 		
 	@Override
@@ -63,8 +87,7 @@ public class Animation extends Game implements Runnable
 				stopThread();
 				this.imgCounter=0;
 			}
-			
-							
+								
 			try{
 				Thread.sleep(500);
 			}catch(InterruptedException e){
@@ -78,7 +101,6 @@ public class Animation extends Game implements Runnable
 		this.animationThread = null;
 	}
 
-
 	public Player getPlayer() {
 		return player;
 	}
@@ -86,5 +108,4 @@ public class Animation extends Game implements Runnable
 	public void setPlayer(Player p) {
 		this.player = p;
 	}
-
 }

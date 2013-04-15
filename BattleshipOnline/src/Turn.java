@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -227,11 +228,19 @@ public class Turn implements MouseListener, ActionListener
     	    	
     	JPanel dead = new JPanel();
     	dead.setLayout(new BorderLayout());
+    	dead.setBackground(Color.BLACK);
+    	
     	JPanel humanSunk = new JPanel();
+    	humanSunk.setBackground(Color.BLACK);
+    	
     	JPanel computerSunk = new JPanel();
+    	computerSunk.setBackground(Color.BLACK);
     	
     	JPanel boxHuman = new JPanel();
+    	boxHuman.setBackground(Color.BLACK);
+    	
     	JPanel boxComputer = new JPanel();
+    	boxComputer.setBackground(Color.BLACK);
     	 		
     	for(int x=0; x < images.length; x++)
     	{
@@ -266,11 +275,14 @@ public class Turn implements MouseListener, ActionListener
     	computerSunk.setMaximumSize(new Dimension(350,70));
     	computerSunk.setSize(350,70);
     	
-    	
-    	boxHuman.add(new Label("Human Sunken Ships"));
+    	JLabel hSunkLabel = new JLabel("Human Ships Destroyed");
+    	hSunkLabel.setForeground(Color.WHITE);
+    	boxHuman.add(hSunkLabel);
     	boxHuman.add(humanSunk);
     	
-    	boxComputer.add(new Label("Computer Sunken Ships"));
+    	JLabel cSunkLabel = new JLabel("Borg Ships Destroyed");
+    	cSunkLabel.setForeground(Color.WHITE);
+    	boxComputer.add(cSunkLabel);
     	boxComputer.add(computerSunk);
     	
     	dead.add(boxHuman, BorderLayout.WEST);
@@ -294,7 +306,7 @@ public class Turn implements MouseListener, ActionListener
 		Sound report = new Sound();
 		String action = e.getActionCommand();
 		ImageIcon human = new ImageIcon(getClass().getResource("/popup/Picard.jpg"));
-		ImageIcon comp = new ImageIcon(getClass().getResource("/popup/comp.jpeg"));
+		ImageIcon comp = new ImageIcon(getClass().getResource("/popup/BorgQueen.jpg"));
 
 		if(action.equals("Cancel")){
 			this.menu.setVisible(false);

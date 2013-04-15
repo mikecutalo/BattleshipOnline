@@ -51,7 +51,6 @@ public class Grid extends JPanel
 		}
 	}
 
-
 	/**
 	 * Simply will generate the panel
 	 * 
@@ -69,9 +68,9 @@ public class Grid extends JPanel
 			BufferedImage tmpImage = null;
 
 			this.setLayout(new GridLayout(this.board.length, this.board.length));
-			this.setPreferredSize(new Dimension(390,320));
-			this.setMaximumSize(new Dimension(390,320));
-			this.setSize(390,320);
+			this.setPreferredSize(new Dimension(390,150));
+			this.setMaximumSize(new Dimension(390,150));
+			this.setSize(390,150);
 
 			for(int i=0; i < 10; i++)
 			{
