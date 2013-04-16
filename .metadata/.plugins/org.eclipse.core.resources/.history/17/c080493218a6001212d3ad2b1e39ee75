@@ -6,6 +6,8 @@ import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 
+
+
 public class Animation extends Game implements Runnable
 {
 	private Thread animationThread;

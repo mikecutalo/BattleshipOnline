@@ -1,10 +1,13 @@
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.media.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
+
+
 
 public class Animation extends Game implements Runnable
 {
@@ -16,7 +19,8 @@ public class Animation extends Game implements Runnable
 	public Player player;
 	public ImageIcon tmpImage;
 	
-	public Animation(){
+	public Animation()
+	{
 		this.player = new Player();
 		this.row = 0;
 		this.col = 0;
@@ -38,7 +42,7 @@ public class Animation extends Game implements Runnable
 	
 	public void ShipExplosionVideo(){
 		
-	//javax.media.*.player fjdklsa = new javax.media.*.player();
+		//javax.media.*.player fjdklsa = new javax.media.*.player();
 		
 		
 		//javax.media lameep;

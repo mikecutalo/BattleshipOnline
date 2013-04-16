@@ -1,4 +1,4 @@
-<html>
+<! DOCTYPE html>
 	<head>
 		<Title>StarTrek BattleShip</Title>
 		
@@ -11,13 +11,27 @@
 				vertical-align: middle;
 			}
 		</style>
-
+		
+		<script type="text/javascript">
+			function PlaySunkenShip(){
+				var video;
+				video = window.open("ShipHit.html","","width=400, height=400, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
+				video.moveTo(0,0);
+			}
+		</script>
 	</head>
 
 
 	<body background="Capture.PNG" bgcolor="#000000"> 
 		<div class="AppletStyle">
-			<Applet Code="Game.class" width=800 Height=500></Applet>
+			<!--<Applet Code="Game.class" width=800 Height=500></Applet>
+			<object width="800" height="500" data="Game.class"></object> -->
+
+			<object type="application/x-java-applet" height="500" width="800">
+			      <param name="code" value="Game.class" />
+			      
+			      
+			</object>
 		</div>
 	</body>
 
