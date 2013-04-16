@@ -8,11 +8,12 @@
 <fullyQualifiedTypeName name="javax.sound.sampled.AudioInputStream"/>
 <fullyQualifiedTypeName name="javax.sound.sampled.AudioSystem"/>
 <fullyQualifiedTypeName name="javax.sound.sampled.Clip"/>
-<fullyQualifiedTypeName name="java.net.URL"/>
 <fullyQualifiedTypeName name="java.applet.Applet"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.applet.AudioClip"/>
 <fullyQualifiedTypeName name="Sound"/>
+<fullyQualifiedTypeName name="java.applet.AppletContext"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
 </qualifiedTypeNameHistroy>

@@ -6,8 +6,6 @@ import java.applet.AppletContext;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.URL;
-
 import javax.swing.*;
 
 public class Animation extends Game implements Runnable
@@ -53,17 +51,15 @@ public class Animation extends Game implements Runnable
 		//Player transform(javax.media.player video) {		
 //		}
 		
-		final AppletContext handle = null;
+		AppletContext handle;
 		
 	     new Thread() {
 		      public void run() {
 		          try {
 		  			System.out.println("Showing some JavaScript Alert");
-		  			handle.showDocument(new URL("javascript:AlertMe()"));
+		
 		  			}
-		          catch (Exception e) { 
-		        	  System.out.println(e); 
-		          }
+		          catch (Exception e) { System.out.println(e); }
 		      }
 		  }.start();
 			

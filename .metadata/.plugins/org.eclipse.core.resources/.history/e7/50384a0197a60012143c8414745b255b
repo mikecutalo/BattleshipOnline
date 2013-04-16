@@ -1,20 +1,26 @@
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.media.*;
+
+import java.applet.AppletContext;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.net.URL;
+
+import javax.swing.*;
 
 public class Animation extends Game implements Runnable
 {
 	private Thread animationThread;
-	private int imgCounter=0;
-	
+	private int imgCounter=0;	
 	private int row;
 	private int col;
-	
 	public ImageIcon[] shipEffect = new ImageIcon[3];
 	public Player player;
 	public ImageIcon tmpImage;
 	
-	public Animation()
-	{
+	public Animation(){
 		this.player = new Player();
 		this.row = 0;
 		this.col = 0;
@@ -27,12 +33,40 @@ public class Animation extends Game implements Runnable
 		this.row = row;
 		this.col = col;
 		
-		System.out.println("InShipSinking");
 		this.shipEffect[0] = new ImageIcon(getClass().getResource("/turnImg/warn.jpg"));
 		this.shipEffect[1] = new ImageIcon(getClass().getResource("/turnImg/bomb.jpg"));
 		this.shipEffect[2] = new ImageIcon(getClass().getResource("/turnImg/boom.jpg"));
 
 		this.animationThread.start();
+	}
+	
+	public void ShipExplosionVideo(){
+		
+	//javax.media.*.player fjdklsa = new javax.media.*.player();
+	
+//		Player hi;
+//		hi = transform(javax.media);
+		
+		//hi = new javax.media.*();
+		//MediaPlayer hello = new MediaPlayer();
+				
+		//Player transform(javax.media.player video) {		
+//		}
+		
+		final AppletContext handle = null;
+		
+	     new Thread() {
+		      public void run() {
+		          try {
+		  			System.out.println("Showing some JavaScript Alert");
+		  			handle.showDocument(new URL("javascript:AlertMe()"));
+		  			}
+		          catch (Exception e) { 
+		        	  System.out.println(e); 
+		          }
+		      }
+		  }.start();
+			
 	}
 		
 	@Override
@@ -64,8 +98,7 @@ public class Animation extends Game implements Runnable
 				stopThread();
 				this.imgCounter=0;
 			}
-			
-							
+								
 			try{
 				Thread.sleep(500);
 			}catch(InterruptedException e){
@@ -79,13 +112,11 @@ public class Animation extends Game implements Runnable
 		this.animationThread = null;
 	}
 
-
-	public Player getP() {
+	public Player getPlayer() {
 		return player;
 	}
 
-	public void setP(Player p) {
+	public void setPlayer(Player p) {
 		this.player = p;
 	}
-
 }

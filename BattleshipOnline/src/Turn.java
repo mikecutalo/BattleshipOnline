@@ -369,8 +369,12 @@ public class Turn implements MouseListener, ActionListener
 						hitAnimation.setPlayer(this.computer);
 						hitAnimation.shipSinking(row,col);
 						
+						hitAnimation.ShipExplosionVideo();
+						
 						Sound soundFactory = new Sound();
 						soundFactory.ShipHit();
+						
+						
 						
 						/*
 						Now doing this in the Animation Class

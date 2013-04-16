@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -62,8 +63,7 @@ public class Turn implements MouseListener, ActionListener
 	private Game thisGame;
 	private JPopupMenu menu;
 	private Animation hitAnimation;
-	private Sound soundFactory;
-
+	
 	/**
 	 * Constructs a new turn, setting human shot to null
 	 * and game over to false
@@ -220,26 +220,34 @@ public class Turn implements MouseListener, ActionListener
     	
     	char[] s ={'A','B','S','D','P'};
     	String[] images = new String[5];
-    	images[0] = "AC.jpg";
-    	images[1] = "battleship.jpg";
-    	images[2] = "submarine.jpg";
-    	images[3] = "Destroyer.jpg";
-    	images[4] = "PatrolBoat.jpg";
+    	images[0] = "starship.jpg";
+    	images[1] = "enterprise.jpg";
+    	images[2] = "nebula.jpg";
+    	images[3] = "miscellaneous.jpg";
+    	images[4] = "Patrol.jpg";
     	    	
     	JPanel dead = new JPanel();
     	dead.setLayout(new BorderLayout());
+    	dead.setBackground(Color.BLACK);
+    	
     	JPanel humanSunk = new JPanel();
+    	humanSunk.setBackground(Color.BLACK);
+    	
     	JPanel computerSunk = new JPanel();
+    	computerSunk.setBackground(Color.BLACK);
     	
     	JPanel boxHuman = new JPanel();
+    	boxHuman.setBackground(Color.BLACK);
+    	
     	JPanel boxComputer = new JPanel();
+    	boxComputer.setBackground(Color.BLACK);
     	 		
     	for(int x=0; x < images.length; x++)
     	{
     		if(this.human.getAllShips().get(s[x]).isAlive() == false)
     		{
     			JLabel tmp = new JLabel();
-    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/images/" + images[x]));
+    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/startrek/" + images[x]));
     			tmp.setIcon(tmpImg);
     			humanSunk.add(tmp);
     		}
@@ -247,7 +255,7 @@ public class Turn implements MouseListener, ActionListener
     		if(this.computer.getAllShips().get(s[x]).isAlive() == false)
     		{
     			JLabel tmp = new JLabel();
-    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/images/" + images[x]));
+    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/startrek/" + images[x]));
     			tmp.setIcon(tmpImg);
     			computerSunk.add(tmp);
     		}
@@ -267,11 +275,14 @@ public class Turn implements MouseListener, ActionListener
     	computerSunk.setMaximumSize(new Dimension(350,70));
     	computerSunk.setSize(350,70);
     	
-    	
-    	boxHuman.add(new Label("Human Sunken Ships"));
+    	JLabel hSunkLabel = new JLabel("Human Ships Destroyed");
+    	hSunkLabel.setForeground(Color.WHITE);
+    	boxHuman.add(hSunkLabel);
     	boxHuman.add(humanSunk);
     	
-    	boxComputer.add(new Label("Computer Sunken Ships"));
+    	JLabel cSunkLabel = new JLabel("Borg Ships Destroyed");
+    	cSunkLabel.setForeground(Color.WHITE);
+    	boxComputer.add(cSunkLabel);
     	boxComputer.add(computerSunk);
     	
     	dead.add(boxHuman, BorderLayout.WEST);
@@ -292,17 +303,17 @@ public class Turn implements MouseListener, ActionListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
+		Sound report = new Sound();
 		String action = e.getActionCommand();
-
 		ImageIcon human = new ImageIcon(getClass().getResource("/popup/Picard.jpg"));
-		ImageIcon comp = new ImageIcon(getClass().getResource("/popup/comp.jpeg"));
+		ImageIcon comp = new ImageIcon(getClass().getResource("/popup/BorgQueen.jpg"));
 
 		if(action.equals("Cancel")){
 			this.menu.setVisible(false);
 		}
 
 		if(action.equals("Human Stats")){
-			soundFactory.StatusReport();
+			report.Authorization();
 			JOptionPane.showMessageDialog(Game.humanSunk, 
 					"Total Turn: " + this.human.getNumTurns() + "\n" +
 					"Miss Shots: " + this.human.getNumMissed() + "\n" +
@@ -310,7 +321,7 @@ public class Turn implements MouseListener, ActionListener
 					"Ships Sunk: " + this.computer.getShipsSunk(), "Human Stats", 1, human);
 		}
 		else if(action.equals("Computer Stats")){
-			soundFactory.StatusReport();
+			report.StatusReport();
 			JOptionPane.showMessageDialog(Game.computerSunk, 
 					"Total Turn: " + this.computer.getNumTurns() + "\n" +
 					"Miss Shots: " + this.computer.getNumMissed() + "\n" +
@@ -357,8 +368,13 @@ public class Turn implements MouseListener, ActionListener
 						hitAnimation = new Animation();
 						hitAnimation.setPlayer(this.computer);
 						hitAnimation.shipSinking(row,col);
+						hitAnimation.ShipExplosionVideo();
+						
+						Sound soundFactory = new Sound();
 						soundFactory.ShipHit();
-					
+						
+						
+						
 						/*
 						Now doing this in the Animation Class
 						Just seems natural do it there. 
