@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.UnknownHostException;
 
 /** 
  * The game class extends JApplet and implements ActionListener.
@@ -227,8 +230,8 @@ public class Game extends JApplet implements ActionListener
 				currentShipSize = 3;
 			break;			
 			case 3:
-				tempImage = ImageIO.read(getClass().getResource("/startrek/miscellaneous.jpg"));
-				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/miscellaneous.jpg"));
+				tempImage = ImageIO.read(getClass().getResource("/startrek/Akira.jpg"));
+				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/Akira.jpg"));
 				currentShipImg.setIcon(new ImageIcon(tempImage));
 				currentShipText.setText("Destroyer");
 				currentShipSize = 3;
@@ -242,6 +245,17 @@ public class Game extends JApplet implements ActionListener
 			break;
 		}
 	}
+	
+	public void PlayExplosionVideo() {		
+		new Thread() {
+		   	 public void run() {
+		          try {
+		        	  getAppletContext().showDocument(new URL("javascript:PlaySunkenShip()"));}
+		          catch (Exception e) {System.out.println(e);}
+		     }
+	     }.start();
+	}
+	
 
 	/**
 	 * Handles all actions when setting up the game.
@@ -261,6 +275,18 @@ public class Game extends JApplet implements ActionListener
 			firstChoice = e.getActionCommand();
 			errorMsg.setText("");
 			this.human.getPlayerBoard().PossibleBoatSelect(true);
+			
+//			PVP serverTime = new PVP();
+//			try {
+//				serverTime.userSocket();
+//			} catch (UnknownHostException e1) {
+//				e1.printStackTrace();
+//			} catch (IOException e1) {
+//				e1.printStackTrace();
+//			} catch (InterruptedException e1) {
+//				e1.printStackTrace();
+//			}
+			
 		}
 		else if(secondChoice =="")
 		{
@@ -277,7 +303,10 @@ public class Game extends JApplet implements ActionListener
 		if(placeShipMode == true && firstChoice != "" && secondChoice != "")
 		{	
 			if(this.human.getPlayerBoard().validateClick(firstChoice, secondChoice, currentShipSize))
-			{				
+			{	
+				Sound s = new Sound();
+				s.ShipPlaced();
+				
 				Ship tempShip = new Ship();
 				tempShip.setMaxHit(currentShipSize);
 				tempShip.setBoatInit(currentShipText.getText().toString().charAt(0));
@@ -304,7 +333,7 @@ public class Game extends JApplet implements ActionListener
 							this.human.getPlayerBoard().getBoard()[i][j].removeActionListener(this);
 						}
 					}	
-					shipPlace.removeAll();
+					//shipPlace.removeAll();
 										
 					Sound battleStations = new Sound();
 					battleStations.BattleStations();

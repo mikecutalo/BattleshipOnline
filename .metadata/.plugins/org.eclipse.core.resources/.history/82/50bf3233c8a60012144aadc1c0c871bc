@@ -1,0 +1,20 @@
+import java.net.ServerSocket;
+
+
+public class ClientServer implements Runnable{
+	private ServerSocket clientOne;
+	private ServerSocket clientTwo;
+	
+	@Override
+	public void run() 
+	{
+		
+	}
+
+	public static void main(String[] args) 
+	{
+		
+
+
+	}
+}

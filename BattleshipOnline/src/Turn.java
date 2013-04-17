@@ -223,7 +223,7 @@ public class Turn implements MouseListener, ActionListener
     	images[0] = "starship.jpg";
     	images[1] = "enterprise.jpg";
     	images[2] = "nebula.jpg";
-    	images[3] = "miscellaneous.jpg";
+    	images[3] = "Akira.jpg";
     	images[4] = "Patrol.jpg";
     	    	
     	JPanel dead = new JPanel();
@@ -369,11 +369,10 @@ public class Turn implements MouseListener, ActionListener
 						hitAnimation.setPlayer(this.computer);
 						hitAnimation.shipSinking(row,col);
 						
-						hitAnimation.ShipExplosionVideo();
+						thisGame.PlayExplosionVideo();
 						
 						Sound soundFactory = new Sound();
 						soundFactory.ShipHit();
-						
 						
 						
 						/*

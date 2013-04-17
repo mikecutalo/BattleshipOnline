@@ -25,14 +25,21 @@ public class Sound extends Game implements Runnable
 		this.soundThread.start();
 	}
 	
-	public void Miss(){
-		
+	public void ShipPlaced(){
+		this.clip = Applet.newAudioClip(getClass().getResource("/sounds/MakeItSo.wav"));
+		this.soundThread.start();
 	}
 	
 	public void ShipHit(){
 		this.clip = Applet.newAudioClip(getClass().getResource("/sounds/FIRE.wav"));		
 		this.soundThread.start();
 	}
+	
+	public void Miss(){
+		
+	}
+	
+
 	
 //clip = Applet.newAudioClip(getClass().getResource("/sounds/Earthagain.au"));
 //clip = Applet.newAudioClip(getClass().getResource("/sounds/24thCentury.au"));

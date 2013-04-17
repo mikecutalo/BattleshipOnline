@@ -1,0 +1,17 @@
+import java.net.Socket;
+
+
+public class ClientServer implements Runnable{
+	private Socket clientOne;
+	private Socket clientTwo;
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+}

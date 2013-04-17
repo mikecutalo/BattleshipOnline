@@ -1,14 +1,8 @@
 import java.io.IOException;
 import javax.swing.ImageIcon;
-import javax.media.*;
-
 import java.applet.AppletContext;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
-
-import javax.swing.*;
 
 public class Animation extends Game implements Runnable
 {
@@ -20,6 +14,8 @@ public class Animation extends Game implements Runnable
 	public Player player;
 	public ImageIcon tmpImage;
 	
+
+
 	public Animation(){
 		this.player = new Player();
 		this.row = 0;
@@ -28,45 +24,40 @@ public class Animation extends Game implements Runnable
 	
 	public void shipSinking(int row, int col) throws IOException
 	{
-		this.animationThread = new Thread(this, "Animation Thread");
-		
+		this.animationThread = new Thread(this, "Animation Thread");		
 		this.row = row;
 		this.col = col;
-		
 		this.shipEffect[0] = new ImageIcon(getClass().getResource("/turnImg/warn.jpg"));
 		this.shipEffect[1] = new ImageIcon(getClass().getResource("/turnImg/bomb.jpg"));
 		this.shipEffect[2] = new ImageIcon(getClass().getResource("/turnImg/boom.jpg"));
-
 		this.animationThread.start();
 	}
 	
 	public void ShipExplosionVideo(){
 		
-	//javax.media.*.player fjdklsa = new javax.media.*.player();
-	
-//		Player hi;
-//		hi = transform(javax.media);
 		
-		//hi = new javax.media.*();
-		//MediaPlayer hello = new MediaPlayer();
-				
-		//Player transform(javax.media.player video) {		
+//		Handel = getAppletContext();
+//		
+//		try {
+//			Handel.showDocument(new URL("javascript:AlertMe()"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
 //		}
 		
-		final AppletContext handle = null;
 		
-	     new Thread() {
-		      public void run() {
-		          try {
-		  			System.out.println("Showing some JavaScript Alert");
-		  			handle.showDocument(new URL("javascript:AlertMe()"));
-		  			}
-		          catch (Exception e) { 
-		        	  System.out.println(e); 
-		          }
-		      }
-		  }.start();
-			
+//		final AppletContext handle = null;
+//		
+//	     new Thread() {
+//	    	 public void run() {
+//		          try {
+//		  			System.out.println("Showing some JavaScript Alert");
+//		  			handle.showDocument(new URL("javascript:AlertMe()"));
+//		  			}
+//		          catch (Exception e) { 
+//		        	  System.out.println(e); 
+//		          }
+//		      }
+//		  }.start();
 	}
 		
 	@Override
@@ -112,6 +103,7 @@ public class Animation extends Game implements Runnable
 		this.animationThread = null;
 	}
 
+	//Getters & Setters//
 	public Player getPlayer() {
 		return player;
 	}

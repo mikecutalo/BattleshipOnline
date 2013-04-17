@@ -1,0 +1,20 @@
+import java.net.ServerSocket;
+
+
+public class ClientServer{
+	private ServerSocket clientOne;
+	private ServerSocket clientTwo;
+
+	public void StartListening()
+	{
+		
+	}
+	
+	
+	public static void main(String[] args) 
+	{
+		
+
+
+	}
+}

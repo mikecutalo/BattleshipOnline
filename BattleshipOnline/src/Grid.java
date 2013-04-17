@@ -178,22 +178,22 @@ public class Grid extends JPanel
 			for(int m=1; m < (Game.currentShipSize); m++)
 			{
 				if(showRight == true){
-					this.board[row][col + m].setIcon(new ImageIcon(getClass().getResource("/images/missHit.jpg")));
+					this.board[row][col + m].setIcon(new ImageIcon(getClass().getResource("/images/black.jpg")));
 					this.board[row][col + (Game.currentShipSize-1)].setIcon(Game.currShipPlaceImg);
 				}
 
 				if(showLeft == true){
-					this.board[row][col - m].setIcon(new ImageIcon(getClass().getResource("/images/missHit.jpg")));
+					this.board[row][col - m].setIcon(new ImageIcon(getClass().getResource("/images/black.jpg")));
 					this.board[row][col - (Game.currentShipSize-1)].setIcon(Game.currShipPlaceImg);
 				}
 
 				if(showUp == true){
-					this.board[row + m][col].setIcon(new ImageIcon(getClass().getResource("/images/missHit.jpg")));
+					this.board[row + m][col].setIcon(new ImageIcon(getClass().getResource("/images/black.jpg")));
 					this.board[row + (Game.currentShipSize-1)][col].setIcon(Game.currShipPlaceImg);
 				}
 
 				if(showDown == true){
-					this.board[row - m][col].setIcon(new ImageIcon(getClass().getResource("/images/missHit.jpg")));
+					this.board[row - m][col].setIcon(new ImageIcon(getClass().getResource("/images/black.jpg")));
 					this.board[row - (Game.currentShipSize-1)][col].setIcon(Game.currShipPlaceImg);
 				}						
 			}

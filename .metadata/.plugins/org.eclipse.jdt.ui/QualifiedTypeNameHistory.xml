@@ -15,5 +15,10 @@
 <fullyQualifiedTypeName name="java.applet.AudioClip"/>
 <fullyQualifiedTypeName name="Sound"/>
 <fullyQualifiedTypeName name="java.applet.AppletContext"/>
+<fullyQualifiedTypeName name="java.net.ServerSocket"/>
 <fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
 </qualifiedTypeNameHistroy>

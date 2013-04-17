@@ -1,0 +1,12 @@
+
+public class ClientServer implements Runnable{
+	private Socket clientOne;
+	private Socket clientTwo;
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

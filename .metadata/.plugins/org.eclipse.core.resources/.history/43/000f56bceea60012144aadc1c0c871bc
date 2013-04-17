@@ -1,0 +1,18 @@
+/**
+ * This will handle Player vs. Player Game Play.
+ * 
+ * 
+ * @author Mike Cutalo
+ */
+public class PVP extends Turn{
+	private final String SERVERNAME = "bill.kutztown.edu";
+	private final int PORT = 15009;
+	
+	PVP(){
+		
+	}
+	
+	public void userSocket(){
+		
+	}
+}
