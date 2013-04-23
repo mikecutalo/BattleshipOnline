@@ -15,21 +15,50 @@ public class PVP extends Turn{
 	private final String SERVERNAME = "bill.kutztown.edu";
 	private final int PORT = 15009;
 	
+	private PrintWriter out;
+	private BufferedReader in;
+	
 	public PVP(){
 		
 	}
 	
-	public void userSocket() throws UnknownHostException, IOException, InterruptedException{
+	public void connetToServer() throws UnknownHostException, IOException, InterruptedException{
 		
 		Socket socket = new Socket(SERVERNAME, PORT);		
 		System.out.println("Starting connection ...");
 		
-		Thread.sleep(1000);
-		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-		System.out.println("Server:Out Stream " + out);
+		out = new PrintWriter(socket.getOutputStream(), true);
+		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
+		sendData("From Client : testing connection");
+		//Thread.sleep(1000);
+		//Thread.sleep(1000);	
+		getData();
+		socket.close();
+	}
+
+	public void getData() throws InterruptedException{
+		String inputData;
+		while(true){
+			try {
+				inputData = in.readLine();
+				
+				if(inputData.equals(null)){
+					System.out.println("Sleeping GetData");
+					Thread.sleep(500);
+				}else{
+					System.out.println("Data from server:" + inputData);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
 		
-		Thread.sleep(1000);
-		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		System.out.println("Server: In Stream " +in);
+		
+	}
+	
+	public void sendData(String data){
+		out.println(data);
 	}
 }

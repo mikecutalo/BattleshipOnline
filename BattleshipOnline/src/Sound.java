@@ -1,7 +1,7 @@
 import java.applet.Applet;
 import java.applet.AudioClip;
 
-public class Sound extends Game implements Runnable
+public class Sound implements Runnable
 {
 	private Thread soundThread = new Thread(this,"Sound Thread");
 	public AudioClip clip = null;	
@@ -38,8 +38,6 @@ public class Sound extends Game implements Runnable
 	public void Miss(){
 		
 	}
-	
-
 	
 //clip = Applet.newAudioClip(getClass().getResource("/sounds/Earthagain.au"));
 //clip = Applet.newAudioClip(getClass().getResource("/sounds/24thCentury.au"));

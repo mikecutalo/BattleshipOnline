@@ -4,7 +4,7 @@ import java.applet.AppletContext;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Animation extends Game implements Runnable
+public class Animation implements Runnable
 {
 	private Thread animationThread;
 	private int imgCounter=0;	
@@ -14,8 +14,6 @@ public class Animation extends Game implements Runnable
 	public Player player;
 	public ImageIcon tmpImage;
 	
-
-
 	public Animation(){
 		this.player = new Player();
 		this.row = 0;
@@ -32,34 +30,7 @@ public class Animation extends Game implements Runnable
 		this.shipEffect[2] = new ImageIcon(getClass().getResource("/turnImg/boom.jpg"));
 		this.animationThread.start();
 	}
-	
-	public void ShipExplosionVideo(){
-		
-		
-//		Handel = getAppletContext();
-//		
-//		try {
-//			Handel.showDocument(new URL("javascript:AlertMe()"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
-		
-//		final AppletContext handle = null;
-//		
-//	     new Thread() {
-//	    	 public void run() {
-//		          try {
-//		  			System.out.println("Showing some JavaScript Alert");
-//		  			handle.showDocument(new URL("javascript:AlertMe()"));
-//		  			}
-//		          catch (Exception e) { 
-//		        	  System.out.println(e); 
-//		          }
-//		      }
-//		  }.start();
-	}
-		
+			
 	@Override
 	public void run() 
 	{

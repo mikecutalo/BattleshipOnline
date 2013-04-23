@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import java.applet.AppletContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -247,10 +249,12 @@ public class Game extends JApplet implements ActionListener
 	}
 	
 	public void PlayExplosionVideo() {		
+		final AppletContext Handel = getAppletContext();
 		new Thread() {
 		   	 public void run() {
 		          try {
-		        	  getAppletContext().showDocument(new URL("javascript:PlaySunkenShip()"));}
+		        	  Handel.showDocument(new URL("javascript:PlaySunkenShip()"));
+		          }
 		          catch (Exception e) {System.out.println(e);}
 		     }
 	     }.start();
@@ -275,10 +279,11 @@ public class Game extends JApplet implements ActionListener
 			firstChoice = e.getActionCommand();
 			errorMsg.setText("");
 			this.human.getPlayerBoard().PossibleBoatSelect(true);
-			
+						
 //			PVP serverTime = new PVP();
 //			try {
-//				serverTime.userSocket();
+//				serverTime.connetToServer();
+//				serverTime.sendData("Here we go from game");
 //			} catch (UnknownHostException e1) {
 //				e1.printStackTrace();
 //			} catch (IOException e1) {
@@ -362,14 +367,5 @@ public class Game extends JApplet implements ActionListener
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-
-//		For testing purposes so i can see where the AI is placing the ships as i do.
-
-//		JPanel computerGrid = computer.getPlayerBoard().CreateGridPanel(false);	
-//		add(computerGrid, BorderLayout.EAST);
-//
-//		computerGrid.repaint();
-//		computerGrid.validate();
-//		System.out.println("Button: " +  e.getActionCommand());
 	}	
 }

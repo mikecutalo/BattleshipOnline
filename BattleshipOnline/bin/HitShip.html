@@ -1,37 +1,33 @@
-<! DOCTYPE html>
-
+<!DOCTYPE html>
+<meta charset="UTF-8">
 <head>
-	<script type="text/javascript" FOR="Player" EVENT="playStateChange(NewState)">
-		switch(NewState)
-		{
-			case 1:
-				alert(NewState);
-				window.close();
-				break;
-			case 2:
-				alert(NewState);
-				break;
+	<meta charset="UTF-8">
+
+	<script type="text/javascript">
+		function playVideo(){
+			shipVideo.play();
 		}
 	</script>
+	
 </head>
 
-<body>
-<!-- 
-	<video width="320" height="240" controls>
-	  <source src="ShipExplosion.ogg" type="video/ogg">
-	</video>
- -->
- 	
+<body onload="playVideo();">
 
-	<video width="560" height="340" controls>
+	<video id="shipVideo" width="420" height="340">
+	  <source src="ShipExplosion.webm" type="video/webm">
+	  <source src="ShipExplosion.mp4" type="video/mp4">
+	  <source src="ShipExplosion.ogv" type="video/ogg">
+	</video>
+
+<!-- 	<video width="560" height="340" controls>
 		<source src="ShipExplosion.ogv" type="video/ogg">
 		<source src="ShipExplosion.webm" type="video/webm">
 		<source src="ShipExplosion.mp4" type="video/mp4">
-	</video>
+	</video> -->
 
 <!-- 	<OBJECT id="Player" width="352" height="240"
 		type="application/x-oleobject">
-		<PARAM NAME="URL" VALUE="ShipExplosion.mp4">
+		<PARAM NAME="URL" VALUE="ShipExplosion.webm">
 		<PARAM NAME="SendPlayStateChangeEvents" VALUE="True">
 		<PARAM NAME="AutoStart" VALUE="True">
 		<PARAM NAME="uiMode" VALUE="none">
