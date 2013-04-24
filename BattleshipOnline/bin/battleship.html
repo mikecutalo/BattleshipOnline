@@ -20,8 +20,13 @@
 			function PlaySunkenShip(){
 				video = window.open("HitShip.html","","width=450, height=340, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
 				video.moveTo(200,200);
-				//window.open("HitShip.html");
 			}
+
+			function PlayGameLose(){
+				video = window.open("GameLose.html","","width=450, height=340, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
+				video.moveTo(200,200);
+				//window.open("HitShip.html");
+			}			
 
 			function cloWin(){
 				video.close();
@@ -30,12 +35,9 @@
 		</script>		
 	</head>
 
-
 	<body background="Capture.PNG" bgcolor="#000000" style="background-repeat: no-repeat"> 
 		<div class="AppletStyle">
-
-
-<!-- 			<Applet Code="Game.class" width=800 Height=500></Applet> -->
+			<!-- <Applet Code="Game.class" width=800 Height=500></Applet> -->
 			<!-- <object width="800" height="500" data="Game.class"></object> -->
 
 			<object type="application/x-java-applet" height="500" width="800">

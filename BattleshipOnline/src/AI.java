@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  * the ship placements of the AI as well. 
  * 
  * @author Mike Cutalo
- * @version 1.0
+ * @version 2.0
  */ 
 public class AI extends Player
 {
@@ -202,7 +202,7 @@ public class AI extends Player
 		{
 			enemy.getPlayerBoard().getBoard()[row][col].setMiss(true); //Change single space to a miss on human board
 
-			tmpImage = ImageIO.read(getClass().getResource("/images/Space.jpg"));
+			tmpImage = ImageIO.read(getClass().getResource("/images/black.jpg"));
 			enemy.getPlayerBoard().getBoard()[row][col].setIcon(new ImageIcon(tmpImage));	//Set human board with miss image
 
 			//Update the AI stats

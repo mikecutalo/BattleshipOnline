@@ -13,9 +13,9 @@ import javax.swing.ImageIcon;
  * announced.  
  * 
  * @author Mike Cutalo
- * @version 2.0
+ * @version 3.0
  */
-public class Player {
+public class Player{
 
 	/** 
 	 * Players name
@@ -188,8 +188,10 @@ public class Player {
 						}
 					}	
 				}
-			}
+			}			
 		}
+		
+		
 
 		if(this.shipsSunk == 5){
 			return isGameOver = true;

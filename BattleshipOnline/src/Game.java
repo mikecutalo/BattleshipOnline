@@ -1,15 +1,16 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import java.applet.AppletContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
 
 /** 
  * The game class extends JApplet and implements ActionListener.
@@ -25,7 +26,7 @@ import java.net.UnknownHostException;
  * to the Turn class to start the game.
  *  
  * @author Mike Cutalo
- * @version 2.0
+ * @version 3.0
  */
 public class Game extends JApplet implements ActionListener
 {
@@ -71,6 +72,27 @@ public class Game extends JApplet implements ActionListener
 	public Turn gameTime = new Turn();
 	//End Global
 
+	Map<String, String> paramValue = new HashMap<String, String>();
+	
+		
+	public void start(){
+		String url = getDocumentBase().toString();
+		String paramaters="";
+		
+	   if (url.indexOf("?") > -1) {
+		   paramaters = url.substring(url.indexOf("?") + 1);
+		   
+	   }
+	   
+	   StringTokenizer paramGroup = new StringTokenizer(paramaters, "&");
+	   
+	   while(paramGroup.hasMoreTokens()){
+ 
+		   StringTokenizer value = new StringTokenizer(paramGroup.nextToken(), "=");
+		   paramValue.put(value.nextToken(), value.nextToken()); 
+	   }
+	}
+	
 	/**
 	 * Creates the GUI for the JApplet
 	 *
@@ -187,7 +209,7 @@ public class Game extends JApplet implements ActionListener
 		    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, gameImg)
 		    == JOptionPane.YES_OPTION)
 		{
-			this.getAppletContext().showDocument(this.getDocumentBase(), "_self");
+			this.getAppletContext().showDocument(this.getDocumentBase(), "GameStart.html");
 
 		}
 		else
@@ -248,6 +270,18 @@ public class Game extends JApplet implements ActionListener
 		}
 	}
 	
+	public void PlayGameLose(){
+		final AppletContext Handel = getAppletContext();
+		new Thread() {
+		   	 public void run() {
+		          try {
+		        	  Handel.showDocument(new URL("javascript:PlayGameLose()"));
+		          }
+		          catch (Exception e) {System.out.println(e);}
+		     }
+	     }.start();
+	}
+	
 	public void PlayExplosionVideo() {		
 		final AppletContext Handel = getAppletContext();
 		new Thread() {
@@ -259,7 +293,6 @@ public class Game extends JApplet implements ActionListener
 		     }
 	     }.start();
 	}
-	
 
 	/**
 	 * Handles all actions when setting up the game.

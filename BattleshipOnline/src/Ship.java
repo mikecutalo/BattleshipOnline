@@ -6,35 +6,20 @@
  */
 public class Ship{
 
-	/**
-	 * Full name of the boat 
-	 */
+	/** Full name of the boat */
 	private String boatType;
-
-	/**
-	 * The initial of the boat, this is used as a key for the grid
-	 */
+	/** The initial of the boat, this is used as a key for the grid */
 	private char boatInit;
-
-	/**
-	 * Current amount of times the boat has been hit 
-	 */
+	/** Current amount of times the boat has been hit */
 	private int sumHit; 
-
-	/**
-	 * Max amount of times a boat can be hit 
-	 */
+	/** Max amount of times a boat can be hit */
 	private int maxHit; 
-
-	/**
-	 * Name of player 
-	 */
+	/** Name of player */
 	private String playerOwner; 
-
-	/**
-	 * If this boat has been sunk or not
-	 */
+	/** If this boat has been sunk or not*/
 	private boolean isAlive; 
+	/** If this ships sunk video has been played*/
+	private boolean isVideoPlayed;
 
 
 	/**
@@ -44,6 +29,7 @@ public class Ship{
 	public Ship(){
 		this.sumHit = 0;
 		this.isAlive = true;
+		this.isVideoPlayed = false;
 	}
 
 	/* Getters and Setters */
@@ -90,4 +76,12 @@ public class Ship{
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
+
+	public boolean isVideoPlayed() {
+		return isVideoPlayed;
+	}
+
+	public void setVideoPlayed(boolean isVideoPlayed) {
+		this.isVideoPlayed = isVideoPlayed;
+	}	
 }

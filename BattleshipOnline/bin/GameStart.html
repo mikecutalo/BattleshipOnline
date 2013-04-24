@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+	<head>
+		<title>StarTrek</title>
+		<style>
+			.AppletStyle{
+				width:50%;
+				margin-top: 200px;
+				margin-right: auto;
+				margin-left: auto;
+				vertical-align: middle;
+			}
+			.hvb{
+				background-image: URL("BorgQueen.jpg");
+				width: 220px;
+				height: 268px;
+			}
+			.hvh{
+				background-image: URL("JLPhome.jpg");
+				width: 220px;
+				height: 268px;
+			}
+			h2{
+				font-family: fantasy;
+				color:white;
+			}
+			.start{
+				float: left;
+				width:50%;
+				margin-right: auto;
+				margin-left: auto;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+
+	<body background="Capture.PNG" bgcolor="#000000" style="background-repeat: no-repeat">
+		<div class="AppletStyle">
+			<form action="battleship.html" method="get">
+				
+				<div class="start">
+					<h2>Human Vs Borg</h2>
+					<input name="type" value="hvb" type="hidden"/>
+					<input class="hvb" value="" type="submit">
+				</div>
+			</form>
+
+			<form action="battleship.html" method="get"> 
+				<div class="start">
+					<h2>Human Vs Human</h2>
+					<input name="type" value="hvh" type="hidden"/>
+					<input class="hvh" value="" type="submit">					
+				</div>
+			</form>
+
+			<form action="battleship.html" method="get"> 
+
+			</form>				
+		</div>
+	</body>
+</html>

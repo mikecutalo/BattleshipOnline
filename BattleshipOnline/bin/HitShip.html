@@ -7,32 +7,21 @@
 		function playVideo(){
 			shipVideo.play();
 		}
+
+		shipVideo.onended = function(e) {
+			window.close();
+		}
 	</script>
 	
 </head>
 
 <body onload="playVideo();">
 
-	<video id="shipVideo" width="420" height="340">
+	<video id="shipVideo" name="shipVideo" width="420" height="340">
 	  <source src="ShipExplosion.webm" type="video/webm">
 	  <source src="ShipExplosion.mp4" type="video/mp4">
 	  <source src="ShipExplosion.ogv" type="video/ogg">
 	</video>
-
-<!-- 	<video width="560" height="340" controls>
-		<source src="ShipExplosion.ogv" type="video/ogg">
-		<source src="ShipExplosion.webm" type="video/webm">
-		<source src="ShipExplosion.mp4" type="video/mp4">
-	</video> -->
-
-<!-- 	<OBJECT id="Player" width="352" height="240"
-		type="application/x-oleobject">
-		<PARAM NAME="URL" VALUE="ShipExplosion.webm">
-		<PARAM NAME="SendPlayStateChangeEvents" VALUE="True">
-		<PARAM NAME="AutoStart" VALUE="True">
-		<PARAM NAME="uiMode" VALUE="none">
-		<PARAM NAME="PlayCount" VALUE="1">
-	</OBJECT> -->
 
 </body>
 </html>

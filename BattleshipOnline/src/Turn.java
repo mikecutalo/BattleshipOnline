@@ -36,28 +36,17 @@ import javax.swing.JPopupMenu;
  * to check that statics for that player. 
  * 
  * @author Mike Cutalo
- * @version 2.0
+ * @version 3.0
  */
 public class Turn implements MouseListener, ActionListener
 {
-	/** 
-	 * Set to true if game had ended.
-	 */
+	/** Set to true if game had ended. */
 	private boolean gameOver;
-
-	/** 
-	 * Coordinate of the humans shot
-	 */
+	/** Coordinate of the humans shot */
 	private String humanShot;
-
-	/** 
-	 * The human player
-	 */
+	/** The human player */
 	private Player human;
-
-	/** 
-	 * The computer player
-	 */
+	/** The computer player */
 	private AI computer;
 
 	private Game thisGame;
@@ -330,6 +319,21 @@ public class Turn implements MouseListener, ActionListener
 		}
 	}
 
+	public void playDestroyedShip()
+	{	
+		char[] s ={'A','B','S','D','P'};
+
+		for(int i=0; i < s.length; i++)
+		{	
+			if(computer.allShips.get(s[i]).isAlive() == false &&
+			   computer.allShips.get(s[i]).isVideoPlayed() == false)
+			{
+				computer.allShips.get(s[i]).setVideoPlayed(true);
+				thisGame.PlayExplosionVideo();
+			}	
+		}
+	}
+	
 	/**
 	 * Handle all clicks that take place a board.
 	 * 
@@ -368,13 +372,10 @@ public class Turn implements MouseListener, ActionListener
 						hitAnimation = new Animation();
 						hitAnimation.setPlayer(this.computer);
 						hitAnimation.shipSinking(row,col);
-							
-						thisGame.PlayExplosionVideo();
-						
+													
 						Sound soundFactory = new Sound();
 						soundFactory.ShipHit();
-						
-						
+												
 						/*
 						Now doing this in the Animation Class
 						Just seems natural do it there. 
@@ -407,7 +408,7 @@ public class Turn implements MouseListener, ActionListener
 					{
 						//Take care of board
 						this.computer.getPlayerBoard().getBoard()[row][col].setMiss(true);
-						tmpImage = new ImageIcon(getClass().getResource("/images/missHit.jpg"));
+						tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
 						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
 						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
 						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
@@ -443,6 +444,7 @@ public class Turn implements MouseListener, ActionListener
 							"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1, gameImg);
 
 					this.gameOver = true;
+					thisGame.PlayGameLose();
 
 				}else if(this.computer.checkShips() == true){
 					JOptionPane.showMessageDialog(Game.computerSunk, 
@@ -454,7 +456,8 @@ public class Turn implements MouseListener, ActionListener
 
 					this.gameOver = true;
 				}
-
+				
+				playDestroyedShip();
 				this.humanShot = "";
 			}
 		}catch(IOException err){
