@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="35" version="2.0">
+<workbench progressCount="36" version="2.0">
 <workbenchAdvisor/>
-<window height="758" maximized="true" width="1327" x="0" y="22">
+<window height="665" maximized="true" width="1019" x="0" y="22">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -33,81 +33,47 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.internal.EditorStack@4446e311" ratio="0.5185185" ratioLeft="742" ratioRight="689" relationship="2" relative="DefaultEditorWorkbook">
+<info part="org.eclipse.ui.internal.EditorStack@51fe9116" ratio="0.5" ratioLeft="708" ratioRight="708" relationship="2" relative="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="5"/>
 <part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game.java" partName="Game.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Game.java" title="Game.java" tooltip="BattleshipOnline/src/Game.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game.java" partName="Game.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Game.java" title="Game.java" tooltip="BattleshipOnline/src/Game.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/Game.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6650" selectionTopPixel="2735"/>
+<editorState selectionHorizontalPixel="24" selectionLength="0" selectionOffset="9564" selectionTopPixel="3987"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Animation.java" partName="Animation.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Animation.java" title="Animation.java" tooltip="BattleshipOnline/src/Animation.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/Animation.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="933" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sound.java" partName="Sound.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Sound.java" title="Sound.java" tooltip="BattleshipOnline/src/Sound.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sound.java" partName="Sound.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Sound.java" title="Sound.java" tooltip="BattleshipOnline/src/Sound.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/Sound.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="77" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="18" selectionLength="0" selectionOffset="992" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AI.java" partName="AI.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/AI.java" title="AI.java" tooltip="BattleshipOnline/src/AI.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/AI.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5557" selectionTopPixel="2672"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PVP.java" partName="PVP.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/PVP.java" title="PVP.java" tooltip="BattleshipOnline/src/PVP.java" workbook="org.eclipse.ui.internal.EditorStack@4446e311">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/PVP.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="904" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ClientServer.java" partName="ClientServer.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/ClientServer.java" title="ClientServer.java" tooltip="BattleshipOnline/src/ClientServer.java" workbook="org.eclipse.ui.internal.EditorStack@4446e311">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/ClientServer.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1306" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Turn.java" partName="Turn.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Turn.java" title="Turn.java" tooltip="BattleshipOnline/src/Turn.java" workbook="org.eclipse.ui.internal.EditorStack@4446e311">
+<editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Turn.java" partName="Turn.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Turn.java" title="Turn.java" tooltip="BattleshipOnline/src/Turn.java" workbook="org.eclipse.ui.internal.EditorStack@51fe9116">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/Turn.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12769" selectionTopPixel="598"/>
-</editor>
-<editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Grid.java" partName="Grid.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Grid.java" title="Grid.java" tooltip="BattleshipOnline/src/Grid.java" workbook="org.eclipse.ui.internal.EditorStack@4446e311">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/Grid.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2084" selectionTopPixel="910"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Ship.java" partName="Ship.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Ship.java" title="Ship.java" tooltip="BattleshipOnline/src/Ship.java" workbook="org.eclipse.ui.internal.EditorStack@4446e311">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/Ship.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="921" selectionTopPixel="20"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" partName="Player.java" path="/Users/mcutalo88/Documents/Computer Science Courses /JavaSpiegal/BattleshipOnline/BattleshipOnline/src/Player.java" title="Player.java" tooltip="BattleshipOnline/src/Player.java" workbook="org.eclipse.ui.internal.EditorStack@4446e311">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/BattleshipOnline/src/Player.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5767" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="7" selectionLength="0" selectionOffset="14546" selectionTopPixel="6042"/>
 </editor>
 </editors>
 <views>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (12 items)"/>
+<category IMemento.internal.id="Warnings (10 items)"/>
+<category IMemento.internal.id="Errors"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="84" org.eclipse.ui.ide.markerType="114" org.eclipse.ui.ide.pathField="144" org.eclipse.ui.ide.resourceField="114" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
+<columnWidths org.eclipse.ui.ide.locationField="84" org.eclipse.ui.ide.markerType="114" org.eclipse.ui.ide.pathField="144" org.eclipse.ui.ide.resourceField="114" org.eclipse.ui.ide.severityAndDescriptionField="1114"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
-</view>
-<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
-<viewState/>
 </view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
@@ -162,13 +128,13 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.ui.views.ProblemView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
@@ -266,7 +232,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.1381619" ratioLeft="227" ratioRight="1416" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.83226496" ratioLeft="779" ratioRight="157" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
@@ -342,58 +308,42 @@
 <view id="org.eclipse.debug.ui.BreakpointView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1254" ratioRight="418" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1254" ratioRight="418" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74973375" ratioLeft="704" ratioRight="235" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74973375" ratioLeft="704" ratioRight="235" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
 <page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.22206303" ratioLeft="155" ratioRight="543" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
-<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.75" ratioLeft="1254" ratioRight="418" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.75" ratioLeft="1254" ratioRight="418" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="836" ratioRight="836" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.BreakpointView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="836" ratioRight="836" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.BreakpointView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
@@ -411,103 +361,21 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/AI.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Animation.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Grid.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Grid.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/AI.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Ship.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Animation.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/ClientServer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Game.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Player.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Grid.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/PVP.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Singlespace.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Sound.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Turn.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Game.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/BattleshipOnline/src/Sound.java"/>
 </editors>
-<item historyLabel="Player.java" index="1">
-<position info="not_deleted" x="5782" y="0"/>
-</item>
-<item historyLabel="Player.java" index="1">
-<position info="not_deleted" x="5847" y="0"/>
-</item>
-<item historyLabel="Player.java" index="1">
-<position info="not_deleted" x="6452" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="12082" y="0"/>
-</item>
-<item historyLabel="AI.java" index="3">
-<position info="not_deleted" x="788" y="0"/>
-</item>
-<item historyLabel="Player.java" index="1">
-<position info="not_deleted" x="6452" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9893" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9888" y="0"/>
-</item>
-<item historyLabel="Player.java" index="1">
-<position info="not_deleted" x="5767" y="7"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9672" y="0"/>
-</item>
-<item historyLabel="Player.java" index="1">
-<position info="not_deleted" x="5229" y="73"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="11341" y="0"/>
-</item>
-<item historyLabel="Game.java" index="0">
-<position info="not_deleted" x="2621" y="36"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="11341" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="15481" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="14529" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9594" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9630" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9669" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9630" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9669" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9630" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9669" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9630" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9731" y="0"/>
-</item>
-<item historyLabel="Game.java" index="0">
-<position info="not_deleted" x="2621" y="36"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9878" y="0"/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position/>
-</item>
-<item historyLabel="Turn.java" index="2">
-<position info="not_deleted" x="9878" y="0"/>
-</item>
-<item historyLabel="Game.java" index="0">
-<position info="not_deleted" x="9185" y="0"/>
-</item>
-<item historyLabel="Game.java" index="0">
-<position info="not_deleted" x="8798" y="0"/>
-</item>
 <item historyLabel="Game.java" index="0">
 <position info="not_deleted" x="9185" y="0"/>
 </item>
@@ -559,8 +427,104 @@
 <item historyLabel="Grid.java" index="5">
 <position info="not_deleted" x="2084" y="0"/>
 </item>
-<item active="true" historyLabel="Game.java" index="0">
-<position info="not_deleted" x="6650" y="0"/>
+<item historyLabel="Game.java" index="0">
+<position info="not_deleted" x="3889" y="0"/>
+</item>
+<item historyLabel="Grid.java" index="6">
+<position info="not_deleted" x="1964" y="123"/>
+</item>
+<item historyLabel="Game.java" index="0">
+<position info="not_deleted" x="6083" y="0"/>
+</item>
+<item historyLabel="Grid.java" index="6">
+<position info="not_deleted" x="2088" y="0"/>
+</item>
+<item historyLabel="AI.java" index="7">
+<position/>
+</item>
+<item historyLabel="Grid.java" index="6">
+<position info="not_deleted" x="2088" y="0"/>
+</item>
+<item historyLabel="Ship.java" index="8">
+<position/>
+</item>
+<item historyLabel="AI.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Animation.java" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ClientServer.java" index="10">
+<position info="not_deleted" x="2068" y="0"/>
+</item>
+<item historyLabel="Game.java" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Player.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Grid.java" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PVP.java" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Ship.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Singlespace.java" index="15">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Sound.java" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Turn.java" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ClientServer.java" index="10">
+<position info="not_deleted" x="2068" y="0"/>
+</item>
+<item historyLabel="Turn.java" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PVP.java" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Player.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PVP.java" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Turn.java" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Game.java" index="18">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Game.java" index="18">
+<position info="not_deleted" x="5714" y="0"/>
+</item>
+<item historyLabel="Game.java" index="18">
+<position info="not_deleted" x="5664" y="0"/>
+</item>
+<item historyLabel="Game.java" index="18">
+<position info="not_deleted" x="5700" y="0"/>
+</item>
+<item historyLabel="Game.java" index="18">
+<position info="not_deleted" x="5517" y="0"/>
+</item>
+<item historyLabel="Turn.java" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Turn.java" index="17">
+<position info="not_deleted" x="14546" y="0"/>
+</item>
+<item historyLabel="Game.java" index="18">
+<position info="not_deleted" x="9564" y="0"/>
+</item>
+<item active="true" historyLabel="Sound.java" index="19">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -588,41 +552,44 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Thread.class" tooltip="java.lang.Thread">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=BattleshipOnline/\/System\/Library\/Java\/JavaVirtualMachines\/1.6.0.jdk\/Contents\/Classes\/classes.jar&lt;java.lang(Thread.class"/>
-</file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="AppletPanel.class" tooltip="sun.applet.AppletPanel">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=BattleshipOnline/\/System\/Library\/Java\/JavaVirtualMachines\/1.6.0.jdk\/Contents\/Classes\/classes.jar&lt;sun.applet(AppletPanel.class"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Ship.java" tooltip="BattleshipOnline/src/Ship.java">
-<persistable path="/BattleshipOnline/src/Ship.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AI.java" tooltip="BattleshipOnline/src/AI.java">
-<persistable path="/BattleshipOnline/src/AI.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="BattleshipOnline/src/Player.java">
-<persistable path="/BattleshipOnline/src/Player.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Grid.java" tooltip="BattleshipOnline/src/Grid.java">
-<persistable path="/BattleshipOnline/src/Grid.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sound.java" tooltip="BattleshipOnline/src/Sound.java">
 <persistable path="/BattleshipOnline/src/Sound.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Turn.java" tooltip="BattleshipOnline/src/Turn.java">
 <persistable path="/BattleshipOnline/src/Turn.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Animation.java" tooltip="BattleshipOnline/src/Animation.java">
-<persistable path="/BattleshipOnline/src/Animation.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game.java" tooltip="BattleshipOnline/src/Game.java">
+<persistable path="/BattleshipOnline/src/Game.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Singlespace.java" tooltip="BattleshipOnline/src/Singlespace.java">
+<persistable path="/BattleshipOnline/src/Singlespace.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Ship.java" tooltip="BattleshipOnline/src/Ship.java">
+<persistable path="/BattleshipOnline/src/Ship.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PVP.java" tooltip="BattleshipOnline/src/PVP.java">
 <persistable path="/BattleshipOnline/src/PVP.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game.java" tooltip="BattleshipOnline/src/Game.java">
-<persistable path="/BattleshipOnline/src/Game.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Grid.java" tooltip="BattleshipOnline/src/Grid.java">
+<persistable path="/BattleshipOnline/src/Grid.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="BattleshipOnline/src/Player.java">
+<persistable path="/BattleshipOnline/src/Player.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ClientServer.java" tooltip="BattleshipOnline/src/ClientServer.java">
 <persistable path="/BattleshipOnline/src/ClientServer.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Animation.java" tooltip="BattleshipOnline/src/Animation.java">
+<persistable path="/BattleshipOnline/src/Animation.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AI.java" tooltip="BattleshipOnline/src/AI.java">
+<persistable path="/BattleshipOnline/src/AI.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Thread.class" tooltip="java.lang.Thread">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=BattleshipOnline/\/System\/Library\/Java\/JavaVirtualMachines\/1.6.0.jdk\/Contents\/Classes\/classes.jar&lt;java.lang(Thread.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="AppletPanel.class" tooltip="sun.applet.AppletPanel">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=BattleshipOnline/\/System\/Library\/Java\/JavaVirtualMachines\/1.6.0.jdk\/Contents\/Classes\/classes.jar&lt;sun.applet(AppletPanel.class"/>
 </file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Applet.class" tooltip="java.applet.Applet">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=BattleshipOnline/\/System\/Library\/Java\/JavaVirtualMachines\/1.6.0.jdk\/Contents\/Classes\/classes.jar&lt;java.applet(Applet.class"/>
