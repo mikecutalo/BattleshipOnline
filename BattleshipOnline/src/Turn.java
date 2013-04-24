@@ -455,6 +455,7 @@ public class Turn implements MouseListener, ActionListener
 							"Ships Sunk: " + this.computer.getShipsSunk(), "Game Over",1,gameImg);
 
 					this.gameOver = true;
+					thisGame.PlayGameWin();
 				}
 				
 				playDestroyedShip();

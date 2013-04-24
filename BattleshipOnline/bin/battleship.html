@@ -14,7 +14,7 @@
 			}
 		</style>
 
-		<script type="text/javascript">
+		<script type="text/javascript"> 
 			var video;
 
 			function PlaySunkenShip(){
@@ -25,17 +25,17 @@
 			function PlayGameLose(){
 				video = window.open("GameLose.html","","width=450, height=340, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
 				video.moveTo(200,200);
-				//window.open("HitShip.html");
-			}			
-
-			function cloWin(){
-				video.close();
 			}
+
+			function PlayGameWin(){
+				video = window.open("GameWin.html","","width=450, height=340, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
+				video.moveTo(200,200);
+			}							
 
 		</script>		
 	</head>
 
-	<body background="Capture.PNG" bgcolor="#000000" style="background-repeat: no-repeat"> 
+	<body background="startrek/Capture.PNG" bgcolor="#000000" style="background-repeat: no-repeat"> 
 		<div class="AppletStyle">
 			<!-- <Applet Code="Game.class" width=800 Height=500></Applet> -->
 			<!-- <object width="800" height="500" data="Game.class"></object> -->
@@ -45,5 +45,6 @@
 			      <param name="code" value="Game.class" />
 			</object>
 		</div>
+
 	</body>
 </html> 

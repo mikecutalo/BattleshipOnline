@@ -5,22 +5,21 @@
 
 	<script type="text/javascript">
 		function playVideo(){
-			shipVideo.play();
+			shipExplosion.play();
 		}
 
-		shipVideo.onended = function(e) {
-			window.close();
+		function closeWin(){
+			self.close();
 		}
 	</script>
-	
+	 
 </head>
 
 <body onload="playVideo();">
 
-	<video id="shipVideo" name="shipVideo" width="420" height="340">
-	  <source src="ShipExplosion.webm" type="video/webm">
-	  <source src="ShipExplosion.mp4" type="video/mp4">
-	  <source src="ShipExplosion.ogv" type="video/ogg">
+	<video id="shipExplosion" width="420" height="340" onended="closeWin();">
+	  <source src="video/ShipExplosion.webm" type="video/webm">
+	  <source src="video/ShipExplosion.mp4" type="video/mp4">
 	</video>
 
 </body>
