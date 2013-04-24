@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -335,17 +336,17 @@ public class Game extends JApplet implements ActionListener
 			errorMsg.setText("");
 			this.human.getPlayerBoard().PossibleBoatSelect(true);
 						
-//			PVP serverTime = new PVP();
-//			try {
-//				serverTime.connetToServer();
-//				serverTime.sendData("Here we go from game");
-//			} catch (UnknownHostException e1) {
-//				e1.printStackTrace();
-//			} catch (IOException e1) {
-//				e1.printStackTrace();
-//			} catch (InterruptedException e1) {
-//				e1.printStackTrace();
-//			}
+			PVP serverTime = new PVP();
+			try {
+				serverTime.connetToServer();
+				serverTime.sendData("Here we go from game");
+			} catch (UnknownHostException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
 			
 		}
 		else if(secondChoice =="")

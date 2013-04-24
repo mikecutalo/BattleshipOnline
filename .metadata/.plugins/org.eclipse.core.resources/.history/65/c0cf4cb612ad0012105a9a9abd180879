@@ -51,31 +51,23 @@ public class ClientServer{
 				out = new PrintWriter(client.getOutputStream(), true);
 			
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
-			
-			
-			try {
-				
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 
 			while(true){	
 				try{
 					System.out.println("Setting Up Streams");
 					line = in.readLine();
-					
-					System.out.println("Something From user : " + line);
-					
-					if(line == null){
+										
+					if(line.equals(null)){
+						System.out.println("Sleep ....");
 						Thread.sleep(500);
-						System.out.print("Sleep");
+					}else{
+						System.out.println("Something From user : " + line);
 					}
-					out.println(line);
+					
+					out.println("Message From Server");
 				}catch(Exception e){
 					System.out.println(e.getMessage());
 				}
@@ -87,7 +79,19 @@ public class ClientServer{
 	
 	public static void main(String[] args) throws IOException, InterruptedException 
 	{
-		ClientServer clientS = new ClientServer();
-		clientS.StartListening();
+		boolean isReady = false;
+		ClientServer clientOne = new ClientServer();
+		clientOne.StartListening();	
+		
+//		ClientServer clientTwo = new ClientServer();
+//		while(!isReady)
+//		{
+//			if(clientOne == null){
+//				clientOne.StartListening();	
+//			}else if(clientOne != null){
+//				clientTwo.StartListening();
+//				isReady = true;
+//			}
+//		}		
 	}
 }

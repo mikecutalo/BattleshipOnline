@@ -83,6 +83,9 @@ public class ClientServer{
 		ClientServer clientOne = new ClientServer();
 		clientOne.StartListening();	
 		
+		
+		
+		
 //		ClientServer clientTwo = new ClientServer();
 //		while(!isReady)
 //		{
