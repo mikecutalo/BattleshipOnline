@@ -112,14 +112,12 @@ public class PVP extends Turn{
 						}else if(what == 'P'){
 							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('P');
 						}else if(what == 'x'){
+							//set ships here
 							
-							createShips();
 							this.setOnLinePlayer(remotePlayer);
 							this.setPVP(true);
-							
 							this.startListening();
 							boardDataDone = true;
-							
 						}
 					}
 					

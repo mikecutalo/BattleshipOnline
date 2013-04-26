@@ -71,9 +71,6 @@ public class PVP extends Turn{
 		Ship newShip = new Ship();
 		
 		for(int i=0; i<5; i++){
-			newShip.setMaxHit(shipMaxHit[i]);
-			newShip.setBoatInit(shipInit[i]);
-			newShip.setBoatType(shipType[i]);
 			
 			remotePlayer.allShips.put(shipInit[i], newShip);
 			newShip = new Ship();
@@ -112,14 +109,12 @@ public class PVP extends Turn{
 						}else if(what == 'P'){
 							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('P');
 						}else if(what == 'x'){
+							//set ships here
 							
-							createShips();
 							this.setOnLinePlayer(remotePlayer);
 							this.setPVP(true);
-							
 							this.startListening();
 							boardDataDone = true;
-							
 						}
 					}
 					

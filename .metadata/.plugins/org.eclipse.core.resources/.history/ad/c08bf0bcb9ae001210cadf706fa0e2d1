@@ -116,10 +116,9 @@ public class PVP extends Turn{
 							createShips();
 							this.setOnLinePlayer(remotePlayer);
 							this.setPVP(true);
-							
 							this.startListening();
 							boardDataDone = true;
-							
+							System.out.println("back in PVP Get Data");
 						}
 					}
 					
