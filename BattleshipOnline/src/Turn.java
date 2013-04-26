@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -46,6 +45,9 @@ public class Turn implements MouseListener, ActionListener
 	/** The computer player */
 	private AI computer;
 
+	private boolean isPVP = false;
+	private Player onLinePlayer;
+	
 	private Game thisGame;
 	private JPopupMenu menu;
 	private Animation hitAnimation = new Animation();;
@@ -68,8 +70,12 @@ public class Turn implements MouseListener, ActionListener
 	 * just in case if a cheat was enabled. 
 	 */
 	public void startListening()
-	{		
-		this.computer.getPlayerBoard().printBoard(false);
+	{	
+		if(isPVP){
+			this.onLinePlayer.getPlayerBoard().printBoard(false);	
+		}else{
+			this.computer.getPlayerBoard().printBoard(false);	
+		}
 
 //		ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
 //		JOptionPane.showMessageDialog(Game.humanSunk, 
@@ -82,8 +88,13 @@ public class Turn implements MouseListener, ActionListener
 		{
 			for(int j=0; j < 10; j++)
 			{
-				this.computer.getPlayerBoard().getBoard()[i][j].addMouseListener(this);
-				this.computer.getPlayerBoard().getBoard()[i][j].setIcon(img);
+				if(isPVP){
+					this.onLinePlayer.getPlayerBoard().getBoard()[i][j].addMouseListener(this);
+					this.onLinePlayer.getPlayerBoard().getBoard()[i][j].setIcon(img);
+				}else{
+					this.computer.getPlayerBoard().getBoard()[i][j].addMouseListener(this);
+					this.computer.getPlayerBoard().getBoard()[i][j].setIcon(img);
+				}
 			}	
 		}
 	}
@@ -160,13 +171,23 @@ public class Turn implements MouseListener, ActionListener
 		int row = Integer.parseInt(Character.toString(name.charAt(0)));
 		int col = Integer.parseInt(Character.toString(name.charAt(1)));
 
-
-		if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
-		   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() == false){
-
-			ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/possible.jpg"));
-			this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+		if(isPVP){
+			if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
+			   this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isMiss() == false){
+	
+				ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/possible.jpg"));
+				this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+			}		
+		}else{
+			if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
+			   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() == false){
+	
+				ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/possible.jpg"));
+				this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+			}
 		}
+		
+
 	}
 
 	/**
@@ -184,11 +205,20 @@ public class Turn implements MouseListener, ActionListener
 		int row = Integer.parseInt(Character.toString(name.charAt(0)));
 		int col = Integer.parseInt(Character.toString(name.charAt(1)));
 
-		if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
-		   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() == false)
-		{
-			ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/Space.jpg"));
-			this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+		if(isPVP){
+			if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
+			   this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isMiss() == false)
+			{
+				ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/Space.jpg"));
+				this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+			}			
+		}else{
+			if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
+			   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() == false)
+			{
+				ImageIcon tmpImage = new ImageIcon(getClass().getResource("/images/Space.jpg"));
+				this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+			}
 		}
     }
 
@@ -210,7 +240,7 @@ public class Turn implements MouseListener, ActionListener
     	images[1] = "enterprise.jpg";
     	images[2] = "nebula.jpg";
     	images[3] = "Akira.jpg";
-    	images[4] = "Patrol.jpg";
+    	images[4] = "patrol.jpg";
     	    	
     	JPanel dead = new JPanel();
     	dead.setLayout(new BorderLayout());
@@ -322,12 +352,22 @@ public class Turn implements MouseListener, ActionListener
 
 		for(int i=0; i < s.length; i++)
 		{	
-			if(computer.allShips.get(s[i]).isAlive() == false &&
-			   computer.allShips.get(s[i]).isVideoPlayed() == false)
-			{
-				computer.allShips.get(s[i]).setVideoPlayed(true);
-				thisGame.PlayExplosionVideo();
-			}	
+			if(isPVP){
+				if(onLinePlayer.allShips.get(s[i]).isAlive() == false &&
+				   onLinePlayer.allShips.get(s[i]).isVideoPlayed() == false)
+				{
+					onLinePlayer.allShips.get(s[i]).setVideoPlayed(true);
+					thisGame.PlayExplosionVideo();
+				}	
+			}else{
+				if(computer.allShips.get(s[i]).isAlive() == false &&
+				   computer.allShips.get(s[i]).isVideoPlayed() == false)
+				{
+					computer.allShips.get(s[i]).setVideoPlayed(true);
+					thisGame.PlayExplosionVideo();
+				}		
+			}
+			
 		}
 	}
 	
@@ -360,16 +400,46 @@ public class Turn implements MouseListener, ActionListener
 			{
 				int row = Integer.parseInt(Character.toString(this.humanShot.charAt(0)));
 				int col = Integer.parseInt(Character.toString(this.humanShot.charAt(1)));
-				//check if shot is good
+
+				if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
+				   this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
+				{
+					if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
+					{			
+						hitAnimation.setPlayer(this.onLinePlayer);
+						hitAnimation.shipSinking(row,col);		
+						
+						Sound soundFactory = new Sound();
+						soundFactory.ShipHit();
+						
+						this.human.setNumHits(this.human.getNumHits() + 1);
+						this.human.setNumTurns(this.human.getNumTurns() + 1);
+
+						char hitShip = this.onLinePlayer.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
+						this.onLinePlayer.getAllShips().get(hitShip).setSumHit((this.onLinePlayer.getAllShips().get(hitShip).getSumHit()+1));
+
+					}else{
+						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setMiss(true);
+						tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
+						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+						
+						this.human.setNumMissed(this.human.getNumMissed() + 1);
+						this.human.setNumTurns(this.human.getNumTurns() + 1);	
+					}
+				}
+				
 				if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
 				   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
 				{
 					if(this.computer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
 					{			
 						//hitAnimation = new Animation();
+
 						hitAnimation.setPlayer(this.computer);
 						hitAnimation.shipSinking(row,col);
-													
+																			
 						Sound soundFactory = new Sound();
 						soundFactory.ShipHit();
 												
@@ -393,40 +463,32 @@ public class Turn implements MouseListener, ActionListener
 
 						char hitShip = this.computer.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
 						this.computer.getAllShips().get(hitShip).setSumHit((this.computer.getAllShips().get(hitShip).getSumHit()+1));
-
-
-						//Displaying data on Applet
-//						this.turnHuman.setText("# Turns :" + this.human.getNumTurns());
-//						this.hitHuman.setText("# Hits : " + this.human.getNumHits());
-
-						this.computer.aITurn(this.human);						
+						this.computer.aITurn(this.human);	
 					}
 					else
 					{
-						//Add boolean to class and then
-						
-						
 						//Take care of board
 						this.computer.getPlayerBoard().getBoard()[row][col].setMiss(true);
 						tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
 						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
 						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
 						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
-
+						this.computer.aITurn(this.human);
+						
 						//Setting stats for player
 						this.human.setNumMissed(this.human.getNumMissed() + 1);
-						this.human.setNumTurns(this.human.getNumTurns() + 1);
-
-						//Displaying data on Applet
-//						this.turnHuman.setText("# Turns :" + this.human.getNumTurns());
-//						this.missHuman.setText("# Miss :" + this.human.getNumMissed());
-
-						this.computer.aITurn(this.human);
+						this.human.setNumTurns(this.human.getNumTurns() + 1);						
 					}
 				}
+				
+				if(isPVP){
+					this.onLinePlayer.getPlayerBoard().printBoard(false);
+					System.out.println("\n\n");	
+				}else{
+					this.computer.getPlayerBoard().printBoard(false);
+					System.out.println("\n\n");	
+				}
 
-				this.computer.getPlayerBoard().printBoard(false);
-				System.out.println("\n\n");
 
 //				this.computer.checkShips();		
 //				this.human.checkShips();
@@ -480,9 +542,14 @@ public class Turn implements MouseListener, ActionListener
 		for(int i=0; i < 10; i++)
 		{
 			for(int j=0; j < 10; j++)
-			{
-				computer.getPlayerBoard().getBoard()[i][j].removeActionListener(this);
-				computer.getPlayerBoard().getBoard()[i][j].removeMouseListener(this);
+			{	
+				if(isPVP){
+					onLinePlayer.getPlayerBoard().getBoard()[i][j].removeActionListener(this);
+					onLinePlayer.getPlayerBoard().getBoard()[i][j].removeMouseListener(this);
+				}else{
+					computer.getPlayerBoard().getBoard()[i][j].removeActionListener(this);
+					computer.getPlayerBoard().getBoard()[i][j].removeMouseListener(this);
+				}	
 			}
 		}
 		this.thisGame.NewGame();
@@ -501,12 +568,22 @@ public class Turn implements MouseListener, ActionListener
 	public void setComputer(AI computer) {
 		this.computer = computer;
 	}
-
 	public void setThisGame(Game thisGame) {
 		this.thisGame = thisGame;
 	}
-
 	public Game getThisGame() {
 		return thisGame;
+	}
+	public Player getOnLinePlayer() {
+		return onLinePlayer;
+	}
+	public void setOnLinePlayer(Player onLinePlayer) {
+		this.onLinePlayer = onLinePlayer;
+	}
+	public boolean isPVP() {
+		return isPVP;
+	}
+	public void setPVP(boolean isPVP) {
+		this.isPVP = isPVP;
 	}
 }

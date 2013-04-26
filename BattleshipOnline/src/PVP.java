@@ -34,11 +34,7 @@ public class PVP extends Turn{
 		
 		out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			
-		//Thread.sleep(1000);
-		//Thread.sleep(1000);		
-		//sendData();
-		
+					
 		getData();		
 		
 		System.out.println("Closing Socket");
@@ -53,21 +49,32 @@ public class PVP extends Turn{
 		{
 			for(int j=0; j < 10; j++)
 			{
-				if(this.localPlayer.getPlayerBoard().getBoard()[i][j].getOccupyingShip() == ' '){
+				if(localPlayer.getPlayerBoard().getBoard()[i][j].getOccupyingShip() == ' '){
 					out.println(i+""+j+"E");
 				}else{
-					out.println(i+""+j+""+this.localPlayer.getPlayerBoard().getBoard()[i][j].getOccupyingShip());	
+					out.println(i+""+j+""+localPlayer.getPlayerBoard().getBoard()[i][j].getOccupyingShip());	
 				}				
 			}
 		}
+		
+		out.println("00x");
 	}
 	
 	public void sendData(String data){
 		out.println(data);
 	}
 
+	public void createShips(){
+		int [] shipMaxHit = {5,4,3,3,2};
+		char [] shipInit = {'A','B','S','D','P'};
+		String [] shipType ={"Aircraft Carrier", "BattleSship","Submarine","Destroyer","Patrol Boat"};
+		
+		Ship newShip = new Ship();
+	}
+	
 	public void getData() throws InterruptedException{
 		String inputData;
+		boolean boardDataDone = false;
 		while(true){
 			try {
 				inputData = in.readLine();
@@ -78,31 +85,35 @@ public class PVP extends Turn{
 				}else{
 					
 					System.out.println("Data from server:" + inputData);
+										
 					
-					// this is where i should build the players board.
-					// Going to create a new player and then wait for input over the wire
-					// will send over 
-					// none = no ship in spot
-					// the rest will be ship initials, A,B,S,D,P
-					// Now when a ship is hit i will send over AH (aircraft hit)
-					// Need to loop through the players board but wait for input
-					// or i could send the postion like 10A saying a row / col there is a Aircraft
-					
-					int row = Integer.parseInt(String.valueOf(inputData.charAt(0)));
-					int col = Integer.parseInt(String.valueOf(inputData.charAt(1)));
-					char what = inputData.charAt(3);
-					
-					if(what == 'A'){
-						remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('A');
-					}else if(what == 'B'){
-						remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('B');
-					}else if(what == 'S'){
-						remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('S');
-					}else if(what == 'D'){
-						remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('D');
-					}else if(what == 'P'){
-						remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('P');
+					if(boardDataDone == false){
+						int row = Integer.parseInt(String.valueOf(inputData.charAt(0)));
+						int col = Integer.parseInt(String.valueOf(inputData.charAt(1)));
+						char what = inputData.charAt(2);
+						
+						if(what == 'A'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('A');
+						}else if(what == 'B'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('B');
+						}else if(what == 'S'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('S');
+						}else if(what == 'D'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('D');
+						}else if(what == 'P'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('P');
+						}else if(what == 'x'){
+							//set ships here
+							
+							this.setOnLinePlayer(remotePlayer);
+							this.setPVP(true);
+							this.startListening();
+							boardDataDone = true;
+						}
 					}
+					
+					
+					
 					
 					
 					

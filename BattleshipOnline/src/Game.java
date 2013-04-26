@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.HashMap;
@@ -76,7 +77,7 @@ public class Game extends JApplet implements ActionListener
 	Map<String, String> paramValue = new HashMap<String, String>();
 	PVP onlineGame = new PVP();
 		
-	public void start(){
+	public void start(){		
 		String url = getDocumentBase().toString();
 		String paramaters="";
 		
@@ -114,7 +115,7 @@ public class Game extends JApplet implements ActionListener
 	 * to the Applet.
 	 */
 	public void init()
-	{
+	{		
 		shipPlace = new JPanel();
 		playerStats = new JPanel(); 
 		humanSunk = new JPanel();
@@ -129,7 +130,7 @@ public class Game extends JApplet implements ActionListener
 		this.gameTime = new Turn();	
 		this.human.setPlayerName("Human");
 		this.computer.setPlayerName("AI");
-
+		
 		getContentPane().setBackground(Color.BLACK);
 		setLayout(new BorderLayout(10,10));
 		setSize(800, 520);
@@ -212,7 +213,15 @@ public class Game extends JApplet implements ActionListener
 			displayShip();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}				
+		}		
+				
+		Toolkit toolkit = Toolkit.getDefaultToolkit();  
+		//Image img = getImage(getCodeBase(),"startrek/badgeMouseIcon.png");
+		Image img = getImage(getCodeBase(),"startrek/trekIcon.png");
+		Point hotSpot = new Point(0,0);
+		Cursor cursor = toolkit.createCustomCursor(img, hotSpot,"trek");
+		setCursor(cursor);
+		
 		repaint();
 		validate();
 	}
@@ -231,7 +240,14 @@ public class Game extends JApplet implements ActionListener
 		    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, gameImg)
 		    == JOptionPane.YES_OPTION)
 		{
-			this.getAppletContext().showDocument(this.getDocumentBase(), "GameStart.html");
+			URL newGame = null;
+			try {
+				newGame = new URL("bill.kutztown.edu/~mcuta697/csc421/StarTrek/GameStart.html");
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			//this.getAppletContext().showDocument(this.getDocumentBase(), "GameStart.html");
+			this.getAppletContext().showDocument(newGame,"_self");
 
 		}
 		else
@@ -415,9 +431,14 @@ public class Game extends JApplet implements ActionListener
 						System.out.println("PVP MODE ");
 						onlineGame.setLocalPlayer(this.human);
 						onlineGame.sendBoardData();
-						onlineGame.setHuman(human);
-						onlineGame.setThisGame(this);
-						onlineGame.startListening();
+						onlineGame.setPVP(true);
+						
+						//onlineGame.startListening();
+						
+						//onlineGame.setHuman(human);
+						//onlineGame.setThisGame(this);
+						//onlineGame.startListening();
+						
 						
 					}
 					

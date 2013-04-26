@@ -55,7 +55,6 @@ public class ClientServer{
 				Thread t2 = new Thread(playerTwo);
 				t2.start();
 				
-				break;
 			}
 			Thread.sleep(2500);
 		}
@@ -101,7 +100,7 @@ public class ClientServer{
 						Thread.sleep(500);
 					}else{
 						//System.out.println("Something From user : " + line);
-						out.println("from server" + line);
+						out.println(line);
 					}
 					
 				}catch(Exception e){

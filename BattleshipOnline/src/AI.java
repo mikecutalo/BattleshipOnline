@@ -205,16 +205,8 @@ public class AI extends Player
 			tmpImage = ImageIO.read(getClass().getResource("/images/black.jpg"));
 			enemy.getPlayerBoard().getBoard()[row][col].setIcon(new ImageIcon(tmpImage));	//Set human board with miss image
 
-			//Update the AI stats
-			//Game.computer.setNumTurns(Game.computer.getNumTurns() + 1);
-			//Game.computer.setNumMissed(Game.computer.getNumMissed() + 1);
-
 			this.numTurns += 1;
 			this.numMissed += 1;
-
-			//Displaying data
-//			Game.turnComp.setText("# Turns :" + Game.computer.getNumTurns());
-//			Game.missComp.setText("# Miss :" + Game.computer.getNumMissed());
 
 			this.isAiHit = false;
 			this.aiDoubleHit = 0;
@@ -282,10 +274,6 @@ public class AI extends Player
 
 //			Sound compHit = new Sound();
 //			compHit.ComputerHit();
-			
-			//Displaying data on Applet
-//			Game.turnComp.setText("# Turns :" + Game.computer.getNumTurns());
-//			Game.hitComp.setText("# Hits :" + Game.computer.getNumHits());
 		}
 		}catch(IOException err){
 			err.getStackTrace();
