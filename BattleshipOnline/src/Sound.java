@@ -35,28 +35,14 @@ public class Sound implements Runnable
 		this.soundThread.start();
 	}
 	
+	public void ComputerHit(){
+		this.clip = Applet.newAudioClip(getClass().getResource("/sounds/braceForImpact.wav"));		
+		this.soundThread.start();
+	}
+	
 	public void Miss(){
 		
 	}
-	
-//clip = Applet.newAudioClip(getClass().getResource("/sounds/Earthagain.au"));
-//clip = Applet.newAudioClip(getClass().getResource("/sounds/24thCentury.au"));
-//clip = Applet.newAudioClip(getClass().getResource("/sounds/Apologize.au"));
-//clip = Applet.newAudioClip(getClass().getResource("/sounds/UnderControl.wav"));
-					
-//     new Thread() {
-//            public void run() {
-//                try {
-//        			System.out.println("Playing ShipHit In Thread");
-//
-//        			clip.play();
-//                	//hitSound.play();
-//                	//hitSound.loop();
-//                }
-//                catch (Exception e) { System.out.println(e); }
-//            }
-//        }.start();
-
 	
 	@Override
 	public void run() {

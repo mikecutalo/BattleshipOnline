@@ -74,15 +74,14 @@ public class Game extends JApplet implements ActionListener
 	//End Global
 
 	Map<String, String> paramValue = new HashMap<String, String>();
-	
+	PVP onlineGame = new PVP();
 		
 	public void start(){
 		String url = getDocumentBase().toString();
 		String paramaters="";
 		
 	   if (url.indexOf("?") > -1) {
-		   paramaters = url.substring(url.indexOf("?") + 1);
-		   
+		   paramaters = url.substring(url.indexOf("?") + 1);	   
 	   }
 	   
 	   StringTokenizer paramGroup = new StringTokenizer(paramaters, "&");
@@ -92,6 +91,19 @@ public class Game extends JApplet implements ActionListener
 		   StringTokenizer value = new StringTokenizer(paramGroup.nextToken(), "=");
 		   paramValue.put(value.nextToken(), value.nextToken()); 
 	   }
+	   
+		if(paramValue.size() != 0 && paramValue.get("type").equals("hvh"))
+		{
+			try {
+				onlineGame.connetToServer();
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**
@@ -272,7 +284,7 @@ public class Game extends JApplet implements ActionListener
 			break;			
 			case 4:
 				tempImage = ImageIO.read(getClass().getResource("/startrek/patrol.jpg"));
-				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/Patrol.jpg"));
+				currShipPlaceImg = new ImageIcon(getClass().getResource("/startrek/patrol.jpg"));
 				currentShipImg.setIcon(new ImageIcon(tempImage));
 				currentShipText.setText("Patrol Boat");
 				currentShipSize = 2;
@@ -334,20 +346,7 @@ public class Game extends JApplet implements ActionListener
 		{
 			firstChoice = e.getActionCommand();
 			errorMsg.setText("");
-			this.human.getPlayerBoard().PossibleBoatSelect(true);
-						
-			PVP serverTime = new PVP();
-			try {
-				serverTime.connetToServer();
-				serverTime.sendData("Here we go from game");
-			} catch (UnknownHostException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			
+			this.human.getPlayerBoard().PossibleBoatSelect(true);			
 		}
 		else if(secondChoice =="")
 		{
@@ -398,11 +397,31 @@ public class Game extends JApplet implements ActionListener
 										
 					Sound battleStations = new Sound();
 					battleStations.BattleStations();
+
 					
-					this.gameTime.setHuman(human);
-					this.gameTime.setComputer(computer);
-					this.gameTime.setThisGame(this);
-					this.gameTime.startListening();
+					System.out.println("game Type: ---- " + paramValue.get("type"));
+					
+					if(paramValue.get("type").equals("hvb"))
+					{
+						System.out.println("Player Vs Computer Mode");
+						
+						this.gameTime.setHuman(human);
+						this.gameTime.setComputer(computer);
+						this.gameTime.setThisGame(this);
+						this.gameTime.startListening();
+
+					}else{
+						
+						System.out.println("PVP MODE ");
+						onlineGame.setLocalPlayer(this.human);
+						onlineGame.sendBoardData();
+						onlineGame.setHuman(human);
+						onlineGame.setThisGame(this);
+						onlineGame.startListening();
+						
+					}
+					
+
 
 					placeShipMode = false;
 				}

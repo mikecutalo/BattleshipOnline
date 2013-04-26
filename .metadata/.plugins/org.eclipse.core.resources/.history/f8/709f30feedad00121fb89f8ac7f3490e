@@ -1,0 +1,110 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+/**
+ * This will handle Player vs. Player Game Play.
+ * 
+ * 
+ * @author Mike Cutalo
+ */
+public class PVP extends Turn{
+	private final String SERVERNAME = "bill.kutztown.edu";
+	private final int PORT = 15009;	
+	private PrintWriter out;
+	private BufferedReader in;
+	
+	private Player localPlayer;
+	private Player remotePlayer;
+	
+	
+	public PVP(){
+		localPlayer = new Player();
+		remotePlayer = new Player();
+	}
+	
+	public void connetToServer() throws UnknownHostException, IOException, InterruptedException{
+		
+		Socket socket = new Socket(SERVERNAME, PORT);		
+		System.out.println("Starting connection ...");
+		
+		out = new PrintWriter(socket.getOutputStream(), true);
+		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
+		sendData("From Client : testing connection");
+		//Thread.sleep(1000);
+		//Thread.sleep(1000);
+		sendData();
+		getData();
+		socket.close();
+	}
+	
+	public void sendData(){
+		
+		for(int i=0; i < 10; i++)
+		{
+			for(int j=0; j < 10; j++)
+			{
+				System.out.println("" + this.localPlayer.getPlayerBoard().getBoard()[i][j].getOccupyingShip());
+				out.println(this.localPlayer.getPlayerBoard().getBoard()[i][j].getOccupyingShip());
+				
+			}
+		}
+	}
+
+	public void getData() throws InterruptedException{
+		String inputData;
+		while(true){
+			try {
+				inputData = in.readLine();
+				
+				if(inputData.equals(null)){
+					System.out.println("Sleeping GetData");
+					Thread.sleep(500);
+				}else{
+					System.out.println("Data from server:" + inputData);
+					
+					// this is where i should build the players board.
+					// Going to create a new player and then wait for input over the wire
+					// will send over 
+					// none = no ship in spot
+					// the rest will be ship initials, A,B,S,D,P
+					// Now when a ship is hit i will send over AH (aircraft hit)
+					// Need to loop through the players board but wait for input
+					// or i could send the postion like 10A saying a row / col there is a Aircraft
+					
+					
+					
+					//this.localPlayer.getPlayerBoard().getBorder()[][]
+					
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}		
+	}
+	
+	public void sendData(String data){
+		out.println(data);
+	}
+
+	//Getters & Setters//
+	public Player getLocalPlayer() {
+		return localPlayer;
+	}
+
+	public void setLocalPlayer(Player localPlayer) {
+		this.localPlayer = localPlayer;
+	}
+
+	public Player getRemotePlayer() {
+		return remotePlayer;
+	}
+
+	public void setRemotePlayer(Player remotePlayer) {
+		this.remotePlayer = remotePlayer;
+	}
+}

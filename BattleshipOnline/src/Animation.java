@@ -28,6 +28,7 @@ public class Animation implements Runnable
 		this.shipEffect[0] = new ImageIcon(getClass().getResource("/turnImg/warn.jpg"));
 		this.shipEffect[1] = new ImageIcon(getClass().getResource("/turnImg/bomb.jpg"));
 		this.shipEffect[2] = new ImageIcon(getClass().getResource("/turnImg/boom.jpg"));
+		
 		this.animationThread.start();
 	}
 			
@@ -62,7 +63,7 @@ public class Animation implements Runnable
 			}
 								
 			try{
-				Thread.sleep(500);
+				Thread.sleep(300);
 			}catch(InterruptedException e){
 				e.printStackTrace();
 				return;

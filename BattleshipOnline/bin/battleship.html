@@ -18,7 +18,7 @@
 			var video;
 
 			function PlaySunkenShip(){
-				video = window.open("HitShip.html","","width=450, height=340, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
+				video = window.open("HitShip.html","","width=600, height=500, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
 				video.moveTo(200,200);
 			}
 
@@ -30,7 +30,11 @@
 			function PlayGameWin(){
 				video = window.open("GameWin.html","","width=450, height=340, resizable=no, menubar=no, status=no, toolbar=no, titlebar=no, location=no");
 				video.moveTo(200,200);
-			}							
+			}		
+
+			// function StartGame(){
+			// 	$("#gameStart").
+			// }					
 
 		</script>		
 	</head>
@@ -39,6 +43,7 @@
 		<div class="AppletStyle">
 			<!-- <Applet Code="Game.class" width=800 Height=500></Applet> -->
 			<!-- <object width="800" height="500" data="Game.class"></object> -->
+			<h1 id="gameStart" > Game Starting </h1>
 
 			<object type="application/x-java-applet" height="500" width="800">
 			      <param name="archive" value="BattleShipGame.jar"/>

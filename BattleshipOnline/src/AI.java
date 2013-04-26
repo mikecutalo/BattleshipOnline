@@ -280,6 +280,9 @@ public class AI extends Player
 				}	
 			}
 
+//			Sound compHit = new Sound();
+//			compHit.ComputerHit();
+			
 			//Displaying data on Applet
 //			Game.turnComp.setText("# Turns :" + Game.computer.getNumTurns());
 //			Game.hitComp.setText("# Hits :" + Game.computer.getNumHits());

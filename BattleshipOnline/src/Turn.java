@@ -1,15 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -51,7 +48,7 @@ public class Turn implements MouseListener, ActionListener
 
 	private Game thisGame;
 	private JPopupMenu menu;
-	private Animation hitAnimation;
+	private Animation hitAnimation = new Animation();;
 	
 	/**
 	 * Constructs a new turn, setting human shot to null
@@ -74,9 +71,9 @@ public class Turn implements MouseListener, ActionListener
 	{		
 		this.computer.getPlayerBoard().printBoard(false);
 
-		ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
-		JOptionPane.showMessageDialog(Game.humanSunk, 
-				"Game is now starting!\nClick on the computers board to attack!","Game Starting", 1, gameImg);
+//		ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
+//		JOptionPane.showMessageDialog(Game.humanSunk, 
+//				"Game is now starting!\nClick on the computers board to attack!","Game Starting", 1, gameImg);
 
 		ImageIcon img = new ImageIcon(getClass().getResource("/images/Space.jpg"));
 
@@ -369,7 +366,7 @@ public class Turn implements MouseListener, ActionListener
 				{
 					if(this.computer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
 					{			
-						hitAnimation = new Animation();
+						//hitAnimation = new Animation();
 						hitAnimation.setPlayer(this.computer);
 						hitAnimation.shipSinking(row,col);
 													
@@ -406,6 +403,9 @@ public class Turn implements MouseListener, ActionListener
 					}
 					else
 					{
+						//Add boolean to class and then
+						
+						
 						//Take care of board
 						this.computer.getPlayerBoard().getBoard()[row][col].setMiss(true);
 						tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
