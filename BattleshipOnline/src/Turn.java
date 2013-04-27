@@ -50,8 +50,11 @@ public class Turn implements MouseListener, ActionListener
 	
 	private Game thisGame;
 	private JPopupMenu menu;
-	private Animation hitAnimation = new Animation();;
-	
+	private Animation hitAnimation = new Animation();
+	private PVP onLineGame = new PVP();
+	private boolean myTurn;
+
+
 	/**
 	 * Constructs a new turn, setting human shot to null
 	 * and game over to false
@@ -70,9 +73,17 @@ public class Turn implements MouseListener, ActionListener
 	 * just in case if a cheat was enabled. 
 	 */
 	public void startListening()
-	{	
+	{			
 		if(isPVP){
-			this.onLinePlayer.getPlayerBoard().printBoard(false);	
+			this.onLinePlayer = onLineGame.getRemotePlayer();
+			
+			this.thisGame.setComputerGrid(this.onLinePlayer.getPlayerBoard().CreateGridPanel(true));
+			this.thisGame.add(this.thisGame.getComputerGrid(), BorderLayout.EAST);
+			this.thisGame.repaint();
+			this.thisGame.validate();
+						
+			this.onLinePlayer.getPlayerBoard().printBoard(false);
+			
 		}else{
 			this.computer.getPlayerBoard().printBoard(false);	
 		}
@@ -97,7 +108,6 @@ public class Turn implements MouseListener, ActionListener
 				}
 			}	
 		}
-		
 	}
 
 
@@ -269,13 +279,25 @@ public class Turn implements MouseListener, ActionListener
     			humanSunk.add(tmp);
     		}
     		
-    		if(this.computer.getAllShips().get(s[x]).isAlive() == false)
-    		{
-    			JLabel tmp = new JLabel();
-    			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/startrek/" + images[x]));
-    			tmp.setIcon(tmpImg);
-    			computerSunk.add(tmp);
+    		if(isPVP){
+        		if(this.onLinePlayer.getAllShips().get(s[x]).isAlive() == false)
+        		{
+        			JLabel tmp = new JLabel();
+        			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/startrek/" + images[x]));
+        			tmp.setIcon(tmpImg);
+        			computerSunk.add(tmp);
+        		}   			
+    		}else{
+        		if(this.computer.getAllShips().get(s[x]).isAlive() == false)
+        		{
+        			JLabel tmp = new JLabel();
+        			ImageIcon tmpImg = new ImageIcon(getClass().getResource("/startrek/" + images[x]));
+        			tmp.setIcon(tmpImg);
+        			computerSunk.add(tmp);
+        		}   			
     		}
+    		
+
     	}
 
     	boxHuman.setLayout(new BoxLayout(boxHuman, BoxLayout.Y_AXIS));
@@ -354,10 +376,10 @@ public class Turn implements MouseListener, ActionListener
 		for(int i=0; i < s.length; i++)
 		{	
 			if(isPVP){
-				if(onLinePlayer.allShips.get(s[i]).isAlive() == false &&
-				   onLinePlayer.allShips.get(s[i]).isVideoPlayed() == false)
+				if(this.onLinePlayer.allShips.get(s[i]).isAlive() == false &&
+				   this.onLinePlayer.allShips.get(s[i]).isVideoPlayed() == false)
 				{
-					onLinePlayer.allShips.get(s[i]).setVideoPlayed(true);
+					this.onLinePlayer.allShips.get(s[i]).setVideoPlayed(true);
 					thisGame.PlayExplosionVideo();
 				}	
 			}else{
@@ -370,6 +392,138 @@ public class Turn implements MouseListener, ActionListener
 			}
 			
 		}
+	}
+	public void turnPVC(int row, int col, ImageIcon tmpImage)
+	{
+		if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
+		   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
+			{
+				if(this.computer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
+				{			
+					//hitAnimation = new Animation();
+
+					hitAnimation.setPlayer(this.computer);
+					try {
+						hitAnimation.shipSinking(row,col);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+																		
+					Sound soundFactory = new Sound();
+					soundFactory.ShipHit();
+											
+					/*
+					Now doing this in the Animation Class
+					Just seems natural do it there. 
+					Do need to figure out how to stop showing skull img,
+					before the animation is done when a ship sinks. 
+					*/
+
+					//Taking care of board
+//						this.computer.getPlayerBoard().getBoard()[row][col].setHit(true);	
+//						tmpImage = new ImageIcon(getClass().getResource("/images/hit.jpg"));
+//						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+//						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+//						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+
+					//Setting stats for player
+					this.human.setNumHits(this.human.getNumHits() + 1);
+					this.human.setNumTurns(this.human.getNumTurns() + 1);
+
+					char hitShip = this.computer.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
+					this.computer.getAllShips().get(hitShip).setSumHit((this.computer.getAllShips().get(hitShip).getSumHit()+1));
+					this.computer.aITurn(this.human);	
+				}
+				else
+				{
+					//Take care of board
+					this.computer.getPlayerBoard().getBoard()[row][col].setMiss(true);
+					tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
+					this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+					this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+					this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+					this.computer.aITurn(this.human);
+					
+					//Setting stats for player
+					this.human.setNumMissed(this.human.getNumMissed() + 1);
+					this.human.setNumTurns(this.human.getNumTurns() + 1);						
+				}
+			}		
+	}
+	
+	public void turnPVP(int row, int col, ImageIcon tmpImage){
+		try {
+			if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
+			   this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
+			{
+				if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
+				{			
+					hitAnimation.setPlayer(this.onLinePlayer);					
+					hitAnimation.shipSinking(row,col);						
+					
+					Sound soundFactory = new Sound();
+					soundFactory.ShipHit();
+					
+					this.human.setNumHits(this.human.getNumHits() + 1);
+					this.human.setNumTurns(this.human.getNumTurns() + 1);
+	
+					char hitShip = this.onLinePlayer.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
+					this.onLinePlayer.getAllShips().get(hitShip).setSumHit((this.onLinePlayer.getAllShips().get(hitShip).getSumHit()+1));
+					
+					this.onLineGame.sendData(row+""+col+"H");
+	
+				}else{
+					this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setMiss(true);
+					tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
+					this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+					this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+					this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+					
+					this.human.setNumMissed(this.human.getNumMissed() + 1);
+					this.human.setNumTurns(this.human.getNumTurns() + 1);
+					
+					this.onLineGame.sendData(row+""+col+"M");
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}			
+	}
+	
+	public void onLinePlayerHit(int row, int col){
+		try {
+			hitAnimation.setPlayer(this.human);					
+			hitAnimation.shipSinking(row,col);
+	
+			//change to other dude
+			this.onLinePlayer.setNumHits(this.onLinePlayer.getNumHits() + 1);
+			this.onLinePlayer.setNumTurns(this.onLinePlayer.getNumTurns() + 1);
+
+			char hitShip = this.human.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
+			this.human.getAllShips().get(hitShip).setSumHit((this.onLinePlayer.getAllShips().get(hitShip).getSumHit()+1));
+			
+			//this.onLineGame.sendData(row+""+col+"H");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void onLinePlayerMiss(int row, int col){
+		
+		ImageIcon tmpImage = null;
+		
+		this.human.getPlayerBoard().getBoard()[row][col].setMiss(true);
+		tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
+		this.human.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+		this.human.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+		this.human.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+		
+		this.onLinePlayer.setNumMissed(this.onLinePlayer.getNumMissed() + 1);
+		this.onLinePlayer.setNumTurns(this.onLinePlayer.getNumTurns() + 1);
+		
+		//this.onLineGame.sendData(row+""+col+"M");
 	}
 	
 	/**
@@ -388,7 +542,7 @@ public class Turn implements MouseListener, ActionListener
 	 */
 	public void mouseClicked(MouseEvent e)
 	{
-		ImageIcon tmpImage;
+		ImageIcon tmpImage = null;
 
 		if(this.humanShot.equals(""))
 		{
@@ -401,87 +555,14 @@ public class Turn implements MouseListener, ActionListener
 			{
 				int row = Integer.parseInt(Character.toString(this.humanShot.charAt(0)));
 				int col = Integer.parseInt(Character.toString(this.humanShot.charAt(1)));
-
-				if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
-				   this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
-				{
-					if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
-					{			
-						hitAnimation.setPlayer(this.onLinePlayer);
-						hitAnimation.shipSinking(row,col);		
-						
-						Sound soundFactory = new Sound();
-						soundFactory.ShipHit();
-						
-						this.human.setNumHits(this.human.getNumHits() + 1);
-						this.human.setNumTurns(this.human.getNumTurns() + 1);
-
-						char hitShip = this.onLinePlayer.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
-						this.onLinePlayer.getAllShips().get(hitShip).setSumHit((this.onLinePlayer.getAllShips().get(hitShip).getSumHit()+1));
-
-					}else{
-						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setMiss(true);
-						tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
-						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
-						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
-						this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
-						
-						this.human.setNumMissed(this.human.getNumMissed() + 1);
-						this.human.setNumTurns(this.human.getNumTurns() + 1);	
-					}
-				}
 				
-				if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
-				   this.computer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
-				{
-					if(this.computer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
-					{			
-						//hitAnimation = new Animation();
-
-						hitAnimation.setPlayer(this.computer);
-						hitAnimation.shipSinking(row,col);
-																			
-						Sound soundFactory = new Sound();
-						soundFactory.ShipHit();
-												
-						/*
-						Now doing this in the Animation Class
-						Just seems natural do it there. 
-						Do need to figure out how to stop showing skull img,
-						before the animation is done when a ship sinks. 
-						*/
-
-						//Taking care of board
-//						this.computer.getPlayerBoard().getBoard()[row][col].setHit(true);	
-//						tmpImage = new ImageIcon(getClass().getResource("/images/hit.jpg"));
-//						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
-//						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
-//						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
-
-						//Setting stats for player
-						this.human.setNumHits(this.human.getNumHits() + 1);
-						this.human.setNumTurns(this.human.getNumTurns() + 1);
-
-						char hitShip = this.computer.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
-						this.computer.getAllShips().get(hitShip).setSumHit((this.computer.getAllShips().get(hitShip).getSumHit()+1));
-						this.computer.aITurn(this.human);	
-					}
-					else
-					{
-						//Take care of board
-						this.computer.getPlayerBoard().getBoard()[row][col].setMiss(true);
-						tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
-						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
-						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
-						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
-						this.computer.aITurn(this.human);
-						
-						//Setting stats for player
-						this.human.setNumMissed(this.human.getNumMissed() + 1);
-						this.human.setNumTurns(this.human.getNumTurns() + 1);						
-					}
-				}
 				
+				if(isPVP){
+					turnPVP(row,col,tmpImage);	
+				}else{
+					turnPVC(row,col,tmpImage);
+				}
+							
 				if(isPVP){
 					this.onLinePlayer.getPlayerBoard().printBoard(false);
 					System.out.println("\n\n");	
@@ -490,9 +571,7 @@ public class Turn implements MouseListener, ActionListener
 					System.out.println("\n\n");	
 				}
 
-
-//				this.computer.checkShips();		
-//				this.human.checkShips();
+				
 
 				updateSunk();
 
@@ -509,7 +588,7 @@ public class Turn implements MouseListener, ActionListener
 					this.gameOver = true;
 					thisGame.PlayGameLose();
 
-				}else if(this.computer.checkShips() == true){
+				}else if(this.computer != null && this.computer.checkShips() == true){
 					JOptionPane.showMessageDialog(Game.computerSunk, 
 							"Human Wins!! \n" +
 							"Total Turn: " + this.human.getNumTurns() + "\n" +
@@ -519,6 +598,17 @@ public class Turn implements MouseListener, ActionListener
 
 					this.gameOver = true;
 					thisGame.PlayGameWin();
+				}else if(this.onLinePlayer != null & this.onLinePlayer.checkShips() == true)
+				{
+					JOptionPane.showMessageDialog(Game.computerSunk, 
+							"OnlinePlayer Wins!! \n" +
+							"Total Turn: " + this.human.getNumTurns() + "\n" +
+							"Miss Shots: " + this.human.getNumMissed() + "\n" +
+							"Hit Shots: " + this.human.getNumHits() + "\n" + 
+							"Ships Sunk: " + this.computer.getShipsSunk(), "Game Over",1,gameImg);
+
+					this.gameOver = true;
+					thisGame.PlayGameWin();					
 				}
 				
 				playDestroyedShip();
@@ -586,5 +676,11 @@ public class Turn implements MouseListener, ActionListener
 	}
 	public void setPVP(boolean isPVP) {
 		this.isPVP = isPVP;
+	}
+	public PVP getOnLineGame() {
+		return onLineGame;
+	}
+	public void setOnLineGame(PVP onLineGame) {
+		this.onLineGame = onLineGame;
 	}
 }

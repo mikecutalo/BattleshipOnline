@@ -74,6 +74,8 @@ public class Game extends JApplet implements ActionListener
 	public Turn gameTime = new Turn();
 	//End Global
 
+	public JPanel computerGrid;
+	
 	Map<String, String> paramValue = new HashMap<String, String>();
 	PVP onlineGame = new PVP();
 		
@@ -180,8 +182,10 @@ public class Game extends JApplet implements ActionListener
 		add(humanGrid, BorderLayout.WEST);
 
 		//AI Panel
-		JPanel computerGrid = computer.getPlayerBoard().CreateGridPanel(true);	
-		add(computerGrid, BorderLayout.EAST);
+		if(paramValue.size() != 0 && paramValue.get("type").equals("hvb")){
+			computerGrid = computer.getPlayerBoard().CreateGridPanel(true);	
+			add(computerGrid, BorderLayout.EAST);			
+		}
 
 		//South Panel
 		shipPlace.setLayout(new BorderLayout());	
@@ -216,7 +220,6 @@ public class Game extends JApplet implements ActionListener
 		}		
 				
 		Toolkit toolkit = Toolkit.getDefaultToolkit();  
-		//Image img = getImage(getCodeBase(),"startrek/badgeMouseIcon.png");
 		Image img = getImage(getCodeBase(),"startrek/trekIcon.png");
 		Point hotSpot = new Point(0,0);
 		Cursor cursor = toolkit.createCustomCursor(img, hotSpot,"trek");
@@ -409,7 +412,6 @@ public class Game extends JApplet implements ActionListener
 							this.human.getPlayerBoard().getBoard()[i][j].removeActionListener(this);
 						}
 					}	
-					//shipPlace.removeAll();
 										
 					Sound battleStations = new Sound();
 					battleStations.BattleStations();
@@ -429,21 +431,22 @@ public class Game extends JApplet implements ActionListener
 					}else{
 						
 						System.out.println("PVP MODE ");
-						onlineGame.setLocalPlayer(this.human);
-						onlineGame.sendBoardData();
-						onlineGame.setPVP(true);
 						
-						//onlineGame.startListening();
+						//Setting Up the Turn Class 
+						this.gameTime.setHuman(human);
+						this.gameTime.setOnLineGame(onlineGame);
+						this.gameTime.setPVP(true);
+						this.gameTime.setThisGame(this);
 						
-						//onlineGame.setHuman(human);
-						//onlineGame.setThisGame(this);
-						//onlineGame.startListening();
-						
+						//Sending the Trun class to the PVP class
+						//and sending the baord data
+						//will also pass the local player
+						this.onlineGame.setOnLineTurn(this.gameTime);
+						this.onlineGame.setLocalPlayer(this.human);
+						this.onlineGame.sendBoardData();
+
 						
 					}
-					
-
-
 					placeShipMode = false;
 				}
 			}
@@ -459,9 +462,17 @@ public class Game extends JApplet implements ActionListener
 
 		try {
 			displayShip();
-
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public JPanel getComputerGrid() {
+		return computerGrid;
+	}
+
+	public void setComputerGrid(JPanel computerGrid) {
+		this.computerGrid = computerGrid;
 	}	
+	
 }

@@ -11,34 +11,42 @@ import java.net.UnknownHostException;
  * 
  * @author Mike Cutalo
  */
-public class PVP extends Turn{
+public class PVP implements Runnable{
 	
 	private final String SERVERNAME = "bill.kutztown.edu";
 	private final int PORT = 15009;	
 	private PrintWriter out;
 	private BufferedReader in;
 	
+	private Thread runClient;
 	private Player localPlayer;
 	private Player remotePlayer;
+	private Socket socket;
+	private Turn onLineTurn;
 	
-	
+
+
 	public PVP(){
 		localPlayer = new Player();
 		remotePlayer = new Player();
 	}
 	
-	public void connetToServer() throws UnknownHostException, IOException, InterruptedException{
-		
-		Socket socket = new Socket(SERVERNAME, PORT);		
+	public void connetToServer() throws UnknownHostException, IOException, InterruptedException
+	{	
+		socket = new Socket(SERVERNAME, PORT);		
 		System.out.println("Starting connection ...");
 		
 		out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 					
-		getData();		
+		getData();				
+	}
+	
+	public void getData() throws InterruptedException{
+		System.out.println("Starthing runClient Thread..");
 		
-		System.out.println("Closing Socket");
-		socket.close();
+		runClient = new Thread(this,"ClientConnection");
+		runClient.start();
 	}
 	
 	public void sendBoardData()
@@ -65,6 +73,9 @@ public class PVP extends Turn{
 	}
 
 	public void createShips(){
+		
+		System.out.println("CreatingShips For opponent...");
+		
 		int [] shipMaxHit = {5,4,3,3,2};
 		char [] shipInit = {'A','B','S','D','P'};
 		String [] shipType ={"Aircraft Carrier", "BattleSship","Submarine","Destroyer","Patrol Boat"};		
@@ -77,11 +88,42 @@ public class PVP extends Turn{
 			
 			remotePlayer.allShips.put(shipInit[i], newShip);
 			newShip = new Ship();
-		}
-		
+		}	
+				        	  
+//	  		setOnLinePlayer(remotePlayer);
+//	  		setPVP(true);								
+
+	     System.out.println("Done with CreateShips()");
 	}
 	
-	public void getData() throws InterruptedException{
+
+	
+	public void closeSocket(){
+		try {
+			socket.close();
+		} catch (IOException e) {
+			System.out.println("Closing the socket");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	// cant start the game before both players are ready!
+	public void startTurnListen(){		
+		while(onLineTurn == null){
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		onLineTurn.setOnLineGame(this);
+		onLineTurn.startListening();
+	}
+	
+	public void run(){
+		System.out.println("In Run method for Thread");
 		String inputData;
 		boolean boardDataDone = false;
 		while(true){
@@ -89,55 +131,60 @@ public class PVP extends Turn{
 				inputData = in.readLine();
 				
 				if(inputData.equals(null)){
-					System.out.println("Sleeping GetData");
 					Thread.sleep(500);
 				}else{
 					
 					System.out.println("Data from server:" + inputData);
-										
 					
-					if(boardDataDone == false){
-						int row = Integer.parseInt(String.valueOf(inputData.charAt(0)));
-						int col = Integer.parseInt(String.valueOf(inputData.charAt(1)));
-						char what = inputData.charAt(2);
-						
-						if(what == 'A'){
+					int row = Integer.parseInt(String.valueOf(inputData.charAt(0)));
+					int col = Integer.parseInt(String.valueOf(inputData.charAt(1)));
+					char key = inputData.charAt(2);
+					
+					if(boardDataDone == false){	
+						if(key == 'A'){
 							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('A');
-						}else if(what == 'B'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setSpaceEmpty(false);
+						}else if(key == 'B'){
 							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('B');
-						}else if(what == 'S'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setSpaceEmpty(false);
+						}else if(key == 'S'){
 							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('S');
-						}else if(what == 'D'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setSpaceEmpty(false);
+						}else if(key == 'D'){
 							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('D');
-						}else if(what == 'P'){
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setSpaceEmpty(false);
+						}else if(key == 'P'){
 							remotePlayer.getPlayerBoard().getBoard()[row][col].setOccupyingShip('P');
-						}else if(what == 'x'){
-							
+							remotePlayer.getPlayerBoard().getBoard()[row][col].setSpaceEmpty(false);
+						}else if(key == 'x'){
 							createShips();
-							this.setOnLinePlayer(remotePlayer);
-							this.setPVP(true);
-							
-							this.startListening();
 							boardDataDone = true;
-							
+							startTurnListen();
 						}
 					}
 					
 					
+					if(key == 'H'){
+//						Animation hitAni = new Animation();
+//						hitAni.setPlayer(getOnLineTurn().getHuman());
+//						hitAni.shipSinking(row,col);
+						
+						this.getOnLineTurn().onLinePlayerHit(row, col);
+					}else if(key == 'M'){
+						this.getOnLineTurn().onLinePlayerMiss(row, col);
+					}
 					
-					
-					
-					
-					
-										
 				}
-			} catch (IOException e) {
+			} catch (IOException e) {	
+				closeSocket();
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				closeSocket();
 				e.printStackTrace();
 			}
-		}		
+		}
 	}
 	
-
 	//Getters & Setters//
 	public Player getLocalPlayer() {
 		return localPlayer;
@@ -153,5 +200,13 @@ public class PVP extends Turn{
 
 	public void setRemotePlayer(Player remotePlayer) {
 		this.remotePlayer = remotePlayer;
+	}
+	
+	public Turn getOnLineTurn() {
+		return onLineTurn;
+	}
+
+	public void setOnLineTurn(Turn onLineTurn) {
+		this.onLineTurn = onLineTurn;
 	}
 }
