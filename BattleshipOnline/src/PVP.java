@@ -43,8 +43,6 @@ public class PVP implements Runnable{
 	}
 	
 	public void getData() throws InterruptedException{
-		System.out.println("Starthing runClient Thread..");
-		
 		runClient = new Thread(this,"ClientConnection");
 		runClient.start();
 	}
@@ -64,7 +62,6 @@ public class PVP implements Runnable{
 				}				
 			}
 		}
-		
 		out.println("00x");
 	}
 	
@@ -74,30 +71,23 @@ public class PVP implements Runnable{
 
 	public void createShips(){
 		
-		System.out.println("CreatingShips For opponent...");
-		
 		int [] shipMaxHit = {5,4,3,3,2};
 		char [] shipInit = {'A','B','S','D','P'};
 		String [] shipType ={"Aircraft Carrier", "BattleSship","Submarine","Destroyer","Patrol Boat"};		
-		Ship newShip = new Ship();
+		Ship newShip;
 		
 		for(int i=0; i<5; i++){
+			
+			newShip = new Ship();
+			
 			newShip.setMaxHit(shipMaxHit[i]);
 			newShip.setBoatInit(shipInit[i]);
 			newShip.setBoatType(shipType[i]);
 			
 			remotePlayer.allShips.put(shipInit[i], newShip);
-			newShip = new Ship();
-		}	
-				        	  
-//	  		setOnLinePlayer(remotePlayer);
-//	  		setPVP(true);								
-
-	     System.out.println("Done with CreateShips()");
+		}							
 	}
-	
-
-	
+		
 	public void closeSocket(){
 		try {
 			socket.close();
@@ -108,7 +98,6 @@ public class PVP implements Runnable{
 	}
 	
 	
-	// cant start the game before both players are ready!
 	public void startTurnListen(){		
 		while(onLineTurn == null){
 			try {
@@ -123,9 +112,9 @@ public class PVP implements Runnable{
 	}
 	
 	public void run(){
-		System.out.println("In Run method for Thread");
 		String inputData;
 		boolean boardDataDone = false;
+		
 		while(true){
 			try {
 				inputData = in.readLine();
@@ -164,11 +153,7 @@ public class PVP implements Runnable{
 					}
 					
 					
-					if(key == 'H'){
-//						Animation hitAni = new Animation();
-//						hitAni.setPlayer(getOnLineTurn().getHuman());
-//						hitAni.shipSinking(row,col);
-						
+					if(key == 'H'){						
 						this.getOnLineTurn().onLinePlayerHit(row, col);
 					}else if(key == 'M'){
 						this.getOnLineTurn().onLinePlayerMiss(row, col);
@@ -189,23 +174,18 @@ public class PVP implements Runnable{
 	public Player getLocalPlayer() {
 		return localPlayer;
 	}
-
 	public void setLocalPlayer(Player localPlayer) {
 		this.localPlayer = localPlayer;
 	}
-
 	public Player getRemotePlayer() {
 		return remotePlayer;
 	}
-
 	public void setRemotePlayer(Player remotePlayer) {
 		this.remotePlayer = remotePlayer;
 	}
-	
 	public Turn getOnLineTurn() {
 		return onLineTurn;
 	}
-
 	public void setOnLineTurn(Turn onLineTurn) {
 		this.onLineTurn = onLineTurn;
 	}

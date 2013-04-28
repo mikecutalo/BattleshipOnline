@@ -52,7 +52,7 @@ public class Turn implements MouseListener, ActionListener
 	private JPopupMenu menu;
 	private Animation hitAnimation = new Animation();
 	private PVP onLineGame = new PVP();
-	private boolean myTurn;
+	private boolean myTurn = true;
 
 
 	/**
@@ -75,16 +75,19 @@ public class Turn implements MouseListener, ActionListener
 	public void startListening()
 	{			
 		if(isPVP){
-			this.onLinePlayer = onLineGame.getRemotePlayer();
-			
+			this.onLinePlayer = onLineGame.getRemotePlayer();		
 			this.thisGame.setComputerGrid(this.onLinePlayer.getPlayerBoard().CreateGridPanel(true));
 			this.thisGame.add(this.thisGame.getComputerGrid(), BorderLayout.EAST);
 			this.thisGame.repaint();
 			this.thisGame.validate();
 						
-			this.onLinePlayer.getPlayerBoard().printBoard(false);
-			
+			this.onLinePlayer.getPlayerBoard().printBoard(false);			
 		}else{
+			this.thisGame.setComputerGrid(this.computer.getPlayerBoard().CreateGridPanel(true));			
+			this.thisGame.add(this.computer.getPlayerBoard(), BorderLayout.EAST);
+			this.thisGame.repaint();
+			this.thisGame.validate();
+			
 			this.computer.getPlayerBoard().printBoard(false);	
 		}
 
@@ -351,35 +354,57 @@ public class Turn implements MouseListener, ActionListener
 			this.menu.setVisible(false);
 		}
 
-		if(action.equals("Human Stats")){
-			report.Authorization();
-			JOptionPane.showMessageDialog(Game.humanSunk, 
-					"Total Turn: " + this.human.getNumTurns() + "\n" +
-					"Miss Shots: " + this.human.getNumMissed() + "\n" +
-					"Hit Shots: " + this.human.getNumHits() + "\n" + 
-					"Ships Sunk: " + this.computer.getShipsSunk(), "Human Stats", 1, human);
+		
+		if(isPVP){
+			if(action.equals("Human Stats")){
+				report.Authorization();
+				JOptionPane.showMessageDialog(Game.humanSunk, 
+						"Total Turn: " + this.human.getNumTurns() + "\n" +
+						"Miss Shots: " + this.human.getNumMissed() + "\n" +
+						"Hit Shots: " + this.human.getNumHits() + "\n" + 
+						"Ships Sunk: " + this.onLinePlayer.getShipsSunk(), "Human Stats", 1, human);
+			}
+			else if(action.equals("Computer Stats")){
+				report.StatusReport();
+				JOptionPane.showMessageDialog(Game.computerSunk, 
+						"Total Turn: " + this.onLinePlayer.getNumTurns() + "\n" +
+						"Miss Shots: " + this.onLinePlayer.getNumMissed() + "\n" +
+						"Hit Shots: " + this.onLinePlayer.getNumHits() + "\n" +
+						"Ships Sunk: " + this.human.getShipsSunk(), "Computer Stats", 1 , comp);
+			}			
+		}else{
+			if(action.equals("Human Stats")){
+				report.Authorization();
+				JOptionPane.showMessageDialog(Game.humanSunk, 
+						"Total Turn: " + this.human.getNumTurns() + "\n" +
+						"Miss Shots: " + this.human.getNumMissed() + "\n" +
+						"Hit Shots: " + this.human.getNumHits() + "\n" + 
+						"Ships Sunk: " + this.computer.getShipsSunk(), "Human Stats", 1, human);
+			}
+			else if(action.equals("Computer Stats")){
+				report.StatusReport();
+				JOptionPane.showMessageDialog(Game.computerSunk, 
+						"Total Turn: " + this.computer.getNumTurns() + "\n" +
+						"Miss Shots: " + this.computer.getNumMissed() + "\n" +
+						"Hit Shots: " + this.computer.getNumHits() + "\n" +
+						"Ships Sunk: " + this.human.getShipsSunk(), "Computer Stats", 1 , comp);
+			}			
 		}
-		else if(action.equals("Computer Stats")){
-			report.StatusReport();
-			JOptionPane.showMessageDialog(Game.computerSunk, 
-					"Total Turn: " + this.computer.getNumTurns() + "\n" +
-					"Miss Shots: " + this.computer.getNumMissed() + "\n" +
-					"Hit Shots: " + this.computer.getNumHits() + "\n" +
-					"Ships Sunk: " + this.human.getShipsSunk(), "Computer Stats", 1 , comp);
-		}
+		
+
 	}
 
 	public void playDestroyedShip()
 	{	
 		char[] s ={'A','B','S','D','P'};
 
-		for(int i=0; i < s.length; i++)
+		for(int i=0; i < 3; i++)
 		{	
 			if(isPVP){
-				if(this.onLinePlayer.allShips.get(s[i]).isAlive() == false &&
-				   this.onLinePlayer.allShips.get(s[i]).isVideoPlayed() == false)
+				if(onLinePlayer.allShips.get(s[i]).isAlive() == false &&
+				   onLinePlayer.allShips.get(s[i]).isVideoPlayed() == false)
 				{
-					this.onLinePlayer.allShips.get(s[i]).setVideoPlayed(true);
+					onLinePlayer.allShips.get(s[i]).setVideoPlayed(true);
 					thisGame.PlayExplosionVideo();
 				}	
 			}else{
@@ -393,6 +418,7 @@ public class Turn implements MouseListener, ActionListener
 			
 		}
 	}
+	
 	public void turnPVC(int row, int col, ImageIcon tmpImage)
 	{
 		if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
@@ -406,7 +432,6 @@ public class Turn implements MouseListener, ActionListener
 					try {
 						hitAnimation.shipSinking(row,col);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 																		
@@ -416,11 +441,9 @@ public class Turn implements MouseListener, ActionListener
 					/*
 					Now doing this in the Animation Class
 					Just seems natural do it there. 
-					Do need to figure out how to stop showing skull img,
-					before the animation is done when a ship sinks. 
 					*/
 
-					//Taking care of board
+//						Taking care of board
 //						this.computer.getPlayerBoard().getBoard()[row][col].setHit(true);	
 //						tmpImage = new ImageIcon(getClass().getResource("/images/hit.jpg"));
 //						this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
@@ -455,7 +478,8 @@ public class Turn implements MouseListener, ActionListener
 	public void turnPVP(int row, int col, ImageIcon tmpImage){
 		try {
 			if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
-			   this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false)
+			   this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isMiss() ==	false &&
+			   myTurn == true)
 			{
 				if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isSpaceEmpty() == false)
 				{			
@@ -472,7 +496,9 @@ public class Turn implements MouseListener, ActionListener
 					this.onLinePlayer.getAllShips().get(hitShip).setSumHit((this.onLinePlayer.getAllShips().get(hitShip).getSumHit()+1));
 					
 					this.onLineGame.sendData(row+""+col+"H");
-	
+					
+					myTurn = false;
+					System.out.println("turnPVP : myTurn = "+ myTurn);
 				}else{
 					this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setMiss(true);
 					tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
@@ -484,11 +510,14 @@ public class Turn implements MouseListener, ActionListener
 					this.human.setNumTurns(this.human.getNumTurns() + 1);
 					
 					this.onLineGame.sendData(row+""+col+"M");
+					
+					myTurn = false;
+					System.out.println("turnPVP : myTurn = "+ myTurn);
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}			
+		}
 	}
 	
 	public void onLinePlayerHit(int row, int col){
@@ -501,9 +530,12 @@ public class Turn implements MouseListener, ActionListener
 			this.onLinePlayer.setNumTurns(this.onLinePlayer.getNumTurns() + 1);
 
 			char hitShip = this.human.getPlayerBoard().getBoard()[row][col].getOccupyingShip();
-			this.human.getAllShips().get(hitShip).setSumHit((this.onLinePlayer.getAllShips().get(hitShip).getSumHit()+1));
+			this.human.getAllShips().get(hitShip).setSumHit((this.human.getAllShips().get(hitShip).getSumHit()+1));
 			
-			//this.onLineGame.sendData(row+""+col+"H");
+			updateSunk();
+			popUpStats();
+			playDestroyedShip();
+			myTurn = true;		
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -513,17 +545,73 @@ public class Turn implements MouseListener, ActionListener
 	public void onLinePlayerMiss(int row, int col){
 		
 		ImageIcon tmpImage = null;
+		try {		
+			this.human.getPlayerBoard().getBoard()[row][col].setMiss(true);
+			tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
+			this.human.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
+			this.human.getPlayerBoard().getBoard()[row][col].setEnabled(false);
+			this.human.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
+			
+			this.onLinePlayer.setNumMissed(this.onLinePlayer.getNumMissed() + 1);
+			this.onLinePlayer.setNumTurns(this.onLinePlayer.getNumTurns() + 1);	
+			
+			updateSunk();
+			popUpStats();
+			playDestroyedShip();
+			myTurn = true;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		this.human.getPlayerBoard().getBoard()[row][col].setMiss(true);
-		tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
-		this.human.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
-		this.human.getPlayerBoard().getBoard()[row][col].setEnabled(false);
-		this.human.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
-		
-		this.onLinePlayer.setNumMissed(this.onLinePlayer.getNumMissed() + 1);
-		this.onLinePlayer.setNumTurns(this.onLinePlayer.getNumTurns() + 1);
-		
-		//this.onLineGame.sendData(row+""+col+"M");
+	}
+	
+	
+	public void popUpStats(){
+		ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
+
+		if(this.human.checkShips() == true){
+			if(isPVP){
+				JOptionPane.showMessageDialog(Game.computerSunk, 
+						"You Lose \n"+
+						"Total Turn: " + this.onLinePlayer.getNumTurns() + "\n" +
+						"Miss Shots: " + this.onLinePlayer.getNumMissed() + "\n" +
+						"Hit Shots: " + this.onLinePlayer.getNumHits() + "\n" +
+						"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1, gameImg);						
+			}else{
+				JOptionPane.showMessageDialog(Game.computerSunk, 
+						"You Lose \n"+
+						"Total Turn: " + this.computer.getNumTurns() + "\n" +
+						"Miss Shots: " + this.computer.getNumMissed() + "\n" +
+						"Hit Shots: " + this.computer.getNumHits() + "\n" +
+						"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1, gameImg);						
+			}
+
+			this.gameOver = true;
+			thisGame.PlayGameLose();
+
+		}else if(this.computer != null && this.computer.checkShips() == true){
+			JOptionPane.showMessageDialog(Game.computerSunk, 
+					"You Win! \n" +
+					"Total Turn: " + this.human.getNumTurns() + "\n" +
+					"Miss Shots: " + this.human.getNumMissed() + "\n" +
+					"Hit Shots: " + this.human.getNumHits() + "\n" + 
+					"Ships Sunk: " + this.computer.getShipsSunk(), "Game Over",1,gameImg);
+
+			this.gameOver = true;
+			thisGame.PlayGameWin();
+		}else if(this.onLinePlayer != null && this.onLinePlayer.checkShips() == true)
+		{
+			JOptionPane.showMessageDialog(Game.computerSunk, 
+					"You Win! \n" +
+					"Total Turn: " + this.onLinePlayer.getNumTurns() + "\n" +
+					"Miss Shots: " + this.onLinePlayer.getNumMissed() + "\n" +
+					"Hit Shots: " + this.onLinePlayer.getNumHits() + "\n" + 
+					"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1,gameImg);
+
+			this.gameOver = true;
+			thisGame.PlayGameWin();					
+		}		
 	}
 	
 	/**
@@ -572,45 +660,8 @@ public class Turn implements MouseListener, ActionListener
 				}
 
 				
-
 				updateSunk();
-
-				ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
-
-				if(this.human.checkShips() == true){
-					JOptionPane.showMessageDialog(Game.computerSunk, 
-							"Computer Wins!! \n"+
-							"Total Turn: " + this.computer.getNumTurns() + "\n" +
-							"Miss Shots: " + this.computer.getNumMissed() + "\n" +
-							"Hit Shots: " + this.computer.getNumHits() + "\n" +
-							"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1, gameImg);
-
-					this.gameOver = true;
-					thisGame.PlayGameLose();
-
-				}else if(this.computer != null && this.computer.checkShips() == true){
-					JOptionPane.showMessageDialog(Game.computerSunk, 
-							"Human Wins!! \n" +
-							"Total Turn: " + this.human.getNumTurns() + "\n" +
-							"Miss Shots: " + this.human.getNumMissed() + "\n" +
-							"Hit Shots: " + this.human.getNumHits() + "\n" + 
-							"Ships Sunk: " + this.computer.getShipsSunk(), "Game Over",1,gameImg);
-
-					this.gameOver = true;
-					thisGame.PlayGameWin();
-				}else if(this.onLinePlayer != null & this.onLinePlayer.checkShips() == true)
-				{
-					JOptionPane.showMessageDialog(Game.computerSunk, 
-							"OnlinePlayer Wins!! \n" +
-							"Total Turn: " + this.human.getNumTurns() + "\n" +
-							"Miss Shots: " + this.human.getNumMissed() + "\n" +
-							"Hit Shots: " + this.human.getNumHits() + "\n" + 
-							"Ships Sunk: " + this.computer.getShipsSunk(), "Game Over",1,gameImg);
-
-					this.gameOver = true;
-					thisGame.PlayGameWin();					
-				}
-				
+				popUpStats();
 				playDestroyedShip();
 				this.humanShot = "";
 			}

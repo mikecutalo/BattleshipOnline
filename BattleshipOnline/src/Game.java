@@ -79,7 +79,46 @@ public class Game extends JApplet implements ActionListener
 	Map<String, String> paramValue = new HashMap<String, String>();
 	PVP onlineGame = new PVP();
 		
-	public void start(){		
+//	public void start(){		
+//		String url = getDocumentBase().toString();
+//		String paramaters="";
+//		
+//	   if (url.indexOf("?") > -1) {
+//		   paramaters = url.substring(url.indexOf("?") + 1);	   
+//	   }
+//	   
+//	   StringTokenizer paramGroup = new StringTokenizer(paramaters, "&");
+//	   
+//	   while(paramGroup.hasMoreTokens()){
+// 
+//		   StringTokenizer value = new StringTokenizer(paramGroup.nextToken(), "=");
+//		   paramValue.put(value.nextToken(), value.nextToken()); 
+//	   }
+//	   
+//		if(paramValue.size() != 0 && paramValue.get("type").equals("hvh"))
+//		{
+//			try {
+//				onlineGame.connetToServer();
+//			} catch (UnknownHostException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//	}
+	
+	/**
+	 * Creates the GUI for the JApplet
+	 *
+	 * This method will create all the GUI elements for the
+	 * JApplet. Also generating the player boards, and applying
+	 * to the Applet.
+	 */
+	public void init()
+	{		
 		String url = getDocumentBase().toString();
 		String paramaters="";
 		
@@ -107,17 +146,10 @@ public class Game extends JApplet implements ActionListener
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	/**
-	 * Creates the GUI for the JApplet
-	 *
-	 * This method will create all the GUI elements for the
-	 * JApplet. Also generating the player boards, and applying
-	 * to the Applet.
-	 */
-	public void init()
-	{		
+		
+		System.out.println(paramValue.get("type") + "val   :   size" + paramValue.size());
+		
+		
 		shipPlace = new JPanel();
 		playerStats = new JPanel(); 
 		humanSunk = new JPanel();
@@ -425,6 +457,7 @@ public class Game extends JApplet implements ActionListener
 						
 						this.gameTime.setHuman(human);
 						this.gameTime.setComputer(computer);
+						this.gameTime.setPVP(false);
 						this.gameTime.setThisGame(this);
 						this.gameTime.startListening();
 
