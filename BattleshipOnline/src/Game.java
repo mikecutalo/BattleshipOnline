@@ -191,7 +191,15 @@ public class Game extends JApplet implements ActionListener
 		hLabel.setForeground(Color.WHITE);
 		humanName.add(hLabel);
 
-		JLabel cLabel = new JLabel("Borg");
+		JLabel cLabel;
+		
+		if(paramValue.size() != 0 && paramValue.get("type").equals("hvb")){
+			cLabel = new JLabel("Borg");	
+		}else{
+			cLabel = new JLabel("Opponent");
+		}
+		
+		
 		cLabel.setFont(new Font("Sans Serif", Font.BOLD, 20));
 		cLabel.setForeground(Color.WHITE);
 		computerName.add(cLabel);
@@ -501,7 +509,7 @@ public class Game extends JApplet implements ActionListener
 						this.onlineGame.setLocalPlayer(this.human);
 						this.onlineGame.sendBoardData();
 						
-						TellUser("Waiting For Opponent");
+						TellUser("Waiting For Opponent.");
 					}
 					placeShipMode = false;
 				}

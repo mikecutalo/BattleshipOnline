@@ -38,9 +38,7 @@ public class Animation implements Runnable
 		Thread myThread = Thread.currentThread();
 		
 		while(this.animationThread == myThread)
-		{
-			System.out.println("In RUN METHOD!!!" + imgCounter);
-			
+		{	
 			if(this.imgCounter < 3)
 			{
 				this.player.getPlayerBoard().getBoard()[this.row][this.col].setEnabled(false);

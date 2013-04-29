@@ -53,6 +53,7 @@ public class Turn implements MouseListener, ActionListener
 	private Animation hitAnimation = new Animation();
 	private PVP onLineGame = new PVP();
 	private boolean myTurn = true;
+	private int totalDeadShips;
 
 
 	/**
@@ -362,7 +363,7 @@ public class Turn implements MouseListener, ActionListener
 						"Total Turn: " + this.human.getNumTurns() + "\n" +
 						"Miss Shots: " + this.human.getNumMissed() + "\n" +
 						"Hit Shots: " + this.human.getNumHits() + "\n" + 
-						"Ships Sunk: " + this.onLinePlayer.getShipsSunk(), "Human Stats", 1, human);
+						"Ships Sunk: " + this.onLinePlayer.getShipsSunk(), "Human Statistics", 1, human);
 			}
 			else if(action.equals("Computer Stats")){
 				report.StatusReport();
@@ -370,7 +371,7 @@ public class Turn implements MouseListener, ActionListener
 						"Total Turn: " + this.onLinePlayer.getNumTurns() + "\n" +
 						"Miss Shots: " + this.onLinePlayer.getNumMissed() + "\n" +
 						"Hit Shots: " + this.onLinePlayer.getNumHits() + "\n" +
-						"Ships Sunk: " + this.human.getShipsSunk(), "Computer Stats", 1 , comp);
+						"Ships Sunk: " + this.human.getShipsSunk(), "Opponent Statistics", 1 , comp);
 			}			
 		}else{
 			if(action.equals("Human Stats")){
@@ -379,7 +380,7 @@ public class Turn implements MouseListener, ActionListener
 						"Total Turn: " + this.human.getNumTurns() + "\n" +
 						"Miss Shots: " + this.human.getNumMissed() + "\n" +
 						"Hit Shots: " + this.human.getNumHits() + "\n" + 
-						"Ships Sunk: " + this.computer.getShipsSunk(), "Human Stats", 1, human);
+						"Ships Sunk: " + this.computer.getShipsSunk(), "Human Statistics", 1, human);
 			}
 			else if(action.equals("Computer Stats")){
 				report.StatusReport();
@@ -387,36 +388,37 @@ public class Turn implements MouseListener, ActionListener
 						"Total Turn: " + this.computer.getNumTurns() + "\n" +
 						"Miss Shots: " + this.computer.getNumMissed() + "\n" +
 						"Hit Shots: " + this.computer.getNumHits() + "\n" +
-						"Ships Sunk: " + this.human.getShipsSunk(), "Computer Stats", 1 , comp);
+						"Ships Sunk: " + this.human.getShipsSunk(), "Computer Statistics", 1 , comp);
 			}			
 		}
-		
-
 	}
 
 	public void playDestroyedShip()
 	{	
 		char[] s ={'A','B','S','D','P'};
-
-		for(int i=0; i < 3; i++)
+		
+		for(int i=0; i < s.length; i++)
 		{	
 			if(isPVP){
 				if(onLinePlayer.allShips.get(s[i]).isAlive() == false &&
-				   onLinePlayer.allShips.get(s[i]).isVideoPlayed() == false)
+				   onLinePlayer.allShips.get(s[i]).isVideoPlayed() == false &&
+				   totalDeadShips <= 3)
 				{
+					totalDeadShips++;
 					onLinePlayer.allShips.get(s[i]).setVideoPlayed(true);
-					thisGame.PlayExplosionVideo();
+					thisGame.PlayExplosionVideo();											
 				}	
 			}else{
 				if(computer.allShips.get(s[i]).isAlive() == false &&
-				   computer.allShips.get(s[i]).isVideoPlayed() == false)
+				   computer.allShips.get(s[i]).isVideoPlayed() == false &&
+				   totalDeadShips <= 3)
 				{
+					totalDeadShips++;
 					computer.allShips.get(s[i]).setVideoPlayed(true);
-					thisGame.PlayExplosionVideo();
+					thisGame.PlayExplosionVideo();						
 				}		
-			}
-			
-		}
+			}	
+		}			
 	}
 	
 	public void turnPVC(int row, int col, ImageIcon tmpImage)
@@ -500,9 +502,8 @@ public class Turn implements MouseListener, ActionListener
 					
 					this.onLineGame.sendData(row+""+col+"H");
 					
-					thisGame.TellUser("Waiting For Opponent");
+					thisGame.TellUser("Waiting For Opponent.");
 					myTurn = false;
-					System.out.println("turnPVP : myTurn = "+ myTurn);
 				}else{
 					
 					Sound soundFactory = new Sound();
@@ -519,9 +520,8 @@ public class Turn implements MouseListener, ActionListener
 					
 					this.onLineGame.sendData(row+""+col+"M");
 					
-					thisGame.TellUser("Waiting For Opponent");
+					thisGame.TellUser("Waiting For Opponent.");
 					myTurn = false;
-					System.out.println("turnPVP : myTurn = "+ myTurn);
 				}
 			}
 		} catch (IOException e) {
@@ -544,7 +544,7 @@ public class Turn implements MouseListener, ActionListener
 			updateSunk();
 			popUpStats();
 			playDestroyedShip();
-			thisGame.TellUser("Take your shot.");
+			thisGame.TellUser("Take Your Shot.");
 			myTurn = true;		
 			
 		} catch (IOException e) {
@@ -568,7 +568,7 @@ public class Turn implements MouseListener, ActionListener
 			updateSunk();
 			popUpStats();
 			playDestroyedShip();
-			thisGame.TellUser("Take your shot.");
+			thisGame.TellUser("Take Your Shot.");
 			myTurn = true;
 			
 		} catch (IOException e) {

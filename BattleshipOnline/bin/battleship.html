@@ -4,6 +4,12 @@
 		
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+	
 
 		<style>
 			.AppletStyle{
@@ -48,7 +54,12 @@
 
 			function Waiting(text){
 				$("#para").text(text);
-				$("#pul").effect("pulsate", { times:3 }, 2000);
+				
+				//$("#para").effect("pulsate",{"times":3000},100000);
+
+			    (function pulse(){
+			        $("#para").delay(200).fadeOut('slow').delay(50).fadeIn('slow',pulse);
+			    })();
 			}
 
 			// function StartGame(){
@@ -64,16 +75,14 @@
 			<!-- <Applet Code="Game.class" width=800 Height=500></Applet> -->
 			<!-- <object width="800" height="500" data="Game.class"></object> -->
 			
-			<div id="pul">
-				<center>
-					<p id="para" class="message"> </p>	
-				</center>
-			</div>
-
 			<object type="application/x-java-applet" height="510" width="800">
 			      <param name="archive" value="BattleShipGame.jar"/>
 			      <param name="code" value="Game.class" />
 			</object>
+
+			<center>
+				<p id="para" class="message"> </p>	
+			</center>
 
 		</div>
 
