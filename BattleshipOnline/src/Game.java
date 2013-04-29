@@ -257,6 +257,17 @@ public class Game extends JApplet implements ActionListener
 		Cursor cursor = toolkit.createCustomCursor(img, hotSpot,"trek");
 		setCursor(cursor);
 		
+//
+//		JTextArea jTextArea = new JTextArea();
+//		JScrollPane jScrollPane = new JScrollPane(jTextArea);
+//		
+//		jScrollPane.setLocation(25, 50);
+//        jScrollPane.setSize(30, 40);
+//		
+//		add(jScrollPane);
+		
+		this.gameTime.setThisGame(this);
+		
 		repaint();
 		validate();
 	}
@@ -343,6 +354,16 @@ public class Game extends JApplet implements ActionListener
 		}
 	}
 	
+	public void TellUser(String message){
+		final AppletContext Handel = getAppletContext();
+		try {
+			
+			Handel.showDocument(new URL("javascript:Waiting(\""+ message +"\")"));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		      
+	}
 	
 	public void PlayGameWin(){
 		final AppletContext Handel = getAppletContext();
@@ -460,6 +481,7 @@ public class Game extends JApplet implements ActionListener
 						this.gameTime.setPVP(false);
 						this.gameTime.setThisGame(this);
 						this.gameTime.startListening();
+						TellUser("Game Starting");
 
 					}else{
 						
@@ -471,14 +493,15 @@ public class Game extends JApplet implements ActionListener
 						this.gameTime.setPVP(true);
 						this.gameTime.setThisGame(this);
 						
+						
 						//Sending the Trun class to the PVP class
 						//and sending the baord data
 						//will also pass the local player
 						this.onlineGame.setOnLineTurn(this.gameTime);
 						this.onlineGame.setLocalPlayer(this.human);
 						this.onlineGame.sendBoardData();
-
 						
+						TellUser("Waiting For Opponent");
 					}
 					placeShipMode = false;
 				}

@@ -98,7 +98,7 @@ public class PVP implements Runnable{
 	}
 	
 	
-	public void startTurnListen(){		
+	public void startTurnListen(){	
 		while(onLineTurn == null){
 			try {
 				Thread.sleep(300);
@@ -107,6 +107,7 @@ public class PVP implements Runnable{
 			}
 		}
 		
+		this.onLineTurn.getThisGame().TellUser("Starting Game");
 		onLineTurn.setOnLineGame(this);
 		onLineTurn.startListening();
 	}

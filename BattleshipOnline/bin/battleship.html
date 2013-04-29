@@ -2,7 +2,8 @@
 	<head>
 		<Title>StarTrek BattleShip</Title>	
 		
-		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
 
 		<style>
 			.AppletStyle{
@@ -11,7 +12,19 @@
 				margin-right: auto;
 				margin-left: auto;
 				vertical-align: middle;
+
 			}
+			.message
+			{
+				font-weight:normal;
+				color:#FFFBFA;
+				letter-spacing:2pt;
+				word-spacing:10pt;
+				font-size:27px;
+				text-align:left;
+				font-family:verdana,sans-serif;line-height:1;
+			}
+
 		</style>
 
 		<script type="text/javascript"> 
@@ -32,23 +45,36 @@
 				video.moveTo(200,200);
 			}		
 
+
+			function Waiting(text){
+				$("#para").text(text);
+				$("#pul").effect("pulsate", { times:3 }, 2000);
+			}
+
 			// function StartGame(){
 			// 	$("#gameStart").
 			// }					
 
-		</script>		
+		</script>	
+
 	</head>
 
 	<body background="startrek/Capture.PNG" bgcolor="#000000" style="background-repeat: no-repeat"> 
 		<div class="AppletStyle">
 			<!-- <Applet Code="Game.class" width=800 Height=500></Applet> -->
 			<!-- <object width="800" height="500" data="Game.class"></object> -->
-			<h1 id="gameStart" > Game Starting </h1>
+			
+			<div id="pul">
+				<center>
+					<p id="para" class="message"> </p>	
+				</center>
+			</div>
 
 			<object type="application/x-java-applet" height="510" width="800">
 			      <param name="archive" value="BattleShipGame.jar"/>
 			      <param name="code" value="Game.class" />
 			</object>
+
 		</div>
 
 	</body>

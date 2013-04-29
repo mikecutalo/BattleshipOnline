@@ -500,6 +500,7 @@ public class Turn implements MouseListener, ActionListener
 					
 					this.onLineGame.sendData(row+""+col+"H");
 					
+					thisGame.TellUser("Waiting For Opponent");
 					myTurn = false;
 					System.out.println("turnPVP : myTurn = "+ myTurn);
 				}else{
@@ -518,6 +519,7 @@ public class Turn implements MouseListener, ActionListener
 					
 					this.onLineGame.sendData(row+""+col+"M");
 					
+					thisGame.TellUser("Waiting For Opponent");
 					myTurn = false;
 					System.out.println("turnPVP : myTurn = "+ myTurn);
 				}
@@ -542,6 +544,7 @@ public class Turn implements MouseListener, ActionListener
 			updateSunk();
 			popUpStats();
 			playDestroyedShip();
+			thisGame.TellUser("Take your shot.");
 			myTurn = true;		
 			
 		} catch (IOException e) {
@@ -565,6 +568,7 @@ public class Turn implements MouseListener, ActionListener
 			updateSunk();
 			popUpStats();
 			playDestroyedShip();
+			thisGame.TellUser("Take your shot.");
 			myTurn = true;
 			
 		} catch (IOException e) {
