@@ -503,10 +503,6 @@ public class Turn implements MouseListener, ActionListener
 					myTurn = false;
 					System.out.println("turnPVP : myTurn = "+ myTurn);
 				}else{
-					
-					Sound soundFactory = new Sound();
-					soundFactory.ShipMiss();
-					
 					this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setMiss(true);
 					tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
 					this.onLinePlayer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
