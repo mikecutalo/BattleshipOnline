@@ -460,9 +460,6 @@ public class Turn implements MouseListener, ActionListener
 				}
 				else
 				{
-					Sound soundFactory = new Sound();
-					soundFactory.ShipMiss();
-					
 					//Take care of board
 					this.computer.getPlayerBoard().getBoard()[row][col].setMiss(true);
 					tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));

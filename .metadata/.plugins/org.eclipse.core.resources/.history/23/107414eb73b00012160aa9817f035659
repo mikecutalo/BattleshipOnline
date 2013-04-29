@@ -40,7 +40,7 @@ public class Sound implements Runnable
 		this.soundThread.start();
 	}
 	
-	public void ShipMiss(){
+	public void Miss(){
 		this.clip = Applet.newAudioClip(getClass().getResource("/sounds/miss.wav"));		
 		this.soundThread.start();
 	}
