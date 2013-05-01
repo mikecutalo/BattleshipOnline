@@ -1,8 +1,13 @@
+/**
+ * This class will handle picture animations.
+ * 
+ * This class
+ * 
+ * @date 4/10/13
+ * @author Mike Cutalo
+ */
 import java.io.IOException;
 import javax.swing.ImageIcon;
-import java.applet.AppletContext;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class Animation implements Runnable
 {

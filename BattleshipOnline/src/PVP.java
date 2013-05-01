@@ -8,29 +8,55 @@ import java.net.UnknownHostException;
 /**
  * This will handle Player vs. Player Game Play.
  * 
+ * Handling all interaction with the socket, this class will
+ * send and retrieve all data necessary for online game play.
  * 
  * @author Mike Cutalo
+ * @version 1.0
  */
 public class PVP implements Runnable{
 	
+	/** The server that the client will connect to.*/
 	private final String SERVERNAME = "bill.kutztown.edu";
+	/** The port the client will be directed to set up a connection */
 	private final int PORT = 15009;	
+	/** Will output data to the server to be sent to the other client */
 	private PrintWriter out;
+	/** Read in all information sent by the server */
 	private BufferedReader in;
 	
+	/** A thread that will sit and wait for server data */
 	private Thread runClient;
+	/** The local player in the game */
 	private Player localPlayer;
+	/** The online player in the game*/
 	private Player remotePlayer;
+	/** The socket connection for this client */
 	private Socket socket;
+	/** the online turn object, this holds the state of the game play */
 	private Turn onLineTurn;
 	
-
-
+	
+	/**
+	 * Constructs a new local and remote player
+	 * at the creation of this object.
+	 */
 	public PVP(){
 		localPlayer = new Player();
 		remotePlayer = new Player();
 	}
 	
+	/**
+	 * Connect client to server.
+	 * 
+	 * This will connect the client to the server,
+	 * set up in and out streams and will call the getData() method
+	 * which will start listening for server output.
+	 * 
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public void connetToServer() throws UnknownHostException, IOException, InterruptedException
 	{	
 		socket = new Socket(SERVERNAME, PORT);		
@@ -42,6 +68,11 @@ public class PVP implements Runnable{
 		getData();				
 	}
 	
+	/**
+	 * Start a new thread for 
+	 * 
+	 * @throws InterruptedException
+	 */
 	public void getData() throws InterruptedException{
 		runClient = new Thread(this,"ClientConnection");
 		runClient.start();
@@ -152,14 +183,12 @@ public class PVP implements Runnable{
 							startTurnListen();
 						}
 					}
-					
-					
+									
 					if(key == 'H'){						
 						this.getOnLineTurn().onLinePlayerHit(row, col);
 					}else if(key == 'M'){
 						this.getOnLineTurn().onLinePlayerMiss(row, col);
-					}
-					
+					}					
 				}
 			} catch (IOException e) {	
 				closeSocket();

@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-
 /** 
  * The game class extends JApplet and implements ActionListener.
  * This is where the Applet GUI is created and rendered. All of the
@@ -32,7 +31,6 @@ import java.util.StringTokenizer;
  */
 public class Game extends JApplet implements ActionListener
 {
-	//Global
 	/** Holds the current ship that is being placed*/
 	public static JPanel shipPlace = new JPanel();
 	/** Not being used at the moment but would show player statics in center of applet */
@@ -72,44 +70,14 @@ public class Game extends JApplet implements ActionListener
 	public AI computer = new AI();	
 	/** Handles Turns for the game*/
 	public Turn gameTime = new Turn();
-	//End Global
 
+	/** This will hold both computer or online players grid */
 	public JPanel computerGrid;
-	
+	/** Store URL get parameters*/
 	Map<String, String> paramValue = new HashMap<String, String>();
+	/** This is the onlineGame, the PVP stands for Player vs Player. It will handle all interaction over the sockets.*/
 	PVP onlineGame = new PVP();
 		
-//	public void start(){		
-//		String url = getDocumentBase().toString();
-//		String paramaters="";
-//		
-//	   if (url.indexOf("?") > -1) {
-//		   paramaters = url.substring(url.indexOf("?") + 1);	   
-//	   }
-//	   
-//	   StringTokenizer paramGroup = new StringTokenizer(paramaters, "&");
-//	   
-//	   while(paramGroup.hasMoreTokens()){
-// 
-//		   StringTokenizer value = new StringTokenizer(paramGroup.nextToken(), "=");
-//		   paramValue.put(value.nextToken(), value.nextToken()); 
-//	   }
-//	   
-//		if(paramValue.size() != 0 && paramValue.get("type").equals("hvh"))
-//		{
-//			try {
-//				onlineGame.connetToServer();
-//			} catch (UnknownHostException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//	}
-	
 	/**
 	 * Creates the GUI for the JApplet
 	 *
@@ -146,9 +114,6 @@ public class Game extends JApplet implements ActionListener
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println(paramValue.get("type") + "val   :   size" + paramValue.size());
-		
 		
 		shipPlace = new JPanel();
 		playerStats = new JPanel(); 
@@ -247,10 +212,7 @@ public class Game extends JApplet implements ActionListener
 		errorMsg.setForeground(Color.WHITE);
 		
 		
-		//add new panel to the ship place....
-		shipPlace.add(shipPlacementWest, BorderLayout.WEST);
-		
-		//Add ship with new panel in it to the applet
+		shipPlace.add(shipPlacementWest, BorderLayout.WEST);		
 		add(shipPlace, BorderLayout.SOUTH);
 
 		try {
@@ -264,15 +226,6 @@ public class Game extends JApplet implements ActionListener
 		Point hotSpot = new Point(0,0);
 		Cursor cursor = toolkit.createCustomCursor(img, hotSpot,"trek");
 		setCursor(cursor);
-		
-//
-//		JTextArea jTextArea = new JTextArea();
-//		JScrollPane jScrollPane = new JScrollPane(jTextArea);
-//		
-//		jScrollPane.setLocation(25, 50);
-//        jScrollPane.setSize(30, 40);
-//		
-//		add(jScrollPane);
 		
 		this.gameTime.setThisGame(this);
 		
@@ -289,24 +242,24 @@ public class Game extends JApplet implements ActionListener
 	public void NewGame()
 	{
 		ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
+		URL newGame = null;
+		
+		try {
+			newGame = new URL("http://bill.kutztown.edu/~mcuta697/csc421/StarTrek/GameStart.html");
 
-		if (JOptionPane.showConfirmDialog(null, "Would you like to play again?", "Play Again?", 
-		    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, gameImg)
-		    == JOptionPane.YES_OPTION)
-		{
-			URL newGame = null;
-			try {
-				newGame = new URL("bill.kutztown.edu/~mcuta697/csc421/StarTrek/GameStart.html");
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
+			if (JOptionPane.showConfirmDialog(null, "Would you like to play again?", "Play Again?", 
+			    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, gameImg)
+			    == JOptionPane.YES_OPTION)
+			{		
+				this.getAppletContext().showDocument(newGame,"_self");
 			}
-			//this.getAppletContext().showDocument(this.getDocumentBase(), "GameStart.html");
-			this.getAppletContext().showDocument(newGame,"_self");
-
-		}
-		else
-		{
-			System.out.println("No");
+			else
+			{
+				this.getAppletContext().showDocument(newGame,"_self");
+			}
+		
+		}catch(MalformedURLException e1) {
+			e1.printStackTrace();
 		}
 	}
 
@@ -362,6 +315,15 @@ public class Game extends JApplet implements ActionListener
 		}
 	}
 	
+	/**
+	 * Output text to the html.
+	 * 
+	 * This method will call a java script function, with 
+	 * one parameter message. That holds the value of the desired
+	 * text to show the user.
+	 * 
+	 * @param message
+	 */
 	public void TellUser(String message){
 		final AppletContext Handel = getAppletContext();
 		try {
@@ -373,6 +335,12 @@ public class Game extends JApplet implements ActionListener
 		      
 	}
 	
+	/**
+	 * Play Winning Video.
+	 * 
+	 * Calls a java script function that spawns a new pop up
+	 * window with he winning video.
+	 */
 	public void PlayGameWin(){
 		final AppletContext Handel = getAppletContext();
 		new Thread() {
@@ -384,7 +352,13 @@ public class Game extends JApplet implements ActionListener
 		     }
 	     }.start();
 	}
-	
+
+	/**
+	 * Play Lose Video.
+	 * 
+	 * Calls a java script function that spawns a new pop up
+	 * window with he losing video.
+	 */
 	public void PlayGameLose(){
 		final AppletContext Handel = getAppletContext();
 		new Thread() {
@@ -397,6 +371,12 @@ public class Game extends JApplet implements ActionListener
 	     }.start();
 	}
 	
+	/**
+	 * Play Ship Explosion Video.
+	 * 
+	 * Calls a java script function that spawns a new pop up
+	 * window with he ship explosion video.
+	 */
 	public void PlayExplosionVideo() {		
 		final AppletContext Handel = getAppletContext();
 		new Thread() {
@@ -534,9 +514,7 @@ public class Game extends JApplet implements ActionListener
 	public JPanel getComputerGrid() {
 		return computerGrid;
 	}
-
 	public void setComputerGrid(JPanel computerGrid) {
 		this.computerGrid = computerGrid;
-	}	
-	
+	}		
 }

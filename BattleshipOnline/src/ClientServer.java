@@ -4,6 +4,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class ClientServer{
 	private ServerSocket server = null;
@@ -12,6 +14,11 @@ public class ClientServer{
 	private Client playerOne;
 	private Client playerTwo;
 	
+	//Should just have a Queue that waits for 2 players, after that create two new
+	//
+	//private Queue<Client> allClients = new LinkedList<Client>();
+
+
 	public ClientServer(){
 		server = null;
 		this.playerOne = new Client();
@@ -25,11 +32,6 @@ public class ClientServer{
 		while(true){
 			Socket playerSocket = server.accept();
 
-			//Client player;
-			//player = new Client(playerSocket);
-			//p = new Client(playerSocket);
-			//Thread t = new Thread(player);
-			//t.start();
 			
 			if(playerOne.client.isConnected() != true)
 			{

@@ -191,7 +191,6 @@ public class Player{
 			}			
 		}
 		
-		
 		if(this.shipsSunk == 5){
 			return isGameOver = true;
 		}else{
