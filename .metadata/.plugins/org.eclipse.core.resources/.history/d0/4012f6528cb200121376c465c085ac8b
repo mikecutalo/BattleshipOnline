@@ -23,12 +23,12 @@ public class ClientServer{
 	
 	
 	public ClientServer(){
-		this.server = null;
+		server = null;
 		this.playerOne = new Client();
 		this.playerTwo = new Client();
 	}
 
-	public void StartListening() throws IOException
+	public void StartListening()
 	{
 		try {			
 			server = new ServerSocket(PORT);
@@ -75,10 +75,10 @@ public class ClientServer{
 			}
 			
 		} catch (IOException e) {
-			//server.close();
+			server.close();
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			//server.close();
+			server.close();
 			e.printStackTrace();
 		}
 	}	

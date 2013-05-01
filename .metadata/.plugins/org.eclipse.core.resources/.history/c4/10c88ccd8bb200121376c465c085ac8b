@@ -20,15 +20,17 @@ public class ClientServer{
 	
 	private Client playerOne;
 	private Client playerTwo;
+	private boolean isNewGame;
 	
 	
 	public ClientServer(){
-		this.server = null;
+		isNewGame = true;
+		server = null;
 		this.playerOne = new Client();
 		this.playerTwo = new Client();
 	}
 
-	public void StartListening() throws IOException
+	public void StartListening()
 	{
 		try {			
 			server = new ServerSocket(PORT);
@@ -49,6 +51,8 @@ public class ClientServer{
 						System.out.println("Established Connection PlayerOne");
 						clientOne = new Client(playerSocket);
 						clientOne.setName("playerOne");					
+	
+						//isNewGame = false;
 					}
 					else if(clientOne.client.isConnected() == true)
 					{
@@ -66,6 +70,8 @@ public class ClientServer{
 						
 						Thread t2 = new Thread(clientTwo);
 						t2.start();
+										
+						//isNewGame = true;
 						
 						break;
 					}
@@ -75,10 +81,10 @@ public class ClientServer{
 			}
 			
 		} catch (IOException e) {
-			//server.close();
+			closeServer();
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			//server.close();
+			closeServer();
 			e.printStackTrace();
 		}
 	}	
@@ -133,6 +139,13 @@ public class ClientServer{
 //		}
 //	}
 	
+	public void closeServer(){
+		try {
+			server.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public class Client implements Runnable{
 		private String name ="";

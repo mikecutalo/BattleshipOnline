@@ -14,7 +14,7 @@ import java.net.Socket;
 public class ClientServer{
 	
 	/** The server connection */
-	private ServerSocket server = null;
+	private ServerSocket server;
 	/** My port to establish TCP connection with client */
 	private final int PORT = 15009;
 	
@@ -23,7 +23,11 @@ public class ClientServer{
 	
 	
 	public ClientServer(){
-		this.server = null;
+		try {
+			server = new ServerSocket();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.playerOne = new Client();
 		this.playerTwo = new Client();
 	}
@@ -75,10 +79,10 @@ public class ClientServer{
 			}
 			
 		} catch (IOException e) {
-			//server.close();
+			server.close();
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			//server.close();
+			server.close();
 			e.printStackTrace();
 		}
 	}	

@@ -642,9 +642,7 @@ public class Turn implements MouseListener, ActionListener
 							"Total Turn: " + this.onLinePlayer.getNumTurns() + "\n" +
 							"Miss Shots: " + this.onLinePlayer.getNumMissed() + "\n" +
 							"Hit Shots: " + this.onLinePlayer.getNumHits() + "\n" +
-							"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1, gameImg);	
-					
-					this.onLineGame.closeSocket();
+							"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1, gameImg);						
 				}else{
 					JOptionPane.showMessageDialog(Game.computerSunk, 
 							"You Lose \n"+
@@ -653,7 +651,7 @@ public class Turn implements MouseListener, ActionListener
 							"Hit Shots: " + this.computer.getNumHits() + "\n" +
 							"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1, gameImg);						
 				}
-				
+	
 				this.gameOver = true;
 				thisGame.PlayGameLose();
 				Thread.sleep(23000);
@@ -679,7 +677,6 @@ public class Turn implements MouseListener, ActionListener
 						"Hit Shots: " + this.onLinePlayer.getNumHits() + "\n" + 
 						"Ships Sunk: " + this.human.getShipsSunk(), "Game Over",1,gameImg);
 	
-				this.onLineGame.closeSocket();
 				this.gameOver = true;
 				thisGame.PlayGameWin();
 				Thread.sleep(16000);
