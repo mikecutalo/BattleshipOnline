@@ -248,7 +248,6 @@ public class PVP implements Runnable{
 					}else if(key == 'Z'){
 						System.out.println("Closing Socket from run..");
 						closeSocket();
-						break;
 					}
 				}
 			} catch (IOException e) {	

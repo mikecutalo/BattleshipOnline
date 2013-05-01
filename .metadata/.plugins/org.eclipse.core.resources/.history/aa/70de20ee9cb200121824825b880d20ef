@@ -326,10 +326,10 @@ public class Game extends JApplet implements ActionListener
 	 * @param message
 	 */
 	public void TellUser(String message){
-		final AppletContext Handle = getAppletContext();
+		final AppletContext Handel = getAppletContext();
 		try {
 			
-			Handle.showDocument(new URL("javascript:Waiting(\""+ message +"\")"));
+			Handel.showDocument(new URL("javascript:Waiting(\""+ message +"\")"));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -345,11 +345,11 @@ public class Game extends JApplet implements ActionListener
 	 * @throws Exception
 	 */
 	public void PlayGameWin(){
-		final AppletContext Handle = getAppletContext();
+		final AppletContext Handel = getAppletContext();
 		new Thread() {
 		   	 public void run() {
 		          try {
-		        	  Handle.showDocument(new URL("javascript:PlayGameWin()"));
+		        	  Handel.showDocument(new URL("javascript:PlayGameWin()"));
 		          }
 		          catch (Exception e) {System.out.println(e);}
 		     }
@@ -365,11 +365,11 @@ public class Game extends JApplet implements ActionListener
 	 * @throws Exception
 	 */
 	public void PlayGameLose(){
-		final AppletContext Handle = getAppletContext();
+		final AppletContext Handel = getAppletContext();
 		new Thread() {
 		   	 public void run() {
 		          try {
-		        	  Handle.showDocument(new URL("javascript:PlayGameLose()"));
+		        	  Handel.showDocument(new URL("javascript:PlayGameLose()"));
 		          }
 		          catch (Exception e) {System.out.println(e);}
 		     }
@@ -385,11 +385,11 @@ public class Game extends JApplet implements ActionListener
 	 * @throws Exception
 	 */
 	public void PlayExplosionVideo() {		
-		final AppletContext Handle = getAppletContext();
+		final AppletContext Handel = getAppletContext();
 		new Thread() {
 		   	 public void run() {
 		          try {
-		        	  Handle.showDocument(new URL("javascript:PlaySunkenShip()"));
+		        	  Handel.showDocument(new URL("javascript:PlaySunkenShip()"));
 		          }
 		          catch (Exception e) {System.out.println(e);}
 		     }

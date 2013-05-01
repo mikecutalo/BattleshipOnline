@@ -326,10 +326,10 @@ public class Game extends JApplet implements ActionListener
 	 * @param message
 	 */
 	public void TellUser(String message){
-		final AppletContext Handle = getAppletContext();
+		final AppletContext Handel = getAppletContext();
 		try {
 			
-			Handle.showDocument(new URL("javascript:Waiting(\""+ message +"\")"));
+			Handel.showDocument(new URL("javascript:Waiting(\""+ message +"\")"));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

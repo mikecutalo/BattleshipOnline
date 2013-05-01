@@ -36,8 +36,6 @@ public class PVP implements Runnable{
 	/** the online turn object, this holds the state of the game play */
 	private Turn onLineTurn;
 	
-	private boolean isSocketClosed = false;
-	
 	
 	/**
 	 * Constructs a new local and remote player
@@ -151,21 +149,18 @@ public class PVP implements Runnable{
 	 * @throws IOException
 	 */
 	public void closeSocket(){
-		if(isSocketClosed == false){
-			try {
-				this.in.close();
-				this.out.close();
-				
-				this.socket.close();
-				this.runClient.interrupt();
-				this.runClient = null;
-	
-				isSocketClosed = true;
-				System.out.println("Closing the socket");
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		try {
+			this.in.close();
+			this.out.close();
+			
+			this.socket.close();
+			this.runClient.interrupt();
+			this.runClient = null;
+
+			System.out.println("Closing the socket");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 		
@@ -248,14 +243,15 @@ public class PVP implements Runnable{
 					}else if(key == 'Z'){
 						System.out.println("Closing Socket from run..");
 						closeSocket();
-						break;
 					}
 				}
 			} catch (IOException e) {	
-				closeSocket();			
+				closeSocket();
+			
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				closeSocket();
+				
 				e.printStackTrace();
 			}
 		}

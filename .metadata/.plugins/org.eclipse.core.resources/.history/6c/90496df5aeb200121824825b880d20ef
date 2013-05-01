@@ -8,12 +8,6 @@ import java.net.Socket;
 /**
  * Set up connection with clients.
  * 
- * This class will handle all online game play,
- * it will wait for two players to join. Once two players
- * have been matched it will proceed to spawn threads for these clients.
- * This server will handle concurrent online game play, many online games 
- * can take place.
- * 
  * @author Mike Cutalo
  * @version 1.0
  */
@@ -195,7 +189,6 @@ public class ClientServer{
 			}
 		}
 		
-
 		public void finalize(){
 			try {
 				client.shutdownInput();
@@ -225,6 +218,7 @@ public class ClientServer{
 			this.name = name;
 		}
 	}
+
 	
 	public static void main(String[] args) throws IOException, InterruptedException 
 	{
