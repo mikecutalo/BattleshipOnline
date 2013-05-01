@@ -83,7 +83,8 @@ public class Game extends JApplet implements ActionListener
 	 *
 	 * This method will create all the GUI elements for the
 	 * JApplet. Also generating the player boards, and applying
-	 * to the Applet.
+	 * to the Applet. This will also read in the URL parameters,
+	 * that will dictate what type of game it is (Online or Computer).
 	 */
 	public void init()
 	{		
@@ -340,6 +341,8 @@ public class Game extends JApplet implements ActionListener
 	 * 
 	 * Calls a java script function that spawns a new pop up
 	 * window with he winning video.
+	 * 
+	 * @throws Exception
 	 */
 	public void PlayGameWin(){
 		final AppletContext Handel = getAppletContext();
@@ -358,6 +361,8 @@ public class Game extends JApplet implements ActionListener
 	 * 
 	 * Calls a java script function that spawns a new pop up
 	 * window with he losing video.
+	 * 
+	 * @throws Exception
 	 */
 	public void PlayGameLose(){
 		final AppletContext Handel = getAppletContext();
@@ -376,6 +381,8 @@ public class Game extends JApplet implements ActionListener
 	 * 
 	 * Calls a java script function that spawns a new pop up
 	 * window with he ship explosion video.
+	 * 
+	 * @throws Exception
 	 */
 	public void PlayExplosionVideo() {		
 		final AppletContext Handel = getAppletContext();
@@ -511,6 +518,7 @@ public class Game extends JApplet implements ActionListener
 		}
 	}
 
+	// Getters && Setters //
 	public JPanel getComputerGrid() {
 		return computerGrid;
 	}

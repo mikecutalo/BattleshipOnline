@@ -266,9 +266,6 @@ public class Grid extends JPanel
 		{			
 			for(int i=0; i < shipPlaces; i++)
 			{
-//				if((col+i) >=10 || (col - i) < 0)
-//					return false;
-
 				if(firstClick.charAt(1) < secondClick.charAt(1))
 				{
 					if((col+i) >=10)
@@ -295,9 +292,6 @@ public class Grid extends JPanel
 		{
 			for(int i=0; i < shipPlaces; i++)
 			{
-//				if((row+i) >= 10 || (row - i) < 0)
-//					return false;
-
 				if(firstClick.charAt(0) < secondClick.charAt(0))
 				{
 					if((row+i) >= 10)
@@ -474,7 +468,6 @@ public class Grid extends JPanel
 	public Singlespace[][] getBoard() {
 		return board;
 	}
-
 	public void setBoard(Singlespace[][] board) {
 		this.board = board;
 	}

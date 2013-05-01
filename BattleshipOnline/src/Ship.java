@@ -36,51 +36,42 @@ public class Ship{
 	public String getBoatType() {
 		return boatType;
 	}
-
 	public void setBoatType(String boatType) {
 		this.boatType = boatType;
 	}
-
 	public char getBoatInit() {
 		return boatInit;
 	}
 	public void setBoatInit(char boatInit) {
 		this.boatInit = boatInit;
 	}
-
 	public int getSumHit() {
 		return sumHit;
 	}
-
 	public void setSumHit(int sumHit) {
 		this.sumHit = sumHit;
 	}
-
 	public int getMaxHit() {
 		return maxHit;
 	}
 	public void setMaxHit(int maxHit) {
 		this.maxHit = maxHit;
 	}
-
 	public String getPlayerOwner() {
 		return playerOwner;
 	}
 	public void setPlayerOwner(String playerOwner) {
 		this.playerOwner = playerOwner;
 	}
-
 	public boolean isAlive() {
 		return isAlive;
 	}
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-
 	public boolean isVideoPlayed() {
 		return isVideoPlayed;
 	}
-
 	public void setVideoPlayed(boolean isVideoPlayed) {
 		this.isVideoPlayed = isVideoPlayed;
 	}	

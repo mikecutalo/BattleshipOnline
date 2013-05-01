@@ -271,9 +271,6 @@ public class AI extends Player
 					this.currentShipAttacking = ' ';
 				}	
 			}
-
-//			Sound compHit = new Sound();
-//			compHit.ComputerHit();
 		}
 		}catch(IOException err){
 			err.getStackTrace();

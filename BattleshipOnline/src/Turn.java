@@ -45,13 +45,21 @@ public class Turn implements MouseListener, ActionListener
 	/** The computer player */
 	private AI computer;
 
+	/** Indicates if the game is online */
 	private boolean isPVP = false;
-	private Player onLinePlayer;	
+	/** The online player object */
+	private Player onLinePlayer;
+	/** The current game */
 	private Game thisGame;
+	/** The popup menu */
 	private JPopupMenu menu;
+	/** Animation for hitting a ship */
 	private Animation hitAnimation = new Animation();
+	/** The online game object used for sending data */
 	private PVP onLineGame = new PVP();
+	/** Indicates if its this players turn */
 	private boolean myTurn = true;
+	/** Total number of sunken ships*/
 	private int totalDeadShips;
 
 	/**
@@ -90,13 +98,8 @@ public class Turn implements MouseListener, ActionListener
 			this.computer.getPlayerBoard().printBoard(false);	
 		}
 
-//		ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
-//		JOptionPane.showMessageDialog(Game.humanSunk, 
-//				"Game is now starting!\nClick on the computers board to attack!","Game Starting", 1, gameImg);
-
 		ImageIcon img = new ImageIcon(getClass().getResource("/images/Space.jpg"));
-
-
+		
 		for(int i=0; i < 10; i++)
 		{
 			for(int j=0; j < 10; j++)
@@ -387,6 +390,13 @@ public class Turn implements MouseListener, ActionListener
 		}
 	}
 
+	/**
+	 * Plays a video if the ship is sunk.
+	 * 
+	 * This will simply play the video if a ship is sunk,
+	 * it will only play video for 4 ships because once the last ship
+	 * I will play the lose or win video.
+	 */
 	public void playDestroyedShip()
 	{	
 		char[] s ={'A','B','S','D','P'};
@@ -415,6 +425,17 @@ public class Turn implements MouseListener, ActionListener
 		}			
 	}
 	
+	/**
+	 * Handles a human turn for Player vs Computer
+	 * 
+	 * This will be called if the user is playing against the 
+	 * computer. It will handle that turn for the human.
+	 * 
+	 * @param row
+	 * @param col
+	 * @param tmpImage
+	 * @throws IOException
+	 */
 	public void turnPVC(int row, int col, ImageIcon tmpImage)
 	{
 		if(this.computer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
@@ -438,7 +459,6 @@ public class Turn implements MouseListener, ActionListener
 					Now doing this in the Animation Class
 					Just seems natural do it there. 
 					*/
-
 //						Taking care of board
 //						this.computer.getPlayerBoard().getBoard()[row][col].setHit(true);	
 //						tmpImage = new ImageIcon(getClass().getResource("/images/hit.jpg"));
@@ -446,7 +466,6 @@ public class Turn implements MouseListener, ActionListener
 //						this.computer.getPlayerBoard().getBoard()[row][col].setEnabled(false);
 //						this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
 
-					//Setting stats for player
 					this.human.setNumHits(this.human.getNumHits() + 1);
 					this.human.setNumTurns(this.human.getNumTurns() + 1);
 
@@ -459,7 +478,6 @@ public class Turn implements MouseListener, ActionListener
 					Sound soundFactory = new Sound();
 					soundFactory.ShipMiss();
 					
-					//Take care of board
 					this.computer.getPlayerBoard().getBoard()[row][col].setMiss(true);
 					tmpImage = new ImageIcon(getClass().getResource("/images/black.jpg"));
 					this.computer.getPlayerBoard().getBoard()[row][col].setIcon(tmpImage);
@@ -467,13 +485,25 @@ public class Turn implements MouseListener, ActionListener
 					this.computer.getPlayerBoard().getBoard()[row][col].setDisabledIcon(tmpImage);
 					this.computer.aITurn(this.human);
 					
-					//Setting stats for player
 					this.human.setNumMissed(this.human.getNumMissed() + 1);
 					this.human.setNumTurns(this.human.getNumTurns() + 1);						
 				}
 			}		
 	}
-	
+
+	/**
+	 * Handle a turn for Player vs Player
+	 * 
+	 * Will handle all logic for the local players
+	 * turn, this will send the correct data over the socket
+	 * to the onlinePlayer depending if its a hit or miss along
+	 * with the row and column of the location.
+	 * 
+	 * @param row
+	 * @param col
+	 * @param tmpImage
+	 * @throws IOExecption
+	 */
 	public void turnPVP(int row, int col, ImageIcon tmpImage){
 		try {
 			if(this.onLinePlayer.getPlayerBoard().getBoard()[row][col].isHit() == false &&
@@ -523,6 +553,17 @@ public class Turn implements MouseListener, ActionListener
 		}
 	}
 	
+	/**
+	 * Handles a online player hit.
+	 * 
+	 * If the online player get a hit,
+	 * this will take the appropriate action to 
+	 * update statics and playing animation. 
+	 * 
+	 * @param row
+	 * @param col
+	 * @throws IOException
+	 */
 	public void onLinePlayerHit(int row, int col){
 		try {
 			hitAnimation.setPlayer(this.human);					
@@ -545,6 +586,17 @@ public class Turn implements MouseListener, ActionListener
 		}	
 	}
 	
+	/**
+	 * Handles a online player miss.
+	 * 
+	 * If the online player misses,
+	 * than this will apply the appropriate action
+	 * to update statics.
+	 * 
+	 * @param row
+	 * @param col
+	 * @throws IOException
+	 */
 	public void onLinePlayerMiss(int row, int col){
 		
 		ImageIcon tmpImage = null;
@@ -569,7 +621,16 @@ public class Turn implements MouseListener, ActionListener
 		}	
 	}
 	
-	
+	/**
+	 * Pop-up when game ends.
+	 * 
+	 * Will hold statics for the game when it is over.
+	 * This will also play the win or lose video depending on the outcome.
+	 * Also sleeping this thread to prevent the pop-up window from interfearing
+	 * with the video.
+	 * 
+	 * @throws InterruptedException
+	 */
 	public void popUpStats(){
 		ImageIcon gameImg = new ImageIcon(getClass().getResource("/popup/game.jpg"));
 		try {
