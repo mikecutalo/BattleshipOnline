@@ -150,9 +150,16 @@ public class PVP implements Runnable{
 	 */
 	public void closeSocket(){
 		try {
-			socket.close();
-		} catch (IOException e) {
+			this.in.close();
+			this.out.close();
+			
+			this.socket.close();
+			this.runClient.interrupt();
+			this.runClient = null;
+
 			System.out.println("Closing the socket");
+			
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -233,13 +240,21 @@ public class PVP implements Runnable{
 						this.getOnLineTurn().onLinePlayerHit(row, col);
 					}else if(key == 'M'){
 						this.getOnLineTurn().onLinePlayerMiss(row, col);
-					}					
+					}else if(key == 'Z'){
+						System.out.println("Closing Socket from run..");
+						closeSocket();
+						//Thread.interrupted();
+					}
 				}
 			} catch (IOException e) {	
-				closeSocket();
+				if(socket.isClosed() == false)
+					closeSocket();
+				
 				e.printStackTrace();
 			} catch (InterruptedException e) {
-				closeSocket();
+				if(socket.isClosed() == false)
+					closeSocket();
+				
 				e.printStackTrace();
 			}
 		}
